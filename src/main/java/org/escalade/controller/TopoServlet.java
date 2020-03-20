@@ -6,8 +6,6 @@ import org.escalade.model.dao.TopoDaoImpl;
 import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
-import org.escalade.model.service.TopoService;
-import org.escalade.model.service.UserService;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

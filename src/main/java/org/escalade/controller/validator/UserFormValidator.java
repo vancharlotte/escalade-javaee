@@ -1,7 +1,5 @@
 package org.escalade.controller.validator;
 
-import org.escalade.model.entity.User;
-import org.escalade.model.service.UserService;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -13,7 +11,6 @@ import java.util.Set;
 public class UserFormValidator implements Validator {
 
 
-    UserService userService;
 /*
     @Override
     public boolean supports(Class<?> clazz) {

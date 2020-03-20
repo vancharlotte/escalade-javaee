@@ -4,8 +4,6 @@ import org.escalade.controller.validator.UserFormValidator;
 import org.escalade.model.dao.UserDao;
 import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.User;
-import org.escalade.model.service.UserService;
-import org.escalade.model.service.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

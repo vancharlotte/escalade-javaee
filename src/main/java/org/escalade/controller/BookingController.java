@@ -4,7 +4,6 @@ import org.escalade.model.dao.BookingDao;
 import org.escalade.model.dao.BookingDaoImpl;
 import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.Booking;
-import org.escalade.model.service.BookingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

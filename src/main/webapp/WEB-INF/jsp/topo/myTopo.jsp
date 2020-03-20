@@ -37,9 +37,11 @@
 
         <li><c:out value="${topo.name}"/>
 
-            <button onclick="location.href='/editTopo'"> Modifier  </button>
-            <button onclick="location.href='/deleteTopo'"> Supprimer  </button>
-            <button onclick="location.href='/editStatus'"> Modifier Statut  </button>
+            <a href="${pageContext.request.contextPath}/editTopo?<c:out value="${topo.topoId}"/>"> Modifier  </a>
+            <a href="${pageContext.request.contextPath}/deleteTopo"> Supprimer  </a>
+            <a href="${pageContext.request.contextPath}/editStatus"> Modifier Statut  </a>
+
+
 
 
         </li>

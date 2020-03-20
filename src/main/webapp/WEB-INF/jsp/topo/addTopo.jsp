@@ -41,23 +41,23 @@
 
         <tr>
             <td><label for="name">Nom : </label></td>
-            <td> <input type="text" name="name" id="name" /></td>
+            <td> <input type="text" name="name" id="name" value="${topo.name}"/></td>
         </tr>
         <tr>
             <td><label for="location">Location : </label></td>
-            <td> <input type="text" name="location" id="location" /></td>
+            <td> <input type="text" name="location" id="location" value="${topo.location}" /></td>
         </tr>
         <tr>
             <td><label for="releaseDate">Date de parution : </label></td>
-            <td> <input type="date" name="releaseDate" id="releaseDate" /></td>
+            <td> <input type="date" name="releaseDate" id="releaseDate" value="${topo.releaseDate}"/></td>
         </tr>
         <tr>
             <td><label for="description">Description : </label></td>
-            <td> <input type="text" name="description" id="description" /></td>
+            <td> <input type="text" name="description" id="description" value="${topo.description}" /></td>
         </tr>
         <tr>
             <td> Disponible :</td>
-            <td> <input type="radio" name="available" id="true" value="true" checked/>
+            <td> <input type="radio" name="available" id="true" value="true" checked />
                 <label for="true">Yes</label> </td>
             <td> <input type="radio" name="available" id="false" value="false"/>
                 <label for="false">No</label>

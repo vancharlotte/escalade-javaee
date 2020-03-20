@@ -1,7 +1,5 @@
 package org.escalade.controller;
 
-import org.escalade.model.entity.User;
-import org.escalade.model.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
