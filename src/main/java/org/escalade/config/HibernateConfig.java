@@ -1,5 +1,6 @@
 package org.escalade.config;
 
+/*
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,4 +43,4 @@ public class HibernateConfig {
         return transactionManager;
     }
 
-}
+} */

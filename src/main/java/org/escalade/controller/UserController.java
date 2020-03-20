@@ -1,34 +1,44 @@
 package org.escalade.controller;
 
 import org.escalade.controller.validator.UserFormValidator;
+import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.User;
 import org.escalade.model.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 
-@Controller
-@SessionAttributes("user")
-public class UserController {
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-    @Autowired
-    UserService userService;
+@WebServlet(name = "UserController", urlPatterns = "/user")
+public class UserController  extends HttpServlet {
 
-    @Autowired
+    UserDaoImpl userDao;
+    public void init() {
+        userDao = new UserDaoImpl();
+    }
+
+
     UserFormValidator validator;
 
     static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @GetMapping(value = "/register")
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
+
+ /*   @GetMapping(value = "/register")
     public ModelAndView register() {
         return new ModelAndView("user/addUser", "user", new User());
 

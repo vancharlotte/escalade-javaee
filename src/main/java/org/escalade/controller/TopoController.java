@@ -1,26 +1,47 @@
 package org.escalade.controller;
 
+import org.escalade.model.dao.TopoDao;
+import org.escalade.model.dao.TopoDaoImpl;
+import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.escalade.model.service.TopoService;
 import org.escalade.model.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
-@Controller
-@SessionAttributes("user")
-public class TopoController {
+@WebServlet
+public class TopoController extends HttpServlet {
 
+    TopoDao topoDao;
+    public void init() {
+        topoDao = new TopoDaoImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.getAttribute("user");
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/myTopo.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
+
+    /*
     @Autowired
     TopoService topoService;
 
@@ -102,7 +123,7 @@ public class TopoController {
             topoService.update(updateTopo);
             return "redirect:/user/myTopo";
         }
-    }
+    }*/
 }
 
 

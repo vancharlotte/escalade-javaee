@@ -2,7 +2,6 @@ package org.escalade.model.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 

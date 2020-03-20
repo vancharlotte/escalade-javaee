@@ -4,19 +4,12 @@ import org.escalade.model.dao.TopoDao;
 import org.escalade.model.dao.TopoDaoImpl;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-@Transactional
 public class TopoServiceImpl implements TopoService {
 
-    @Autowired
     TopoDao topoDao;
-    @Autowired
     UserService userService;
 
     @Override

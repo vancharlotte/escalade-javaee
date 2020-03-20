@@ -1,5 +1,5 @@
 package org.kreo.model.dao;
-
+/*
 import java.util.List;
 
 import org.escalade.config.AppInitializer;
@@ -95,3 +95,4 @@ public class TestUserDaoImpl {
 
 
 }
+*/

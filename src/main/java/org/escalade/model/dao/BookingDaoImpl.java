@@ -3,16 +3,12 @@ package org.escalade.model.dao;
 import org.escalade.model.entity.Booking;
 import org.escalade.model.entity.Topo;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
 public class BookingDaoImpl implements BookingDao {
 
-    @Autowired
     private SessionFactory sessionFactory;
 
     @Override
@@ -23,9 +19,10 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public List<Booking> list() {
-        @SuppressWarnings("unchecked")
-        TypedQuery<Booking> query = sessionFactory.getCurrentSession().createQuery("from Booking");
-        return query.getResultList();    }
+       // @SuppressWarnings("unchecked")
+       // TypedQuery<Booking> query = sessionFactory.getCurrentSession().createQuery("from Booking");
+       // return query.getResultList();
+        return null;}
 
     @Override
     public Booking findById(int id) {

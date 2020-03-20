@@ -14,11 +14,23 @@
         <property name="hibernate.connection.password">admin123</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/db_escalade</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+
 
         <property name="hibernate.c3p0.min_size">5</property>
         <property name="hibernate.c3p0.max_size">20</property>
         <property name="hibernate.c3p0.acquire_increment">5</property>
         <property name="hibernate.c3p0.max_statements">150</property>
+
+        <mapping class="org.escalade.model.entity.User"/>
+        <mapping class="org.escalade.model.entity.Role"/>
+        <mapping class="org.escalade.model.entity.Topo"/>
+        <mapping class="org.escalade.model.entity.Site"/>
+        <mapping class="org.escalade.model.entity.Comment"/>
+        <mapping class="org.escalade.model.entity.Booking"/>
+        <mapping class="org.escalade.model.entity.Sector"/>
+        <mapping class="org.escalade.model.entity.Route"/>
+
 
     </session-factory>
 

@@ -1,20 +1,20 @@
 package org.escalade.model.service;
 
 
-import org.escalade.model.dao.UserDao;
+import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDao userDao;
+
+    UserDaoImpl userDao;
+
+    public UserServiceImpl() {
+        this.userDao = userDao;
+    }
+
 
     public User save(User user) {
         userDao.save(user);
@@ -54,3 +54,4 @@ public class UserServiceImpl implements UserService {
     }
 
 }
+

@@ -1,14 +1,14 @@
 package org.escalade.config;
 
-
+/*
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 @ComponentScan(basePackages = "org.escalade")
-public class AppInitializer extends
-        AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppInitializer  extends
+        AbstractAnnotationConfigDispatcherServletInitializer  {
 
     static final Logger logger = LoggerFactory.getLogger(HibernateConfig.class);
 
@@ -32,3 +32,5 @@ public class AppInitializer extends
         return new String[] { "/" };
     }
 }
+
+*/

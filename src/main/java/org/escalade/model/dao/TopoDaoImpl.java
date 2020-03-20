@@ -5,8 +5,6 @@ import org.escalade.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,10 +13,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-@Repository
 public class TopoDaoImpl implements TopoDao {
 
-    @Autowired
     private SessionFactory sessionFactory;
 
     @Override
@@ -34,7 +30,7 @@ public class TopoDaoImpl implements TopoDao {
     @Override
     public List<Topo> list() {
         @SuppressWarnings("unchecked")
-        TypedQuery<Topo> query = sessionFactory.getCurrentSession().createQuery("from Topo");
+        TypedQuery<Topo> query = sessionFactory.getCurrentSession().createQuery("",Topo.class);
         return query.getResultList();
     }
 

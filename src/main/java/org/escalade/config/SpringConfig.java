@@ -1,6 +1,6 @@
 package org.escalade.config;
 
-
+/*
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -61,7 +61,7 @@ public class SpringConfig implements WebMvcConfigurer {
         LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
         validator.setValidationMessageSource(messageSource());
         return validator;
-    }*/
-}
+    }
+}*/
 
 
