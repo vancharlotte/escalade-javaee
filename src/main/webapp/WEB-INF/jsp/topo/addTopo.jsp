@@ -7,54 +7,68 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html>
 <head>
-    <title>add topo</title>
+    <title>add user</title>
     <style>
         .error{color:red}
     </style>
 </head>
 
 <body>
-<h2> Topo :</h2>
-<form:form method = "POST" action = "/escalade/user/addTopo" modelAttribute="topo" >
+<h2>Informations de profil</h2>
 
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test</title>
+</head>
+<body>
+
+<c:if test="${not empty message}">
+
+    <td>${message}</td>
+
+</c:if>
+
+
+<form method="post" action="addTopo" >
 
     <table>
 
         <tr>
-            <td><form:label path = "name">Name :</form:label></td>
-            <td><form:input path ="name" maxlength="20" required="required" value="${topo.name}"/>
-                <form:errors path="name" cssClass="error" /></td>
+            <td><label for="name">Nom : </label></td>
+            <td> <input type="text" name="name" id="name" /></td>
         </tr>
         <tr>
-            <td><form:label path ="location">Location :</form:label></td>
-            <td><form:input path ="location"  required="required" value="${topo.location}"/>
-                <form:errors path="location" cssClass="error"/></td>
+            <td><label for="location">Location : </label></td>
+            <td> <input type="text" name="location" id="location" /></td>
         </tr>
         <tr>
-            <td><form:label path ="releaseDate">Release Date :</form:label></td>
-            <td><form:input path ="releaseDate" required="required" value="dd/MM/yyyy"/>
-                <form:errors path="releaseDate" cssClass="error"/></td>
+            <td><label for="releaseDate">Date de parution : </label></td>
+            <td> <input type="date" name="releaseDate" id="releaseDate" /></td>
         </tr>
         <tr>
-            <td><form:label path ="description">Description :</form:label></td>
-            <td><form:input path ="description" minlength="20" maxlength="200" required="required" value="${topo.description}"/>
-                <form:errors path="description" cssClass="error"/></td>
+            <td><label for="description">Description : </label></td>
+            <td> <input type="text" name="description" id="description" /></td>
         </tr>
         <tr>
-            <td>Available :</td>
-            <td>
-                <form:radiobutton path="available" value="true" /> Yes
-                <form:radiobutton path="available" value="false" /> No
-                <form:errors path="available" cssClass="error"/></td>
+            <td> Disponible :</td>
+            <td> <input type="radio" name="available" id="true" value="true" checked/>
+                <label for="true">Yes</label> </td>
+            <td> <input type="radio" name="available" id="false" value="false"/>
+                <label for="false">No</label>
+            </td>
+
         </tr>
         <tr>
-                <td><input type="submit" value="Submit"/></td>
+            <td><input type="submit" value="Submit"/></td>
         </tr>
     </table>
-</form:form>
+</form>
 
 
 

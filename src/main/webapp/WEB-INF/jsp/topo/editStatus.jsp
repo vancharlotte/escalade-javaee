@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri=""%>
 <%--
   Created by IntelliJ IDEA.
   User: vanhu
@@ -7,7 +8,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <html>
 <head>
     <title>add topo</title>
@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<form:form method = "POST" action = "/escalade/user/editStatus/${topoId}" modelAttribute="topo" >
+
     <h2> Topo ${topo.name} :</h2>
 
     <table>

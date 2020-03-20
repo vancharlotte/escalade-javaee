@@ -1,10 +1,15 @@
 package org.escalade.model.dao;
 
+import org.escalade.config.HibernateUtil;
+import org.escalade.controller.AddTopoServlet;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,40 +20,121 @@ import java.util.List;
 
 public class TopoDaoImpl implements TopoDao {
 
-    private SessionFactory sessionFactory;
+    static final Logger logger = LoggerFactory.getLogger(AddTopoServlet.class);
+
 
     @Override
     public void save(Topo topo) {
-        sessionFactory.getCurrentSession().save(topo);
+
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save topo object
+            session.save(topo);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     public void update(Topo topo) {
-        sessionFactory.getCurrentSession().update(topo);
+
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save topo object
+            session.update(topo);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
 
     @Override
     public List<Topo> list() {
-        @SuppressWarnings("unchecked")
-        TypedQuery<Topo> query = sessionFactory.getCurrentSession().createQuery("",Topo.class);
-        return query.getResultList();
+        List<Topo> topos = null;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save topo object
+            Query<Topo> q = session.createQuery("from Topo");
+            topos = q.getResultList();
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return topos;
     }
 
     @Override
     public Topo findById(int id) {
-        Topo topo = sessionFactory.getCurrentSession().get(Topo.class, id);
+        Topo topo = null;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save topo object
+            topo = session.get(Topo.class, id);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
         return topo;
     }
 
+
     @Override
     public void delete(Topo topo) {
-        sessionFactory.getCurrentSession().delete(topo);
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save topo object
+            session.delete(topo);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public List<Topo> findByUser(User user) {
+        List<Topo> topos = null;
+        Transaction transaction = null;
         try {
-            Session session = sessionFactory.getCurrentSession();
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
             Root<Topo> root = query.from(Topo.class);
@@ -56,11 +142,14 @@ public class TopoDaoImpl implements TopoDao {
             Predicate usernamePredicate = builder.equal(root.get("user"), user);
             query.where(usernamePredicate);
             Query<Topo> q = session.createQuery(query);
-            return q.getResultList();
-
+            topos = q.getResultList();
+            transaction.commit();
         } catch (Exception e) {
-            return null;
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
         }
+        return topos;
     }
-
 }

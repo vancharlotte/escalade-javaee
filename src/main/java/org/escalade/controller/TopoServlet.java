@@ -1,5 +1,6 @@
 package org.escalade.controller;
 
+import org.escalade.config.HibernateUtil;
 import org.escalade.model.dao.TopoDao;
 import org.escalade.model.dao.TopoDaoImpl;
 import org.escalade.model.dao.UserDaoImpl;
@@ -7,6 +8,7 @@ import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.escalade.model.service.TopoService;
 import org.escalade.model.service.UserService;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +23,13 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet
-public class TopoController extends HttpServlet {
+@WebServlet(name = "TopoServlet", urlPatterns = {"/myTopo"})
+public class TopoServlet extends HttpServlet {
+
+    static final Logger logger = LoggerFactory.getLogger(TopoServlet.class);
 
     TopoDao topoDao;
+
     public void init() {
         topoDao = new TopoDaoImpl();
     }
@@ -32,7 +37,13 @@ public class TopoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        session.getAttribute("user");
+        User user = (User)session.getAttribute("user");
+        List<Topo> list= topoDao.findByUser(user);
+
+        req.setAttribute("list", list);
+        logger.info("topo : "+ list);
+        logger.info(this.getServletContext().toString());
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/myTopo.jsp").forward(req, resp);
     }
 

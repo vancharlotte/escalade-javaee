@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
 <html>
@@ -25,28 +24,23 @@
     </style>
 </head>
 <body>
-
-<spring:url value="/user/addTopo" var="addTopoUrl"/>
-<button class="button" onclick="location.href='${addTopoUrl}'">Ajouter un topo</button>
+<a href="${pageContext.request.contextPath}/addTopo"> Ajouter un topo  </a>
 <br>
 
 
 <h2> Mes topos : </h2>
 
-<c:if test="${not empty topoList}">
+<c:if test="${not empty list}">
 
-    <c:forEach var="topo" items="${topoList}">
+    <c:forEach var="topo" items="${list}">
 
 
         <li><c:out value="${topo.name}"/>
 
-            <spring:url value="/user/editTopo/${topo.topoId}" var="editTopoUrl"/>
-            <spring:url value="/user/deleteTopo/${topo.topoId}" var="deleteTopoUrl"/>
-            <spring:url value="/user/editStatus/${topo.topoId}" var="editStatusTopoUrl"/>
+            <button onclick="location.href='/editTopo'"> Modifier  </button>
+            <button onclick="location.href='/deleteTopo'"> Supprimer  </button>
+            <button onclick="location.href='/editStatus'"> Modifier Statut  </button>
 
-            <button class="button1" onclick="location.href='${editTopoUrl}'">Modifier</button>
-            <button class="button1" onclick="location.href='${deleteTopoUrl}'"> Supprimer</button>
-            <button class="button1" onclick="location.href='${editStatusTopoUrl}'"> Modifier Statut</button>
 
         </li>
     </c:forEach>

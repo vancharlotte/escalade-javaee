@@ -27,9 +27,7 @@
     <title>Test</title>
 </head>
 <body>
-</html>
 
-<c:if test="${ !empty username }"><p><c:out value="Bonjour, vous vous appelez ${ username }" /></p></c:if>
 
 <form method="post" action="register">
 

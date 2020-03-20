@@ -23,8 +23,8 @@
 </table>
 
 
-<a href="${pageContext.request.contextPath}/user/myTopo"> Mes topos  </a>
-<a href="${pageContext.request.contextPath}/user/myTopo"> Mes réservations  </a>
+<a href="${pageContext.request.contextPath}/myTopo"> Mes topos  </a>
+<a href="${pageContext.request.contextPath}/myBooking"> Mes réservations  </a>
 
 
 </body>
