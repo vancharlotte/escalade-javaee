@@ -1,30 +1,22 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vanhu
-  Date: 16/03/2020
-  Time: 12:43
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>MY TOPO</title>
-    <style>
-        .button{
-            color: cornflowerblue;
-        }
-
-        .button1{
-            background-color: cornflowerblue;
-            color: white;
-        }
-    </style>
+    <title> topo </title>
+    <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
+
 <body>
-<a href="${pageContext.request.contextPath}/addTopo"> Ajouter un topo  </a>
+
+<c:if test="${not empty message}">
+
+    <td>${message}</td>
+    <br>
+
+</c:if>
+
+<a href="${pageContext.request.contextPath}/addTopo"> Ajouter un topo </a>
 <br>
 
 
@@ -36,20 +28,19 @@
 
 
         <li><c:out value="${topo.name}"/>
-
-            <a href="${pageContext.request.contextPath}/editTopo?<c:out value="${topo.topoId}"/>"> Modifier  </a>
-            <a href="${pageContext.request.contextPath}/deleteTopo"> Supprimer  </a>
-            <a href="${pageContext.request.contextPath}/editStatus"> Modifier Statut  </a>
+            <c:if test="${topo.available==true}"> disponible </c:if>
+            <c:if test="${topo.available==false}"> réservé </c:if>
 
 
+            <a href="${pageContext.request.contextPath}/editTopo?<c:out value="${topo.topoId}"/>"> Modifier </a>
+            <a href="${pageContext.request.contextPath}/deleteTopo?<c:out value="${topo.topoId}"/>"> Supprimer </a>
+            <a href="${pageContext.request.contextPath}/editStatusTopo?<c:out value="${topo.topoId}"/>"> Changer Statut </a>
 
 
         </li>
     </c:forEach>
 
 </c:if>
-
-
 
 
 </body>

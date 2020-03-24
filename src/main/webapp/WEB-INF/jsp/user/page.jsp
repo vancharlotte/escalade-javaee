@@ -1,31 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vanhu
-  Date: 15/03/2020
-  Time: 17:40
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>profil</title>
+    <title> inscription</title>
+    <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
+
 <body>
+
 <h2> Page de profil</h2>
 
-<table>
-    <tr>
-        <td>${message}</td>
+<h4>${message}</h4>
 
-    </tr>
-
-</table>
-
-
-<a href="${pageContext.request.contextPath}/myTopo"> Mes topos  </a>
-<a href="${pageContext.request.contextPath}/myBooking"> Mes réservations  </a>
-
+<a href="${pageContext.request.contextPath}/myTopo"> Mes topos </a>
+<a href="${pageContext.request.contextPath}/myBooking"> Mes réservations </a>
 
 </body>
 </html>

@@ -1,60 +1,60 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vanhu
-  Date: 11/03/2020
-  Time: 13:00
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>add topo</title>
-    <style>
-        .error{color:red}
-    </style>
+    <title> modifier topo</title>
+    <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
 
 <body>
-<h2> Topo :</h2>
-<form:form method = "POST" action = "/escalade/user/editTopo/${topoId}" modelAttribute="topo" >
 
+<c:if test="${not empty message}">
+
+    <td>${message}</td>
+
+</c:if>
+
+
+<form method="post" action="editTopo">
 
     <table>
+
         <tr>
-            <td><form:label path = "name">Name :</form:label></td>
-            <td><form:input path ="name" maxlength="20" required="required" value="${topo.name}"/>
-                <form:errors path="name" cssClass="error" /></td>
+            <td><label for="topoId"></label></td>
+            <td><input type="hidden" name="topoId" id="topoId" value="${topo.topoId}"/></td>
         </tr>
         <tr>
-            <td><form:label path ="location">Location :</form:label></td>
-            <td><form:input path ="location"  required="required" value="${topo.location}"/>
-                <form:errors path="location" cssClass="error"/></td>
+            <td><label for="name">Nom : </label></td>
+            <td><input type="text" name="name" id="name" value="${topo.name}"/></td>
         </tr>
         <tr>
-            <td><form:label path ="releaseDate">Release Date :</form:label></td>
-            <td><form:input path ="releaseDate" required="required" value="dd/MM/yyyy"/>
-                <form:errors path="releaseDate" cssClass="error"/></td>
+            <td><label for="location">Location : </label></td>
+            <td><input type="text" name="location" id="location" value="${topo.location}"/></td>
         </tr>
         <tr>
-            <td><form:label path ="description">Description :</form:label></td>
-            <td><form:input path ="description" minlength="20" maxlength="200" required="required" value="${topo.description}"/>
-                <form:errors path="description" cssClass="error"/></td>
+            <td><label for="releaseDate">Date de parution : </label></td>
+            <td><input type="date" name="releaseDate" id="releaseDate" value="${topo.releaseDate}"/></td>
         </tr>
         <tr>
-            <td>Available :</td>
-            <td>
-                <form:radiobutton path="available" value="true" /> Yes
-                <form:radiobutton path="available" value="false" /> No
-                <form:errors path="available" cssClass="error"/></td>
+            <td><label for="description">Description : </label></td>
+            <td><textarea rows="5" cols="50" name="description" id="description">${topo.description}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td> Disponible :</td>
+            <td><input type="radio" name="available" id="true" value="true" checked/>
+                <label for="true">Yes</label>
+                <input type="radio" name="available" id="false" value="false"/>
+                <label for="false">No</label>
+            </td>
+
         </tr>
         <tr>
             <td><input type="submit" value="Submit"/></td>
         </tr>
     </table>
-</form:form>
-
+</form>
 
 
 </body>

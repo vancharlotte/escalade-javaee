@@ -3,31 +3,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> nouveau site </title>
+    <title> modifier site </title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
 
 <body>
-<h2> nouveau site</h2>
 
 
-
-<form method="post" action="addSite">
+<form method="post" action="editSite">
 
     <table>
 
         <tr>
+            <td><label for="siteId"></label></td>
+            <td><input type="hidden" name="siteId" id="siteId" value="${site.siteId}"/></td>
+        </tr>
+        <tr>
             <td><label for="name">Nom : </label></td>
-            <td><input type="text" name="name" id="name"/></td>
+            <td><input type="text" name="name" id="name" value="${site.name}"/></td>
         </tr>
         <tr>
             <td><label for="location">Location : </label></td>
-            <td><input type="text" name="location" id="location"/></td>
+            <td><input type="text" name="location" id="location" value="${site.location}"/></td>
         </tr>
         <tr>
             <td><label for="description">Description : </label></td>
-
-            <td><textarea rows="5" cols="50" name="description" id="description"></textarea>
+            <td><textarea rows="5" cols="50" name="description" id="description">${site.description}</textarea>
             </td>
         </tr>
         <tr>

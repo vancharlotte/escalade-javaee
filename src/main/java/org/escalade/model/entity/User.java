@@ -27,6 +27,9 @@ public class User implements Serializable {
     private String email;
 
     @OneToMany(mappedBy="user")
+    private Set<Topo> sites;
+
+    @OneToMany(mappedBy="user")
     private Set<Topo> topos;
 
     @OneToMany(mappedBy="user")
@@ -78,5 +81,13 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

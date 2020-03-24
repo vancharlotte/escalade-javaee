@@ -1,4 +1,4 @@
-package org.escalade.controller;
+package org.escalade.controller.booking;
 
 import org.escalade.model.dao.BookingDao;
 import org.escalade.model.dao.BookingDaoImpl;
@@ -20,7 +20,7 @@ public class BookingController {
         userDao = new BookingDaoImpl();
     }
 
-    static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    static final Logger logger = LoggerFactory.getLogger(BookingController.class);
 /*
     doGet (value = "/user/{id}/booking")
     public ModelAndView myTopo() {

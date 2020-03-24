@@ -1,33 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vanhu
-  Date: 11/03/2020
-  Time: 13:00
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<html>
-<head>
-    <title>add user</title>
-    <style>
-        .error{color:red}
-    </style>
-</head>
-
-<body>
-<h2>Informations de profil</h2>
-
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Test</title>
+    <title> inscription</title>
+    <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
-<body>
 
+<body>
 
 <form method="post" action="register">
 

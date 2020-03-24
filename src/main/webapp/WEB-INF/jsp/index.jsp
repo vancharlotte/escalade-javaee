@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Accueil</title>
+    <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
 <body>
 
-
-<a href="${pageContext.request.contextPath}/login"> Se connecter</a>
-<br />
-<br />
-<a href="${pageContext.request.contextPath}/register"> S'inscrire</a>
-<br />
-<br />
-<a href="${pageContext.request.contextPath}/search"> Recherche</a>
-<br />
-
+<h2> Bienvenue</h2>
 
 </body>
 </html>
+

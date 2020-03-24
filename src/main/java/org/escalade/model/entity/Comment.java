@@ -21,12 +21,58 @@ public class Comment {
     private int time;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name="user_id")
     private User user; //author
 
     @ManyToOne
-    @JoinColumn(name="site_id", nullable=false)
+    @JoinColumn(name="site_id")
     private Site site;
 
+    public int getCommentId() {
+        return commentId;
+    }
 
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
 }

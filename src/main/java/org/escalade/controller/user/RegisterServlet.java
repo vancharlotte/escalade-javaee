@@ -1,4 +1,4 @@
-package org.escalade.controller;
+package org.escalade.controller.user;
 
 import org.escalade.controller.validator.UserFormValidator;
 import org.escalade.model.dao.UserDao;

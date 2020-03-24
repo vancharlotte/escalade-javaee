@@ -15,10 +15,11 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+    Transaction transaction;
 
     @Override
     public void save(User user) {
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             // start a transaction
@@ -38,7 +39,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void update(User user) {
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             // start a transaction
@@ -60,7 +61,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> list() {
         List<User> users = null;
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             // start a transaction
@@ -83,7 +84,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findById(int id) {
         User user = null;
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             // start a transaction
@@ -106,7 +107,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByUsername(String username) {
         User user = null;
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -131,7 +132,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByEmail(String email) {
         User user = null;
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -139,8 +140,8 @@ public class UserDaoImpl implements UserDao {
             CriteriaQuery<User> query = builder.createQuery(User.class);
             Root<User> root = query.from(User.class);
 
-            Predicate emailPredicate = builder.equal(root.get("email"), email);
-            query.where(emailPredicate);
+            Predicate predicate = builder.equal(root.get("email"), email);
+            query.where(predicate);
             Query<User> q = session.createQuery(query);
 
             transaction.commit();
@@ -158,7 +159,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void delete(User user) {
-        Transaction transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             // start a transaction

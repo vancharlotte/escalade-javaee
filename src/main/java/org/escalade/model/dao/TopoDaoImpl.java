@@ -1,17 +1,16 @@
 package org.escalade.model.dao;
 
 import org.escalade.config.HibernateUtil;
-import org.escalade.controller.AddTopoServlet;
+import org.escalade.controller.topo.AddTopoServlet;
+import org.escalade.model.entity.Site;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -69,12 +68,9 @@ public class TopoDaoImpl implements TopoDao {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save topo object
             Query<Topo> q = session.createQuery("from Topo");
             topos = q.getResultList();
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -91,11 +87,8 @@ public class TopoDaoImpl implements TopoDao {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save topo object
             topo = session.get(Topo.class, id);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -112,11 +105,8 @@ public class TopoDaoImpl implements TopoDao {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save topo object
             session.delete(topo);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -124,6 +114,32 @@ public class TopoDaoImpl implements TopoDao {
             }
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Topo> findByName(String name) {
+        List<Topo> topos = null;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
+            Root<Topo> root = query.from(Topo.class);
+
+            Predicate predicate = builder.equal(root.get("name"), name);
+            query.where(predicate);
+            Query<Topo> q = session.createQuery(query);
+            topos = q.getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return topos;
     }
 
 
@@ -139,8 +155,8 @@ public class TopoDaoImpl implements TopoDao {
             CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
             Root<Topo> root = query.from(Topo.class);
 
-            Predicate usernamePredicate = builder.equal(root.get("user"), user);
-            query.where(usernamePredicate);
+            Predicate predicate = builder.equal(root.get("user"), user);
+            query.where(predicate);
             Query<Topo> q = session.createQuery(query);
             topos = q.getResultList();
             transaction.commit();
