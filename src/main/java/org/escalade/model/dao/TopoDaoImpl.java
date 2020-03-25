@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopoDaoImpl implements TopoDao {
@@ -117,7 +118,7 @@ public class TopoDaoImpl implements TopoDao {
     }
 
     @Override
-    public List<Topo> findByName(String name) {
+    public List<Topo> searchByName(String name) {
         List<Topo> topos = null;
         Transaction transaction = null;
         try {
@@ -128,11 +129,53 @@ public class TopoDaoImpl implements TopoDao {
             CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
             Root<Topo> root = query.from(Topo.class);
 
-            Predicate predicate = builder.equal(root.get("name"), name);
+            Predicate predicate = builder.equal(root.get("name"), "%"+name+"%");
             query.where(predicate);
             Query<Topo> q = session.createQuery(query);
             topos = q.getResultList();
             transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return topos;
+    }
+
+    @Override
+    public List<Topo> search(String name, String location, boolean available) {
+        List<Topo> topos = null;
+        Transaction transaction = null;
+
+        logger.info("name : " + name + " location : " + location + " available : " + available);
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
+            Root<Topo> root = query.from(Topo.class);
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (!name.equals("")) {
+                predicates.add(builder.like(root.get("name"), "%"+name+"%"));
+            }
+
+            if (!location.equals("")) {
+                predicates.add( builder.equal(root.get("location"), location));
+            }
+            if (available) {
+                predicates.add(builder.equal(root.get("available"), available));
+            }
+
+
+            Predicate predicate = builder.and(predicates.toArray(new Predicate[predicates.size()]));
+            Query<Topo> q = session.createQuery(query.where(predicate));
+            topos = q.getResultList();
+            transaction.commit();
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

@@ -117,8 +117,8 @@ public class UserDaoImpl implements UserDao {
             Predicate usernamePredicate = builder.equal(root.get("username"), username);
             query.where(usernamePredicate);
             Query<User> q = session.createQuery(query);
-            transaction.commit();
             user =  q.getSingleResult();
+            transaction.commit();
 
         } catch (Exception e) {
             if (transaction != null) {
@@ -129,33 +129,6 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    @Override
-    public User findByEmail(String email) {
-        User user = null;
-        transaction = null;
-        try {
-            Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            transaction = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<User> query = builder.createQuery(User.class);
-            Root<User> root = query.from(User.class);
-
-            Predicate predicate = builder.equal(root.get("email"), email);
-            query.where(predicate);
-            Query<User> q = session.createQuery(query);
-
-            transaction.commit();
-            user =  q.getSingleResult();
-
-
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-        return user;
-    }
 
     @Override
     public void delete(User user) {

@@ -1,18 +1,19 @@
 package org.escalade.model.dao;
 
 import org.escalade.config.HibernateUtil;
-import org.escalade.model.entity.Booking;
-import org.escalade.model.entity.Comment;
-import org.escalade.model.entity.Topo;
+import org.escalade.model.entity.*;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 public class BookingDaoImpl implements BookingDao {
+
+    static final Logger logger = LoggerFactory.getLogger(BookingDaoImpl.class);
 
 
     @Override
@@ -98,5 +99,68 @@ public class BookingDaoImpl implements BookingDao {
             }
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Booking> findByOwner(User user) {
+
+        List<Booking> bookings = null;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Booking> query = builder.createQuery(Booking.class);
+            Root<Booking> bookingRoot = query.from(Booking.class);
+            Root<Topo> topoRoot = query.from(Topo.class);
+
+            Join<Booking, Topo> bookingTopoJoin = bookingRoot.join("topo");
+            Join<Topo, User> topoUserJoin = bookingTopoJoin.join("user");
+
+
+            Predicate topoPredicate = builder.equal(topoRoot.get("user"), user);
+            Predicate bookingPredicate = builder.equal(bookingRoot.get("topo"), topoUserJoin);
+
+            Predicate prFinal = builder.and(topoPredicate, bookingPredicate);
+
+            query.where(topoPredicate);
+            Query<Booking> q = session.createQuery(query);
+            bookings = q.getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return bookings;
+    }
+
+    @Override
+    public List<Booking> findByUser(User user) {
+
+        List<Booking> bookings = null;
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Booking> query = builder.createQuery(Booking.class);
+            Root<Booking> root = query.from(Booking.class);
+
+            Predicate predicate = builder.equal(root.get("user"), user);
+            query.where(predicate);
+            Query<Booking> q = session.createQuery(query);
+            bookings = q.getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return bookings;
     }
 }

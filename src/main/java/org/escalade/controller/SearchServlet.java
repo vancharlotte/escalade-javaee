@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "SearchServlet", urlPatterns = "/search")
@@ -41,21 +42,23 @@ public class SearchServlet extends HttpServlet {
         logger.info("word : "+ word);
 
         if(object.equals("site")){
-            List<Site> siteList = siteDao.findByName(word);
+            List<Site> siteList = siteDao.searchByName(word);
             req.setAttribute("siteList", siteList);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
         }
 
         else if(object.equals("topo")){
-            List<Topo> topoList =  topoDao.findByName(word);
+            List<Topo> topoList =  topoDao.searchByName(word);
             req.setAttribute("topoList", topoList);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
         }
 
         else if(object.equals("user")){
-            User userList = userDao.findByUsername(word);
+            User user = userDao.findByUsername(word);
+            List<User> userList = new ArrayList<>();
+            userList.add(user);
+
             req.setAttribute("userList", userList);
-            userDao.findByUsername(word);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
 
         }

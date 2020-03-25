@@ -12,5 +12,7 @@ public interface TopoDao {
     Topo findById(int id);
     void delete(Topo Topo);
     List<Topo> findByUser(User user);
-    List<Topo> findByName(String name);
+    List<Topo> searchByName(String name);
+    List<Topo> search(String name, String location, boolean available);
+
 }

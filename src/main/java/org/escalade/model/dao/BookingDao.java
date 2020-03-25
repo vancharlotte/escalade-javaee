@@ -1,6 +1,7 @@
 package org.escalade.model.dao;
 
 import org.escalade.model.entity.Booking;
+import org.escalade.model.entity.User;
 
 import java.util.List;
 
@@ -11,4 +12,8 @@ public interface BookingDao {
     List<Booking> list();
     Booking findById(int id);
     void delete(Booking booking);
+
+    List<Booking> findByOwner(User user);
+
+    List<Booking> findByUser(User user);
 }

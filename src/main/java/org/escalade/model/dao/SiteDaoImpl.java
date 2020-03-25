@@ -3,8 +3,10 @@ package org.escalade.model.dao;
 import org.escalade.config.HibernateUtil;
 import org.escalade.model.entity.Site;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SiteDaoImpl implements SiteDao {
@@ -112,7 +115,7 @@ public class SiteDaoImpl implements SiteDao {
 
 
     @Override
-    public List<Site> findByName(String name) {
+    public List<Site> searchByName(String name) {
         List<Site> sites = null;
         Transaction transaction = null;
         try {
@@ -123,7 +126,7 @@ public class SiteDaoImpl implements SiteDao {
             CriteriaQuery<Site> query = builder.createQuery(Site.class);
             Root<Site> root = query.from(Site.class);
 
-            Predicate predicate = builder.equal(root.get("name"), name);
+            Predicate predicate = builder.equal(root.get("name"), "%"+name+"%");
             query.where(predicate);
             Query<Site> q = session.createQuery(query);
             sites = q.getResultList();
@@ -137,88 +140,14 @@ public class SiteDaoImpl implements SiteDao {
         return sites;
     }
 
-    @Override
-    public List<Site> findByQuotation(String quotation) {
-        List<Site> sites = null;
-        Transaction transaction = null;
-        try {
-            Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            transaction = session.beginTransaction();
-
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Site> query = builder.createQuery(Site.class);
-            Root<Site> root = query.from(Site.class);
-
-            Predicate predicate = builder.equal(root.get("quotation"), quotation);
-            query.where(predicate);
-            Query<Site> q = session.createQuery(query);
-            sites = q.getResultList();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-        return sites;
-    }
-
-    @Override
-    public List<Site> findByLotation(String location) {
-        List<Site> sites = null;
-        Transaction transaction = null;
-        try {
-            Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            transaction = session.beginTransaction();
-
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Site> query = builder.createQuery(Site.class);
-            Root<Site> root = query.from(Site.class);
-
-            Predicate predicate = builder.equal(root.get("location"), location);
-            query.where(predicate);
-            Query<Site> q = session.createQuery(query);
-            sites = q.getResultList();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-        return sites;
-    }
-
-    @Override
-    public List<Site> findByChecked(boolean checked) {
-        List<Site> sites = null;
-        Transaction transaction = null;
-        try {
-            Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            transaction = session.beginTransaction();
-
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Site> query = builder.createQuery(Site.class);
-            Root<Site> root = query.from(Site.class);
-
-            Predicate predicate = builder.equal(root.get("checked"), checked);
-            query.where(predicate);
-            Query<Site> q = session.createQuery(query);
-            sites = q.getResultList();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-        return sites;
-    }
 
     @Override
     public List<Site> search(String name, String quotation, String location, boolean checked) {
+
         List<Site> sites = null;
         Transaction transaction = null;
+
+        logger.info("name : " + name + " quotation : " + quotation + " location : " + location + " checked : " + checked);
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -227,25 +156,27 @@ public class SiteDaoImpl implements SiteDao {
             CriteriaQuery<Site> query = builder.createQuery(Site.class);
             Root<Site> root = query.from(Site.class);
 
-            Predicate prName = builder.equal(root.get("name"), name);
-            Predicate prQuotation = builder.equal(root.get("quotation"), quotation);
-            Predicate prLocation = builder.equal(root.get("location"), location);
-            Predicate prChecked = builder.equal(root.get("checked"), checked);
+            List<Predicate> predicates = new ArrayList<>();
 
-            if (name != null) {
-                query.where(prName);
+            if (!name.equals("")) {
+                predicates.add(builder.like(root.get("name"), "%"+name+"%"));
             }
-            if (quotation != null) {
-                query.where(prQuotation);
+            if (!quotation.equals("")) {
+                predicates.add(builder.equal(root.get("quotation"), quotation));
             }
-            if (location != null) {
-                query.where(prLocation);
+            if (!location.equals("")) {
+                predicates.add( builder.equal(root.get("location"), location));
             }
-            query.where(prChecked);
+            if (checked) {
+                predicates.add(builder.equal(root.get("checked"), checked));
+            }
 
-            Query<Site> q = session.createQuery(query);
+
+            Predicate predicate = builder.and(predicates.toArray(new Predicate[predicates.size()]));
+            Query<Site> q = session.createQuery(query.where(predicate));
             sites = q.getResultList();
             transaction.commit();
+
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

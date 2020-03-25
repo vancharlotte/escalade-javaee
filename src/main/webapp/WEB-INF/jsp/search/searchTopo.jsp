@@ -13,13 +13,11 @@
 
 <form action="searchTopo" method="post">
 
-    <input type="radio" id="name" name="search_criteria" value="name">
+    <input type="text" id="name" name="searchbyName" value="name">
     <label for="name"> name </label><br>
-    <input type="radio" id="location" name="search_criteria" value="location">
+    <input type="text" id="location" name="searchByLocation" value="location">
     <label for="location"> site</label><br>
-    <input type="radio" id="user" name="search_criteria" value="user">
-    <label for="user"> user</label>
-    <input type="radio" id="available" name="search_criteria" value="available">
+    <input type="checkbox" id="available" name="searchByAvailable" value="available">
     <label for="available"> available</label>
 
     <input type="Submit" value="Ok"/>
@@ -29,7 +27,7 @@
 
 <c:if test="${ empty topoList}">
 
-    <h3>pas de résultat</h3>
+    <h4>pas de résultat</h4>
 
 </c:if>
 

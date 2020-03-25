@@ -33,6 +33,15 @@ public class SearchTopoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("searchByName");
+        String location = req.getParameter("searchByLocation");
+        String availableString = req.getParameter("searchByAvailable");
+        boolean available = true;
+        if (availableString==null) { available=false; }
+
+        List<Topo> topoList = topoDao.search(name, location, available);
+        req.setAttribute("topoList", topoList);
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/searchTopo.jsp").forward(req, resp);
     }

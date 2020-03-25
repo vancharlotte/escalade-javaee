@@ -20,6 +20,12 @@
 
 </form>
 
+<c:if test="${ empty siteList}">
+
+    <h4>pas de résultat</h4>
+
+</c:if>
+
 <c:if test="${not empty userList}">
 
     <h2> utilisateur : </h2>
@@ -27,7 +33,7 @@
     <c:forEach var="user" items="${userList}">
 
 
-        <li><c:out value="${user.name}"/>
+        <li><c:out value="${user.username}"/>
 
             <a href="${pageContext.request.contextPath}/user?<c:out value="${user.userId}"/>"> consulter  </a>
 

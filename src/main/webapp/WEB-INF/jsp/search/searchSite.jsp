@@ -31,6 +31,13 @@
 
 </form>
 
+<c:if test="${ empty siteList}">
+
+
+<h4>pas de résultat</h4>
+
+</c:if>
+
 <c:if test="${not empty siteList}">
 
     <h2> Sites : </h2>

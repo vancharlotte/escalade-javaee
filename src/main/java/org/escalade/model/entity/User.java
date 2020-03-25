@@ -27,17 +27,18 @@ public class User implements Serializable {
     private String email;
 
     @OneToMany(mappedBy="user")
-    private Set<Topo> sites;
+    private Set<Topo> site;
 
     @OneToMany(mappedBy="user")
-    private Set<Topo> topos;
+    private Set<Topo> topo;
 
     @OneToMany(mappedBy="user")
-    private Set<Comment> comments;
+    private Set<Comment> comment;
 
     //private String role;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="role_id")
     private Role role ;
 
@@ -89,5 +90,29 @@ public class User implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Set<Topo> getSite() {
+        return site;
+    }
+
+    public void setSite(Set<Topo> site) {
+        this.site = site;
+    }
+
+    public Set<Topo> getTopo() {
+        return topo;
+    }
+
+    public void setTopo(Set<Topo> topo) {
+        this.topo = topo;
+    }
+
+    public Set<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
     }
 }
