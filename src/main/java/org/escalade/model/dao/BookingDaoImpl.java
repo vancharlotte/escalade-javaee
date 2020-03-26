@@ -113,20 +113,14 @@ public class BookingDaoImpl implements BookingDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Booking> query = builder.createQuery(Booking.class);
             Root<Booking> bookingRoot = query.from(Booking.class);
-            Root<Topo> topoRoot = query.from(Topo.class);
+            query.select(bookingRoot);
+            Join<Object, Object> bookingTopoJoin = bookingRoot.join("topo", JoinType.INNER);
 
-            Join<Booking, Topo> bookingTopoJoin = bookingRoot.join("topo");
-            Join<Topo, User> topoUserJoin = bookingTopoJoin.join("user");
+            query.where(builder.equal(bookingTopoJoin.get("user"), user));
 
-
-            Predicate topoPredicate = builder.equal(topoRoot.get("user"), user);
-            Predicate bookingPredicate = builder.equal(bookingRoot.get("topo"), topoUserJoin);
-
-            Predicate prFinal = builder.and(topoPredicate, bookingPredicate);
-
-            query.where(topoPredicate);
             Query<Booking> q = session.createQuery(query);
             bookings = q.getResultList();
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

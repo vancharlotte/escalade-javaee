@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="BookingServlet" ,urlPatterns = "/myBooking")
+@WebServlet(name="BookingServlet" , urlPatterns = "/myBooking")
 public class BookingServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(BookingServlet.class);
@@ -49,7 +49,7 @@ public class BookingServlet extends HttpServlet {
         req.setAttribute("bookingList", bookingList);
 
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/myTopo.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/booking/myBooking.jsp").forward(req, resp);
     }
 
     @Override
