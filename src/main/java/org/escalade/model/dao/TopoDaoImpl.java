@@ -2,7 +2,6 @@ package org.escalade.model.dao;
 
 import org.escalade.config.HibernateUtil;
 import org.escalade.controller.topo.AddTopoServlet;
-import org.escalade.model.entity.Site;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.hibernate.Session;
@@ -29,11 +28,8 @@ public class TopoDaoImpl implements TopoDao {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save topo object
             session.save(topo);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -48,11 +44,8 @@ public class TopoDaoImpl implements TopoDao {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save topo object
             session.update(topo);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

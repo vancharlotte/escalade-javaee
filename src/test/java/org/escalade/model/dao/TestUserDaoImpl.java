@@ -1,28 +1,20 @@
-package org.kreo.model.dao;
-/*
+package org.escalade.model.dao;
+
 import java.util.List;
 
-import org.escalade.config.AppInitializer;
 import org.escalade.model.dao.UserDaoImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.escalade.model.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
-@ContextConfiguration(classes = {AppInitializer.class})
-@WebAppConfiguration
-@RunWith(SpringJUnit4ClassRunner.class)
+
 public class TestUserDaoImpl {
 
-    @Autowired
-    private UserDaoImpl userDaoImpl;
-    private User user = new User();
+
+ UserDaoImpl userDaoImpl;
+ User user = new User();
 
 
     @Before
@@ -33,7 +25,6 @@ public class TestUserDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testSaveUser() {
         userDaoImpl.save(user);
         List<User> users = userDaoImpl.list();
@@ -41,7 +32,6 @@ public class TestUserDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testUpdateUser() {
         userDaoImpl.save(user);
         user.setUsername("Pierre");
@@ -51,7 +41,6 @@ public class TestUserDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testListUser() {
         userDaoImpl.save(user);
         List<User> users = userDaoImpl.list();
@@ -59,7 +48,6 @@ public class TestUserDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testFindById() {
         userDaoImpl.save(user);
         User user2 = userDaoImpl.findById(user.getUserId());
@@ -67,7 +55,6 @@ public class TestUserDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testFindByUsername() {
         userDaoImpl.save(user);
         User user2 = userDaoImpl.findByUsername(user.getUsername());
@@ -75,16 +62,8 @@ public class TestUserDaoImpl {
     }
 
 
-    @Test
-    @Transactional
-    public void testFindByEmail() {
-        userDaoImpl.save(user);
-        User user2 = userDaoImpl.findByEmail (user.getEmail());
-        Assert.assertEquals("Paul@gmail.com", user2.getEmail());
-    }
 
     @Test
-    @Transactional
     public void testDeleteUser() {
         userDaoImpl.save(user);
         userDaoImpl.delete(user);
@@ -95,4 +74,3 @@ public class TestUserDaoImpl {
 
 
 }
-*/

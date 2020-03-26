@@ -1,23 +1,17 @@
-package org.kreo.model.dao;
-/*
-import org.escalade.config.AppInitializer;
-import org.escalade.model.dao.TopoDaoImpl;
+package org.escalade.model.dao;
+
 import org.escalade.model.entity.Topo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 
 import java.util.List;
 
-@ContextConfiguration(classes = {AppInitializer.class})
-@WebAppConfiguration
-@RunWith(SpringJUnit4ClassRunner.class)
+
 public class TestTopoDaoImpl {
 
-    @Autowired
-    private TopoDaoImpl topoDaoImpl;
+    private TopoDaoImpl topoDaoImpl = new TopoDaoImpl();
     private Topo topo = new Topo();
 
 
@@ -31,7 +25,6 @@ public class TestTopoDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testSaveUser() {
         topoDaoImpl.save(topo);
         List<Topo> users = topoDaoImpl.list();
@@ -39,7 +32,6 @@ public class TestTopoDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testUpdateUser() {
         topoDaoImpl.save(topo);
         topo.setName("topoB");
@@ -49,7 +41,6 @@ public class TestTopoDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testListUser() {
         topoDaoImpl.save(topo);
         List<Topo> topos = topoDaoImpl.list();
@@ -57,7 +48,6 @@ public class TestTopoDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testFindById() {
         topoDaoImpl.save(topo);
         Topo topo2 = topoDaoImpl.findById(topo.getTopoId());
@@ -65,7 +55,6 @@ public class TestTopoDaoImpl {
     }
 
     @Test
-    @Transactional
     public void testDeleteUser() {
         topoDaoImpl.save(topo);
         topoDaoImpl.delete(topo);
@@ -76,4 +65,3 @@ public class TestTopoDaoImpl {
 
 }
 
-*/

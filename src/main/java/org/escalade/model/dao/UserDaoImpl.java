@@ -19,7 +19,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void save(User user) {
-        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             // start a transaction
@@ -39,14 +38,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void update(User user) {
-        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save user object
             session.update(user);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -61,15 +56,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> list() {
         List<User> users = null;
-        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save user object
             Query<User> q = session.createQuery("from User");
             users = q.getResultList();
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -84,15 +75,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findById(int id) {
         User user = null;
-        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save user object
             user = HibernateUtil.sessionFactory.getCurrentSession().get(User.class, id);
-
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -107,7 +93,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByUsername(String username) {
         User user = null;
-        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -132,14 +117,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void delete(User user) {
-        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
-            // start a transaction
             transaction = session.beginTransaction();
-            // save user object
             session.delete(user);
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

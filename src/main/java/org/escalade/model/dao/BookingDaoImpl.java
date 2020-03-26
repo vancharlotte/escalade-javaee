@@ -14,11 +14,11 @@ import java.util.List;
 public class BookingDaoImpl implements BookingDao {
 
     static final Logger logger = LoggerFactory.getLogger(BookingDaoImpl.class);
-
+    Transaction transaction;
 
     @Override
     public void save(Booking booking) {
-        Transaction transaction = null;
+         transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -34,7 +34,7 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public void update(Booking booking) {
-        Transaction transaction = null;
+         transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -51,7 +51,7 @@ public class BookingDaoImpl implements BookingDao {
     @Override
     public List<Booking> list() {
         List<Booking> bookings = null;
-        Transaction transaction = null;
+         transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -70,7 +70,7 @@ public class BookingDaoImpl implements BookingDao {
     @Override
     public Booking findById(int bookingId) {
         Booking booking = null;
-        Transaction transaction = null;
+         transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -135,7 +135,7 @@ public class BookingDaoImpl implements BookingDao {
     public List<Booking> findByUser(User user) {
 
         List<Booking> bookings = null;
-        Transaction transaction = null;
+         transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
