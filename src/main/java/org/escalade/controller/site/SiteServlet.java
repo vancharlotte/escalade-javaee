@@ -1,10 +1,8 @@
 package org.escalade.controller.site;
 
-import org.escalade.controller.topo.TopoServlet;
 import org.escalade.model.dao.*;
 import org.escalade.model.entity.Comment;
 import org.escalade.model.entity.Site;
-import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet(name = "SiteServlet", urlPatterns = "/site")
 public class SiteServlet extends HttpServlet {

@@ -13,11 +13,11 @@
 
 <form action="searchTopo" method="post">
 
-    <input type="text" id="name" name="searchbyName" value="name">
+    <input type="text" id="name" name="searchByName">
     <label for="name"> name </label><br>
-    <input type="text" id="location" name="searchByLocation" value="location">
+    <input type="text" id="location" name="searchByLocation">
     <label for="location"> site</label><br>
-    <input type="checkbox" id="available" name="searchByAvailable" value="available">
+    <input type="checkbox" id="available" name="searchByAvailable">
     <label for="available"> available</label>
 
     <input type="Submit" value="Ok"/>
@@ -39,7 +39,7 @@
 
         <li><c:out value="${topo.name}"/>
 
-            <a href="${pageContext.request.contextPath}/site?<c:out value="${topo.topoId}"/>"> consulter  </a>
+            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter  </a>
 
         </li>
     </c:forEach>

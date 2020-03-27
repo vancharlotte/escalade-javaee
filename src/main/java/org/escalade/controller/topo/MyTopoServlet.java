@@ -2,13 +2,11 @@ package org.escalade.controller.topo;
 
 import org.escalade.model.dao.TopoDao;
 import org.escalade.model.dao.TopoDaoImpl;
-import org.escalade.model.dao.UserDao;
-import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
-import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,48 +15,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "TopoServlet", urlPatterns = {"/topo"})
-public class TopoServlet extends HttpServlet {
+@WebServlet(name = "MyTopoServlet", urlPatterns = {"/myTopo"})
+public class MyTopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(MyTopoServlet.class);
 
     TopoDao topoDao;
-    UserDao userDao;
 
     public void init() {
         topoDao = new TopoDaoImpl();
-        userDao = new UserDaoImpl();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User)session.getAttribute("user");
+        List<Topo> list= topoDao.findByUser(user);
 
+        req.setAttribute("list", list);
+        logger.info("topo : "+ list);
+        logger.info(this.getServletContext().toString());
 
-        int topoId = Integer.parseInt(req.getQueryString());
-        Topo topo = topoDao.findById(topoId);
-        User owner = userDao.findById(topo.getUser().getUserId());
-        logger.info(user.getUsername());
-        req.setAttribute("topo", topo);
-        req.setAttribute("owner", owner);
-        req.setAttribute("user", user);
-        String message;
-
-        if (topo.isAvailable()) {
-            message = "Ce topo est disponible.";
-        } else {
-            message = "Ce topo n'est pas disponible.";
-        }
-        req.setAttribute("message", message);
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/Topo.jsp").forward(req, resp);
-
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/myTopo.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
+
+
 }
+
+

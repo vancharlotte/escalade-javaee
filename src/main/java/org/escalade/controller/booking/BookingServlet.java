@@ -1,12 +1,8 @@
 package org.escalade.controller.booking;
 
-import org.escalade.controller.topo.TopoServlet;
 import org.escalade.model.dao.BookingDao;
 import org.escalade.model.dao.BookingDaoImpl;
-import org.escalade.model.dao.TopoDao;
-import org.escalade.model.dao.TopoDaoImpl;
 import org.escalade.model.entity.Booking;
-import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

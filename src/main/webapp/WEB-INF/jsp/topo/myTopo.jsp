@@ -31,7 +31,7 @@
             <c:if test="${topo.available==true}"> disponible </c:if>
             <c:if test="${topo.available==false}"> réservé </c:if>
 
-
+            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> Consulter </a>
             <a href="${pageContext.request.contextPath}/editTopo?<c:out value="${topo.topoId}"/>"> Modifier </a>
             <a href="${pageContext.request.contextPath}/deleteTopo?<c:out value="${topo.topoId}"/>"> Supprimer </a>
             <a href="${pageContext.request.contextPath}/editStatusTopo?<c:out value="${topo.topoId}"/>"> Changer Statut </a>

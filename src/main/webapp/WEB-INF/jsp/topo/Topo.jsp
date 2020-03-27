@@ -3,33 +3,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>add user</title>
+    <title>Topo</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style>
+        .bordure {
+            border: solid 1px blueviolet;
+            padding: 25px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
 <br>
-
 <h2>${topo.name}</h2>
-<br>
-<h2>${user.name}</h2>
-<br>
-<h2>${topo.location}</h2>
-<br>
-<h2>${topo.releaseDate}</h2>
-<br>
-<h2>${topo.description}</h2>
-<br>
-<h2>${topo.available}</h2>
-<br>
+<div style="overflow-x:auto;">
 
+    <table>
+        <tr>
+            <td>
+                par : ${owner.username}
+                <br/> <br/>
+                Où? ${topo.location}
+                <br/>
+                date de parution : ${topo.releaseDate}
+                <br/> <br/>
+            </td>
+        </tr>
+        <tr>
+            <td style="color: blueviolet">
+                ${message}
+                    <br/> <br/>
+            </td>
+        </tr>
+        <tr>
+            <td class=bordure>
 
-<c:if test="${topo.available=true}">
+                ${topo.description}
+                    <br/> <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <c:if test="${(topo.available=true) && (user.username ne owner.username)}">
+                    Voulez-vous réserver ce topo?
+                    <a href="${pageContext.request.contextPath}/booking?<c:out value="${topo.topoId}"/>"> Réserver </a>
+                </c:if>
+            </td>
+        </tr>
 
+    </table>
+</div>
 
-    <a href="${pageContext.request.contextPath}/booking?<c:out value="${topo.topoId}"/>"> Réserver </a>
-
-
-</c:if>
 </body>
 </html>
