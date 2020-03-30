@@ -2,6 +2,8 @@ package org.escalade.controller.booking;
 
 import org.escalade.model.dao.BookingDao;
 import org.escalade.model.dao.BookingDaoImpl;
+import org.escalade.model.dao.TopoDao;
+import org.escalade.model.dao.TopoDaoImpl;
 import org.escalade.model.entity.Booking;
 import org.escalade.model.entity.Topo;
 import org.slf4j.Logger;
@@ -14,15 +16,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="BookingServlet" , urlPatterns = {"/rejectBooking", "/acceptBooking", "/cancelBooking"})
+@WebServlet(name = "BookingServlet", urlPatterns = {"/rejectBooking", "/acceptBooking", "/cancelBooking"})
 public class BookingServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(BookingServlet.class);
 
     BookingDao bookingDao;
+    TopoDao topoDao;
 
     public void init() {
         bookingDao = new BookingDaoImpl();
+        topoDao = new TopoDaoImpl();
     }
 
     @Override
@@ -37,23 +41,22 @@ public class BookingServlet extends HttpServlet {
             booking.setStatus("refusée");
             bookingDao.update(booking);
             resp.sendRedirect(req.getContextPath() + "/myBooking");
-        }
-
-        else if (req.getRequestURL().toString().contains("cancel")) {
+        } else if (req.getRequestURL().toString().contains("cancel")) {
             booking.setStatus("annulée");
             bookingDao.update(booking);
             resp.sendRedirect(req.getContextPath() + "/myBooking");
-        }
-
-        else if (req.getRequestURL().toString().contains("accept")) {
+        } else if (req.getRequestURL().toString().contains("accept")) {
             booking.setStatus("acceptée");
             bookingDao.update(booking);
-            resp.sendRedirect(req.getContextPath() + "/myBooking");
-        }
-        else {
+            Topo topo = topoDao.findById(booking.getTopo().getTopoId());
+            topo.setAvailable(false);
+            topoDao.update(topo);
+            logger.info("demande acceptée");
+                        resp.sendRedirect(req.getContextPath() + "/myBooking");
+        } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
         }
-}
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

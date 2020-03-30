@@ -29,10 +29,10 @@
             <td>
                 <c:if test="${entryR.key.status=='en attente'}">
 
-                    <a href="${pageContext.request.contextPath}/rejectBooking?<c:out value="${entryR.key.bookingId}"/>">
-                        accepter </a>
                     <a href="${pageContext.request.contextPath}/acceptBooking?<c:out value="${entryR.key.bookingId}"/>">
-                        refuser </a>
+                       accepter </a>
+                    <a href="${pageContext.request.contextPath}/rejectBooking?<c:out value="${entryR.key.bookingId}"/>">
+                       refuser </a>
 
                 </c:if>
             </td>
