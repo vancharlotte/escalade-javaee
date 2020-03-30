@@ -63,6 +63,7 @@ public class EditSiteServlet extends HttpServlet {
         site.setDescription(req.getParameter("description"));
         site.setQuotationMin(req.getParameter("quotationMin"));
         site.setQuotationMax(req.getParameter("quotationMax"));
+        site.setNbRoutes(req.getParameter("nbRoutes"));
 
         String available = req.getParameter("checked");
         logger.info("checked?" + available);

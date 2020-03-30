@@ -46,6 +46,7 @@ public class AddSiteServlet extends HttpServlet {
         site.setQuotationMin("quotationMin");
         site.setQuotationMax("quotationMax");
         site.setDescription(req.getParameter("description"));
+        site.setNbRoutes(req.getParameter("nbRoutes"));
         site.setUser((User) session.getAttribute("user"));
         String checked = req.getParameter("checked");
         if (checked.equals("true")) {

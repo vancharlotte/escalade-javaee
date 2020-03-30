@@ -23,7 +23,8 @@ public class Site {
     private String quotationMin;
     @NotEmpty
     private String quotationMax;
-
+    @NotEmpty
+    private String nbRoutes;
     @NotEmpty
     private String description;
     @NotEmpty
@@ -50,6 +51,14 @@ public class Site {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNbRoutes() {
+        return nbRoutes;
+    }
+
+    public void setNbRoutes(String nbRoutes) {
+        this.nbRoutes = nbRoutes;
     }
 
     public String getDepartement() {
