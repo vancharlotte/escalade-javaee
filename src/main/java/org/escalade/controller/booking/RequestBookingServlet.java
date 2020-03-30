@@ -33,7 +33,7 @@ public class RequestBookingServlet extends HttpServlet {
         int topoId = Integer.parseInt(req.getQueryString());
         Topo topo = topoDao.findById(topoId);
 
-        User user= (User) req.getSession().getAttribute("user");
+        User user = (User) req.getSession().getAttribute("user");
 
         Booking booking = new Booking();
         booking.setTopo(topo);
@@ -42,7 +42,8 @@ public class RequestBookingServlet extends HttpServlet {
         bookingDao.save(booking);
 
         req.setAttribute("user", user);
-        req.setAttribute("message", "demande envoyée!");
+        req.setAttribute("message",
+                "demande envoyée! Votre adresse email a été transmise au propriétaire du topo. Il prendra contact avec vous rapidement.");
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
 

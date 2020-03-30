@@ -10,42 +10,61 @@
 <body>
 
 <h2> Mes topos</h2>
+<table>
+    <tr>
+        <th>Topo</th>
+        <th>Statut</th>
+        <th>Utilisateur</th>
+        <th>Email</th>
+        <th>Options</th>
 
-<c:forEach var="booking" items="${requestList}">
-    <li>
+    </tr>
 
-        <c:out value="${booking.user.username}"/>
-        <c:out value="${booking.status}"/>
-        <c:out value="${booking.topo.name}"/>
+    <c:forEach var="entryR" items="${requestList}">
+        <tr>
+            <td><c:out value="${entryR.value.key.name}"/></td>
+            <td><c:out value="${entryR.key.status}"/></td>
+            <td><c:out value="${entryR.value.value.username}"/></td>
+            <td><c:out value="${entryR.value.value.email}"/></td>
+            <td>
+                <c:if test="${entryR.key.status=='en attente'}">
 
-        <c:if test="${booking.status=='en attente'}">
+                    <a href="${pageContext.request.contextPath}/rejectBooking?<c:out value="${entryR.key.bookingId}"/>">
+                        accepter </a>
+                    <a href="${pageContext.request.contextPath}/acceptBooking?<c:out value="${entryR.key.bookingId}"/>">
+                        refuser </a>
 
-            <a href="${pageContext.request.contextPath}/deleteBooking?<c:out value="${booking.bookingId}"/>">
-                accepter </a>
-            <a href="${pageContext.request.contextPath}/acceptBooking?<c:out value="${booking.bookingId}"/>">
-                refuser </a>
+                </c:if>
+            </td>
+        </tr>
 
-        </c:if>
-    </li>
-</c:forEach>
+    </c:forEach>
 
-<h2> Mes demandes</h2>
+</table>
 
-<c:forEach var="booking" items="${bookingList}">
+<h2> Mes demandes : </h2>
+<table>
+    <tr>
+        <th>Topo</th>
+        <th>Statut</th>
+        <th>Propriétaire</th>
+        <th>Option</th>
+    </tr>
 
-    <li><c:out value="${booking.topo.name}"/>
-        <c:out value="${booking.status}"/>
-        <c:out value="${booking.user.username}"/>
+    <c:forEach var="entryB" items="${bookingList}">
+        <tr>
+            <td><c:out value="${entryB.value.key.name}"/></td>
+            <td><c:out value="${entryB.key.status}"/></td>
+            <td><c:out value="${entryB.value.value.username}"/></td>
+            <td>
+                <c:if test="${entryB.key.status=='en attente'}">
+                    <a href="${pageContext.request.contextPath}/cancelBooking?<c:out value="${entryB.key.bookingId}"/>">
+                        annuler </a>
+                </c:if>
+            </td>
+        </tr>
 
-        <c:if test="${booking.status=='en attente'}">
-
-            <a href="${pageContext.request.contextPath}/cancelBooking?<c:out value="${booking.bookingId}"/>">
-                annuler </a>
-
-        </c:if>
-
-    </li>
-</c:forEach>
-
+    </c:forEach>
+</table>
 </body>
 </html>

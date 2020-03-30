@@ -13,8 +13,15 @@
 
 <h4>${message}</h4>
 
-<a href="${pageContext.request.contextPath}/myTopo"> Mes topos </a>
-<a href="${pageContext.request.contextPath}/myBooking"> Mes réservations </a>
+<c:if test="${user.username ne owner.username}">
+    <a href="${pageContext.request.contextPath}/myTopo"> Mes topos </a>
+    <a href="${pageContext.request.contextPath}/myBooking"> Mes réservations </a>
+</c:if>
+
+<c:if test="${user.username ne owner.username}">
+    list des topos de cet utilisateur (owner de la page).
+
+</c:if>
 
 </body>
 </html>

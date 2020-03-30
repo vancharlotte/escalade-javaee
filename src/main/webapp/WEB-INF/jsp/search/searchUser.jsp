@@ -35,7 +35,7 @@
 
         <li><c:out value="${user.username}"/>
 
-            <a href="${pageContext.request.contextPath}/user?<c:out value="${user.userId}"/>"> consulter  </a>
+            <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>"> consulter  </a>
 
         </li>
     </c:forEach>
