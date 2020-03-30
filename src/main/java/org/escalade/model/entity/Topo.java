@@ -21,7 +21,9 @@ public class Topo implements Serializable {
     @Length(min = 10, max = 200, message = "{Length.topo.description}")
     private String description;
     @NotEmpty(message = "{NotEmpty.topo.location}")
-    private String location;
+    private String city;
+    @NotEmpty(message = "{NotEmpty.topo.location}")
+    private String departement;
     @NotEmpty(message = "{NotEmpty.topo.releaseDate}")
     @Column(name = "release_date")
     private String releaseDate;
@@ -36,8 +38,8 @@ public class Topo implements Serializable {
         return topoId;
     }
 
-    public void setTopoId(int id) {
-        this.topoId = id;
+    public void setTopoId(int topoId) {
+        this.topoId = topoId;
     }
 
     public String getName() {
@@ -56,12 +58,20 @@ public class Topo implements Serializable {
         this.description = description;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
     }
 
     public String getReleaseDate() {

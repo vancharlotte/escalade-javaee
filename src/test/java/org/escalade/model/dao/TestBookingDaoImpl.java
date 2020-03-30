@@ -42,7 +42,8 @@ public class TestBookingDaoImpl {
         topo.setName("topo1");
         topo.setUser(user);
         topo.setAvailable(true);
-        topo.setLocation("ici");
+        topo.setCity("ici");
+        topo.setDepartement("59 - Nord");
         topo.setDescription("description");
         topo.setReleaseDate("0");
         topoDao.save(topo);

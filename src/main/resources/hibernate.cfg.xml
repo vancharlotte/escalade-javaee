@@ -28,8 +28,6 @@
         <mapping class="org.escalade.model.entity.Site"/>
         <mapping class="org.escalade.model.entity.Comment"/>
         <mapping class="org.escalade.model.entity.Booking"/>
-        <mapping class="org.escalade.model.entity.Sector"/>
-        <mapping class="org.escalade.model.entity.Route"/>
 
 
     </session-factory>

@@ -39,8 +39,8 @@ ${site.checked}
 
 
     <a href="${pageContext.request.contextPath}/editSite?<c:out value="${site.siteId}"/>"> Modifier </a>
-    <a href="${pageContext.request.contextPath}/deleteTopo?<c:out value="${site.siteId}"/>"> Supprimer </a>
-    <a href="${pageContext.request.contextPath}/editStatus?<c:out value="${site.siteId}"/>"> Ami de l'escalade </a>
+    <a href="${pageContext.request.contextPath}/deleteSite?<c:out value="${site.siteId}"/>"> Supprimer </a>
+    <a href="${pageContext.request.contextPath}/editChecked?<c:out value="${site.siteId}"/>"> Ami de l'escalade </a>
 
 
 </c:if>

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "EditSiteServlet", value = "/admin/EditSite")
+@WebServlet(name = "EditSiteServlet", value = {"/admin/editSite", "/admin/deleteSite", "/admin/editChecked"})
 public class EditSiteServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(EditSiteServlet.class);
@@ -47,7 +47,7 @@ public class EditSiteServlet extends HttpServlet {
         } else {
 
             req.setAttribute("site", site);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/editSite.jsp").forward(req, resp);
         }
     }
 
@@ -58,9 +58,11 @@ public class EditSiteServlet extends HttpServlet {
         logger.info("topo : " + site.getName() + site.getSiteId());
 
         site.setName(req.getParameter("name"));
+        site.setCity(req.getParameter("city"));
+        site.setDepartement(req.getParameter("departement"));
         site.setDescription(req.getParameter("description"));
-        site.setLocation(req.getParameter("location"));
-
+        site.setQuotationMin(req.getParameter("quotationMin"));
+        site.setQuotationMax(req.getParameter("quotationMax"));
 
         String available = req.getParameter("checked");
         logger.info("checked?" + available);

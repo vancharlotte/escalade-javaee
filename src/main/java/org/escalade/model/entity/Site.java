@@ -16,8 +16,14 @@ public class Site {
     @NotEmpty
     private String name;
     @NotEmpty
-    private String location;
-    private String quotation;
+    private String departement;
+    @NotEmpty
+    private String city;
+    @NotEmpty
+    private String quotationMin;
+    @NotEmpty
+    private String quotationMax;
+
     @NotEmpty
     private String description;
     @NotEmpty
@@ -46,20 +52,36 @@ public class Site {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDepartement() {
+        return departement;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDepartement(String departement) {
+        this.departement = departement;
     }
 
-    public String getQuotation() {
-        return quotation;
+    public String getCity() {
+        return city;
     }
 
-    public void setQuotation(String quotation) {
-        this.quotation = quotation;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getQuotationMin() {
+        return quotationMin;
+    }
+
+    public void setQuotationMin(String quotationMin) {
+        this.quotationMin = quotationMin;
+    }
+
+    public String getQuotationMax() {
+        return quotationMax;
+    }
+
+    public void setQuotationMax(String quotationMax) {
+        this.quotationMax = quotationMax;
     }
 
     public String getDescription() {
@@ -78,19 +100,19 @@ public class Site {
         this.checked = checked;
     }
 
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

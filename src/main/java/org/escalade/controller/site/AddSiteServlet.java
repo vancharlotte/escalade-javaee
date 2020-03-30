@@ -41,9 +41,18 @@ public class AddSiteServlet extends HttpServlet {
         Site site = new Site();
 
         site.setName(req.getParameter("site"));
-        site.setLocation(req.getParameter("location"));
+        site.setCity(req.getParameter("city"));
+        site.setDepartement(req.getParameter("departement"));
+        site.setQuotationMin("quotationMin");
+        site.setQuotationMax("quotationMax");
         site.setDescription(req.getParameter("description"));
         site.setUser((User) session.getAttribute("user"));
+        String checked = req.getParameter("checked");
+        if (checked.equals("true")) {
+            site.setChecked(true);
+        } else {
+            site.setChecked(false);
+        }
 
 
         siteDao.save(site);

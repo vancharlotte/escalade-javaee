@@ -16,10 +16,11 @@ public class TestTopoDaoImpl {
 
 
     @Before
-    public void createUser() {
+    public void createTopo() {
         topo.setName("topoA");
         topo.setDescription("abcdef");
-        topo.setLocation("abcdef");
+        topo.setCity("abcdef");
+        topo.setDepartement("59 - Nord");
         topo.setReleaseDate("01/01/2000");
         topo.setAvailable(true);
     }

@@ -41,7 +41,8 @@ public class AddTopoServlet extends HttpServlet {
 
         topo.setName(req.getParameter("name"));
         topo.setDescription(req.getParameter("description"));
-        topo.setLocation(req.getParameter("location"));
+        topo.setCity(req.getParameter("city"));
+        topo.setDepartement(req.getParameter("departement"));
         topo.setReleaseDate(req.getParameter("releaseDate"));
         topo.setUser((User) session.getAttribute("user"));
 
