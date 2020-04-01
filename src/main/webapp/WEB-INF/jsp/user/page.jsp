@@ -13,13 +13,17 @@
 
 <h4>${message}</h4>
 
-<c:if test="${user.username ne owner.username}">
+<c:if test="${user.username eq owner.username}">
     <a href="${pageContext.request.contextPath}/myTopo"> Mes topos </a>
     <a href="${pageContext.request.contextPath}/myBooking"> Mes réservations </a>
 </c:if>
 
 <c:if test="${user.username ne owner.username}">
-    list des topos de cet utilisateur (owner de la page).
+
+<td><label>Les topos de ${owner.username} :  </label></td>
+    <c:forEach var="topo" items="${topoList}">
+        ${topo.name} ${topo.status}
+    </c:forEach>
 
 </c:if>
 

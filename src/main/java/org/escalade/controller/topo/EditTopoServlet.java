@@ -2,6 +2,7 @@ package org.escalade.controller.topo;
 
 import org.escalade.model.dao.TopoDao;
 import org.escalade.model.dao.TopoDaoImpl;
+import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
@@ -34,7 +35,7 @@ public class EditTopoServlet extends HttpServlet {
 
         Topo topo = topoDao.findById(topoId);
         req.setAttribute("topo", topo);
-        logger.info(req.getRequestURL().toString());
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
 
         if (req.getRequestURL().toString().contains("Status")) {
             if (topo.isAvailable()) {

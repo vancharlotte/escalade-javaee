@@ -24,7 +24,7 @@
             <td>
                 par : ${owner.username}
                 <br/> <br/>
-                Où? ${topo.location}
+                Où? ${topo.city}, ${topo.departement}
                 <br/>
                 date de parution : ${topo.releaseDate}
                 <br/> <br/>

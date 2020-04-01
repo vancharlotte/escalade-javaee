@@ -1,7 +1,7 @@
-package org.escalade.controller;
+package org.escalade.controller.search;
 
-import org.escalade.controller.site.AddSiteServlet;
 import org.escalade.model.dao.*;
+import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Site;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
@@ -39,30 +39,25 @@ public class SearchServlet extends HttpServlet {
         logger.info("object : " + object);
 
         String word = req.getParameter("search_word");
-        logger.info("word : "+ word);
+        logger.info("word : " + word);
 
-        if(object.equals("site")){
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+        req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
+        if (object.equals("site")) {
             List<Site> siteList = siteDao.searchByName(word);
             req.setAttribute("siteList", siteList);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
-        }
-
-        else if(object.equals("topo")){
-            List<Topo> topoList =  topoDao.searchByName(word);
+        } else if (object.equals("topo")) {
+            List<Topo> topoList = topoDao.searchByName(word);
             req.setAttribute("topoList", topoList);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
-        }
-
-        else if(object.equals("user")){
-            User user = userDao.findByUsername(word);
-            List<User> userList = new ArrayList<>();
-            userList.add(user);
-
+        } else if (object.equals("user")) {
+            List<User> userList = userDao.searchByUsername(word);
             req.setAttribute("userList", userList);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
 
-        }
-        else{
+        } else {
             resp.sendRedirect(req.getContextPath() + "/error");
         }
     }

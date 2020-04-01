@@ -126,7 +126,7 @@ public class SiteDaoImpl implements SiteDao {
             CriteriaQuery<Site> query = builder.createQuery(Site.class);
             Root<Site> root = query.from(Site.class);
 
-            Predicate predicate = builder.equal(root.get("name"), "%"+name+"%");
+            Predicate predicate = builder.like(root.get("name"), "%"+name+"%");
             query.where(predicate);
             Query<Site> q = session.createQuery(query);
             sites = q.getResultList();
@@ -142,12 +142,11 @@ public class SiteDaoImpl implements SiteDao {
 
 
     @Override
-    public List<Site> search(String name, String quotation, String location, boolean checked) {
+    public List<Site> search(String name, String city, String departement, boolean checked) {
 
         List<Site> sites = null;
         Transaction transaction = null;
 
-        logger.info("name : " + name + " quotation : " + quotation + " location : " + location + " checked : " + checked);
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -161,11 +160,13 @@ public class SiteDaoImpl implements SiteDao {
             if (!name.equals("")) {
                 predicates.add(builder.like(root.get("name"), "%"+name+"%"));
             }
-            if (!quotation.equals("")) {
-                predicates.add(builder.equal(root.get("quotation"), quotation));
+
+            if (!city.equals("")) {
+                predicates.add( builder.like(root.get("city"), "%"+city+"%"));
             }
-            if (!location.equals("")) {
-                predicates.add( builder.equal(root.get("location"), location));
+
+            if (!departement.equals("00")) {
+                predicates.add( builder.equal(root.get("departement"), departement));
             }
             if (checked) {
                 predicates.add(builder.equal(root.get("checked"), checked));

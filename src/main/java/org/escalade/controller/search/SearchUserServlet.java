@@ -1,11 +1,7 @@
-package org.escalade.controller.user;
+package org.escalade.controller.search;
 
-import org.escalade.controller.SearchServlet;
-import org.escalade.model.dao.TopoDao;
-import org.escalade.model.dao.TopoDaoImpl;
 import org.escalade.model.dao.UserDao;
 import org.escalade.model.dao.UserDaoImpl;
-import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,16 +26,14 @@ public class SearchUserServlet extends HttpServlet {
         userDao = new UserDaoImpl();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info(" get searchUser");
-        req.setAttribute("userList", req.getParameter("userList"));
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
+        String username = req.getParameter("searchByUsername");
+        logger.info(username);
+
+        List<User> userList = userDao.searchByUsername(username);
+        req.setAttribute("userList", userList);
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);    }
 }

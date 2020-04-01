@@ -2,8 +2,8 @@ package org.escalade.controller.site;
 
 import org.escalade.model.dao.SiteDao;
 import org.escalade.model.dao.SiteDaoImpl;
+import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Site;
-import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +31,9 @@ public class AddSiteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("message", req.getParameter("message"));
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+        req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/addSite.jsp").forward(req, resp);
     }

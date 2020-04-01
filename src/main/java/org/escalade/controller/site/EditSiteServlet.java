@@ -1,10 +1,9 @@
 package org.escalade.controller.site;
 
-import org.escalade.controller.topo.AddTopoServlet;
 import org.escalade.model.dao.SiteDao;
 import org.escalade.model.dao.SiteDaoImpl;
+import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Site;
-import org.escalade.model.entity.Topo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +29,9 @@ public class EditSiteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int siteId = Integer.parseInt(req.getQueryString());
         Site site = siteDao.findById(siteId);
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+        req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
 
         if (req.getRequestURL().toString().contains("Status")) {
             if (site.isChecked()) {

@@ -1,0 +1,156 @@
+package org.escalade.model.entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EntityUtil {
+
+
+
+    public static List<String> InitDepartementList() {
+        List<String> departementList = new ArrayList<>();
+
+        departementList.add("00 - Hors France");
+        departementList.add("01 - Ain");
+        departementList.add("02 - Aisne");
+        departementList.add("03 - Allier");
+        departementList.add("04 - Alpes de Haute Provence");
+        departementList.add("05 - Hautes Alpes");
+        departementList.add("06 - Alpes Maritimes");
+        departementList.add("07 - Ardèche");
+        departementList.add("08 - Ardennes");
+        departementList.add("08 - Ardennes");
+        departementList.add("09 - Ariège");
+        departementList.add("10 - Aube");
+        departementList.add("11 - Aude");
+        departementList.add("12 - Aveyron");
+        departementList.add("13 - Bouche du Rhône");
+        departementList.add("14 - Calvados");
+        departementList.add("15 - Cantal");
+        departementList.add("16 - Charente");
+        departementList.add("17 - Charente Maritime");
+        departementList.add("18 - Cher");
+        departementList.add("19 - Corrèze");
+        departementList.add("2A - Corse du Sud");
+        departementList.add("2B - Corse du Nord");
+        departementList.add("21 - Côte d'Or");
+        departementList.add("22 - Côtes d'Armor");
+        departementList.add("23 - Creuse");
+        departementList.add("24 - Dordogne");
+        departementList.add("25 - Doubs");
+        departementList.add("26 - Drôme");
+        departementList.add("27 - Eure");
+        departementList.add("28 - Eure et Loir");
+        departementList.add("29 - Finistère");
+        departementList.add("30 - Gard");
+        departementList.add("31 - Haute Garonne");
+        departementList.add("32 - Gers");
+        departementList.add("33 - Gironde");
+        departementList.add("34 - Hérault");
+        departementList.add("35 - Ille et Vilaine");
+        departementList.add("36 - Indre");
+        departementList.add("37 - Indre et Loire");
+        departementList.add("38 - Isère");
+        departementList.add("39 - Jura");
+        departementList.add("40 - Landes");
+        departementList.add("41 - Loir et Cher");
+        departementList.add("42 - Loire");
+        departementList.add("43 - Haute Loire");
+        departementList.add("44 - Loire Atlantique");
+        departementList.add("45 - Loiret");
+        departementList.add("46 - Lot");
+        departementList.add("47 - Lot et Garonne");
+        departementList.add("48 - Lozère");
+        departementList.add("49 - Maine et Loire");
+        departementList.add("50 - Manche");
+        departementList.add("51 - Marne");
+        departementList.add("52 - Haute Marne");
+        departementList.add("53 - Marne");
+        departementList.add("54 - Meurthe et Moselle");
+        departementList.add("55 - Meuse");
+        departementList.add("56 - Morbihan");
+        departementList.add("57 - Moselle");
+        departementList.add("58 - Nièvre");
+        departementList.add("59 - Nord");
+        departementList.add("60 - Oise");
+        departementList.add("61 - Orne");
+        departementList.add("62 - Pas de Calais");
+        departementList.add("63 - Puy de Dôme");
+        departementList.add("64 - Pyrénées Atlantiques");
+        departementList.add("65 - Hautes Pyrénées");
+        departementList.add("66 - Pyrénées Orientales");
+        departementList.add("67 - Bas Rhin");
+        departementList.add("68 - Haut Rhin");
+        departementList.add("69 - Rhône");
+        departementList.add("70 - Haute Saône");
+        departementList.add("71 - Saône et Loire");
+        departementList.add("72 - Sarthe");
+        departementList.add("73 - Savoie");
+        departementList.add("74 - Haute Savoie");
+        departementList.add("75 - Paris");
+        departementList.add("76 - Seine Maritime");
+        departementList.add("77 - Seine et Marne");
+        departementList.add("78 - Yvelines");
+        departementList.add("79 - Deux Sèvres");
+        departementList.add("80 - Somme");
+        departementList.add("81 - Tarn");
+        departementList.add("82 - Tarn et Garonne");
+        departementList.add("83 - Var");
+        departementList.add("84 - Vaucluse");
+        departementList.add("85 - Vendée");
+        departementList.add("86 - Vienne");
+        departementList.add("87 - Haute Vienne");
+        departementList.add("88 - Vosges");
+        departementList.add("89 - Yonne");
+        departementList.add("90 - Territoire de Belfort");
+        departementList.add("91 - Essonne");
+        departementList.add("92 - Hauts de Seine");
+        departementList.add("93 - Seine Saint Denis");
+        departementList.add("94 - Val de Marne");
+        departementList.add("95 - Val d'Oise");
+        departementList.add("971 - Guadeloupe");
+        departementList.add("972 - Martinique");
+        departementList.add("973 - Guyane");
+        departementList.add("974 - Réunion");
+        departementList.add("975 - Saint Pierre et Miquelon");
+        departementList.add("976 - Mayotte");
+        return departementList;
+    }
+
+    public static List<String> InitQuotationList() {
+        List<String> quotationList = new ArrayList<>();
+        quotationList.add("00");
+        quotationList.add("1");
+        quotationList.add("2");
+        quotationList.add("3");
+        quotationList.add("4");
+        quotationList.add("5a");
+        quotationList.add("5b");
+        quotationList.add("5c");
+        quotationList.add("6a");
+        quotationList.add("6a+");
+        quotationList.add("6b");
+        quotationList.add("6b+");
+        quotationList.add("6c");
+        quotationList.add("6c+");
+        quotationList.add("7a");
+        quotationList.add("7a+");
+        quotationList.add("7b");
+        quotationList.add("7b+");
+        quotationList.add("7c");
+        quotationList.add("7c+");
+        quotationList.add("8a");
+        quotationList.add("8a+");
+        quotationList.add("8b");
+        quotationList.add("8b+");
+        quotationList.add("8c");
+        quotationList.add("8c+");
+        quotationList.add("9a");
+        quotationList.add("9a+");
+        quotationList.add("9b");
+        quotationList.add("9b+");
+        quotationList.add("9c");
+        return quotationList;
+    }
+
+}

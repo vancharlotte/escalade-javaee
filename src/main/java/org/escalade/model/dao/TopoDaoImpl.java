@@ -122,7 +122,7 @@ public class TopoDaoImpl implements TopoDao {
             CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
             Root<Topo> root = query.from(Topo.class);
 
-            Predicate predicate = builder.equal(root.get("name"), "%"+name+"%");
+            Predicate predicate = builder.like(root.get("name"), "%"+name+"%");
             query.where(predicate);
             Query<Topo> q = session.createQuery(query);
             topos = q.getResultList();
@@ -137,11 +137,10 @@ public class TopoDaoImpl implements TopoDao {
     }
 
     @Override
-    public List<Topo> search(String name, String location, boolean available) {
+    public List<Topo> search(String name, String city, String departement, boolean available) {
         List<Topo> topos = null;
         Transaction transaction = null;
 
-        logger.info("name : " + name + " location : " + location + " available : " + available);
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -156,8 +155,11 @@ public class TopoDaoImpl implements TopoDao {
                 predicates.add(builder.like(root.get("name"), "%"+name+"%"));
             }
 
-            if (!location.equals("")) {
-                predicates.add( builder.equal(root.get("location"), location));
+            if (!city.equals("")) {
+                predicates.add( builder.like(root.get("city"), "%"+city+"%"));
+            }
+            if (!departement.equals("00")) {
+                predicates.add( builder.equal(root.get("departement"), departement));
             }
             if (available) {
                 predicates.add(builder.equal(root.get("available"), available));

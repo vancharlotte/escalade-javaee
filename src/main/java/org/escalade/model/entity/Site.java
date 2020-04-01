@@ -3,11 +3,14 @@ package org.escalade.model.entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "SITE")
 public class Site {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +39,9 @@ public class Site {
 
     @OneToMany(mappedBy = "site")
     private Set<Comment> comments;
+
+
+
 
     public int getSiteId() {
         return siteId;

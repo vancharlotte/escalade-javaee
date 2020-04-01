@@ -2,6 +2,7 @@ package org.escalade.controller.topo;
 
 import org.escalade.model.dao.TopoDao;
 import org.escalade.model.dao.TopoDaoImpl;
+import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
@@ -30,6 +31,8 @@ public class AddTopoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("message", req.getParameter("message"));
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/addTopo.jsp").forward(req, resp);
     }

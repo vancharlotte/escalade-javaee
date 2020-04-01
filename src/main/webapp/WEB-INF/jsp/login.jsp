@@ -1,38 +1,35 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
-<head></head>
+<head>
+    <title> inscription</title>
+    <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+</head>
+
 <body>
-<h1>Login</h1>
 
-
-</form>
-<td>Connexion</td>
-
-<form:form method="POST" action="/escalade/login" modelAttribute="login">
+<form method="post" action="login">
 
     <table>
 
+        <c:if test="${not empty message}">${message}</c:if>
         <tr>
-            <td><form:label path="username">Username :</form:label></td>
-            <td><form:input path="username" required="required"/>
-                <form:errors path="username" cssClass="error"/></td>
+            <td><label for="username">Identifiant : </label></td>
+            <td><input type="text" name="username" id="username"/></td>
         </tr>
         <tr>
-            <td><form:label path="password">Password :</form:label></td>
-            <td><form:input path="password" minlength="8" required="required"/>
-                <form:errors path="password" cssClass="error"/></td>
-
+            <td><label for="password">Mot de passe : </label></td>
+            <td><input type="password" name="password" id="password"/></td>
         </tr>
 
         <tr>
             <td><input type="submit" value="Submit"/></td>
         </tr>
-
-
     </table>
-</form:form>
+</form>
+
+
 </body>
+
 </html>

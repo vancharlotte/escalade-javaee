@@ -13,10 +13,15 @@
 
 <form action="searchUser" method="post">
 
-    <input type="text" id="name" name="search_criteria" value="name">
-    <label for="name"> name </label><br>
-
-    <input type="Submit" value="Ok"/>
+    <table>
+        <tr>
+            <td><label for="name"> Nom : </label></td>
+            <td><input type="text" id="name" name="searchByUsername"></td>
+        </tr>
+        <tr>
+            <td><input type="Submit" value="Ok"/></td>
+        </tr>
+    </table>
 
 </form>
 
@@ -35,7 +40,7 @@
 
         <li><c:out value="${user.username}"/>
 
-            <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>"> consulter  </a>
+            <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>"> consulter </a>
 
         </li>
     </c:forEach>

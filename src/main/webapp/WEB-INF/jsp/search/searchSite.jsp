@@ -11,30 +11,62 @@
 <h2>Recherche Site</h2>
 
 <form action="searchSite" method="POST">
-
-    <input type="text" id="name" name="searchByName" >
-    <label for="name"> name </label><br>
-
-    <input type="text" id="location" name="searchByLocation" >
-    <label for="location"> location</label><br>
-
-    <input type="text" id="quotation" name="searchByQuotation">
-    <label for="quotation"> quotation</label><br>
-
-    <input type="number" id="sector" name="searchBySector" >
-    <label for="sector"> nb sector</label><br>
-
-    <input type="checkbox" id="checked" name="searchByChecked">
-    <label for="checked"> checked</label>
-
-    <input type="Submit" value="Ok"/>
-
+    <table>
+        <tr>
+            <td><label for="name"> Nom : </label></td>
+            <td><input type="text" id="name" name="searchByName"></td>
+        </tr>
+        <tr>
+            <td><label for="city"> Ville : </label></td>
+            <td><input type="text" id="city" name="searchByCity"></td>
+        </tr>
+        <tr>
+            <td><label>Département : </label></td>
+            <td><select name="searchByDepartement">
+                <option value="00">sélectionner</option>
+                <c:forEach var="departement" items="${departementList}">
+                    <option value="${departement}">${departement}</option>
+                </c:forEach>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Cotation Minimale : </label></td>
+            <td><select name="quotationMin">
+                <option value="00">sélectionner</option>
+                <c:forEach var="quotation" items="${quotationList}">
+                    <option value="${quotation}">${quotation}</option>
+                </c:forEach>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Cotation Maximale : </label></td>
+            <td><select name="quotationMax">
+                <option value="00">sélectionner</option>
+                <c:forEach var="quotation" items="${quotationList}">
+                    <option value="${quotation}">${quotation}</option>
+                </c:forEach>
+            </select></td>
+        </tr>
+        <tr>
+            <td><label for="sector"> nombre de secteur :</label><br></td>
+            <td><input type="number" id="sector" name="searchBySector"></td>
+        </tr>
+        <tr>
+            <td><label for="checked"> Amis de l'escalade?</label></td>
+            <td><input type="checkbox" id="checked" name="searchByChecked"></td>
+        </tr>
+        <tr>
+            <td><input type="Submit" value="Ok"/></td>
+        </tr>
+    </table>
 </form>
 
 <c:if test="${ empty siteList}">
 
 
-<h4>pas de résultat</h4>
+    <h4>pas de résultat</h4>
 
 </c:if>
 
@@ -47,7 +79,7 @@
 
         <li><c:out value="${site.name}"/>
 
-            <a href="${pageContext.request.contextPath}/site?<c:out value="${site.siteId}"/>"> consulter  </a>
+            <a href="${pageContext.request.contextPath}/site?<c:out value="${site.siteId}"/>"> consulter </a>
 
         </li>
     </c:forEach>

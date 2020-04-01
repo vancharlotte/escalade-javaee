@@ -1,8 +1,8 @@
-package org.escalade.controller.site;
+package org.escalade.controller.search;
 
-import org.escalade.controller.SearchServlet;
 import org.escalade.model.dao.SiteDao;
 import org.escalade.model.dao.SiteDaoImpl;
+import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Site;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,30 +29,24 @@ public class SearchSiteServlet extends HttpServlet {
         siteDao = new SiteDaoImpl();
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        List<Site> siteList = siteDao.list();
-        req.setAttribute("siteList", siteList);
-
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
-
-    }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("searchByName");
-        String quotation = req.getParameter("searchByQuotation");
-        String location = req.getParameter("searchByLocation");
+       // String quotation = req.getParameter("searchByQuotation");
+        String city = req.getParameter("searchByCity");
+        String departement = req.getParameter("searchByDepartement");
         String checkedString = req.getParameter("searchByChecked");
         boolean checked = true;
         if (checkedString==null) { checked=false; }
 
 
-        List<Site> siteList = siteDao.search(name,quotation,location, checked);
+        List<Site> siteList = siteDao.search(name, city, departement, checked);
         //logger.info(siteList.toString());
         req.setAttribute("siteList", siteList);
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+        req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
 

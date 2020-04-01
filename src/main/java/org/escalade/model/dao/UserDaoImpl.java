@@ -1,6 +1,7 @@
 package org.escalade.model.dao;
 
 import org.escalade.config.HibernateUtil;
+import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -102,7 +103,7 @@ public class UserDaoImpl implements UserDao {
             Predicate usernamePredicate = builder.equal(root.get("username"), username);
             query.where(usernamePredicate);
             Query<User> q = session.createQuery(query);
-            user =  q.getSingleResult();
+            user = q.getSingleResult();
             transaction.commit();
 
         } catch (Exception e) {
@@ -130,6 +131,31 @@ public class UserDaoImpl implements UserDao {
         }
 
 
+    }
+
+    @Override
+    public List<User> searchByUsername(String username) {
+        List<User> users = null;
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<User> query = builder.createQuery(User.class);
+            Root<User> root = query.from(User.class);
+            Predicate usernamePredicate = builder.like(root.get("username"), "%" + username + "%");
+
+            query.where(usernamePredicate);
+            Query<User> q = session.createQuery(query);
+            users = q.getResultList();
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return users;
     }
 
 }

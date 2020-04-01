@@ -2,75 +2,88 @@ package org.escalade.model.dao;
 
 import java.util.List;
 
-import org.escalade.model.dao.UserDaoImpl;
+import org.escalade.model.entity.Booking;
+import org.escalade.model.entity.Topo;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.escalade.model.entity.User;
 
 
 public class TestUserDaoImpl {
 
+    User user = new User();
+    User user2 = new User();
+    Topo topo = new Topo();
+    Booking booking = new Booking();
 
- UserDaoImpl userDaoImpl;
- User user = new User();
+
+    BookingDaoImpl bookingDao = new BookingDaoImpl();
+    TopoDaoImpl topoDao = new TopoDaoImpl();
+    UserDaoImpl userDao = new UserDaoImpl();
 
 
     @Before
-    public void createUser() {
-        user.setUsername("Paul");
-        user.setPassword("aaaaaaaaa");
-        user.setEmail("Paul@gmail.com");
+    public void before() {
+        user.setUsername("Jean");
+        user.setPassword("abcdefgh");
+        user.setEmail("jean@gmail.com");
+
+        userDao.save(user);
+
+
+
+
     }
 
-    @Test
-    public void testSaveUser() {
-        userDaoImpl.save(user);
-        List<User> users = userDaoImpl.list();
-        Assert.assertEquals("Paul", users.get(0).getUsername());
-    }
 
     @Test
     public void testUpdateUser() {
-        userDaoImpl.save(user);
         user.setUsername("Pierre");
-        userDaoImpl.update(user);
-        List<User> users = userDaoImpl.list();
+        userDao.update(user);
+        List<User> users = userDao.list();
         Assert.assertEquals("Pierre", users.get(0).getUsername());
     }
 
     @Test
     public void testListUser() {
-        userDaoImpl.save(user);
-        List<User> users = userDaoImpl.list();
+        List<User> users = userDao.list();
         Assert.assertEquals(1, users.size());
     }
 
     @Test
     public void testFindById() {
-        userDaoImpl.save(user);
-        User user2 = userDaoImpl.findById(user.getUserId());
-        Assert.assertEquals("Paul", user2.getUsername());
+        User user2 = userDao.findById(user.getUserId());
+        Assert.assertEquals("Jean", user2.getUsername());
+    }
+
+    @Test
+    public void testSearchByUsername() {
+        List<User> users = userDao.searchByUsername(user.getUsername());
+        Assert.assertEquals(1,users.size());
+        System.out.println("name user : " + users.get(0).getUsername());
+
     }
 
     @Test
     public void testFindByUsername() {
-        userDaoImpl.save(user);
-        User user2 = userDaoImpl.findByUsername(user.getUsername());
-        Assert.assertEquals("Paul", user2.getUsername());
+        User user2 = userDao.findByUsername(user.getUsername());
+        Assert.assertEquals("Jean", user2.getUsername());
     }
-
-
 
     @Test
     public void testDeleteUser() {
-        userDaoImpl.save(user);
-        userDaoImpl.delete(user);
-        List<User> users2 = userDaoImpl.list();
-        boolean isEmpty = users2.isEmpty();
+        userDao.delete(user);
+        List<User> users = userDao.list();
+        boolean isEmpty = users.isEmpty();
         Assert.assertTrue(isEmpty);
     }
 
+
+@After
+    public void after(){
+        userDao.delete(user);
+}
 
 }

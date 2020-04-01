@@ -12,15 +12,34 @@
 <h2>Recherche Topo</h2>
 
 <form action="searchTopo" method="post">
+    <table>
+        <tr>
+            <td><label for="name"> Nom : </label></td>
+            <td><input type="text" id="name" name="searchByName"></td>
+        </tr>
+        <tr>
+            <td><label for="city"> Ville : </label></td>
+            <td><input type="text" id="city" name="searchByCity"></td>
+        </tr>
+        <tr>
+            <td><label>Département : </label></td>
+            <td><select name="searchByDepartement">
+                <option value="00">sélectionner</option>
+                <c:forEach var="departement" items="${departementList}">
+                    <option value="${departement}">${departement}</option>
+                </c:forEach>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="available"> Available : </label></td>
+            <td><input type="checkbox" id="available" name="searchByAvailable"></td>
+        </tr>
+        <tr>
+            <td>  <input type="Submit" value="Ok"/></td>
+        </tr>
 
-    <input type="text" id="name" name="searchByName">
-    <label for="name"> name </label><br>
-    <input type="text" id="location" name="searchByLocation">
-    <label for="location"> site</label><br>
-    <input type="checkbox" id="available" name="searchByAvailable">
-    <label for="available"> available</label>
-
-    <input type="Submit" value="Ok"/>
+    </table>
 </form>
 
 <h2> Sites : </h2>
@@ -39,7 +58,7 @@
 
         <li><c:out value="${topo.name}"/>
 
-            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter  </a>
+            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter </a>
 
         </li>
     </c:forEach>

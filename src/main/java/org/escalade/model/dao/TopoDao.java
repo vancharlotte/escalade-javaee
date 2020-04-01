@@ -13,6 +13,6 @@ public interface TopoDao {
     void delete(Topo Topo);
     List<Topo> findByUser(User user);
     List<Topo> searchByName(String name);
-    List<Topo> search(String name, String location, boolean available);
+    List<Topo> search(String name, String city, String departement, boolean available);
 
 }

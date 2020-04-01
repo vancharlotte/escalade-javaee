@@ -12,5 +12,5 @@ public interface SiteDao {
     Site findById(int id);
     void delete(Site site);
     List<Site> searchByName(String name);
-    List<Site> search(String name, String quotation, String location, boolean checked);
+    List<Site> search(String name, String city, String departement, boolean checked);
 }
