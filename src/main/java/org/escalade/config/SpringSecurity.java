@@ -23,10 +23,9 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
 
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        logger.info("spring security global configure");
         auth.inMemoryAuthentication()
                 .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN");
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+       // auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
     }
 
@@ -36,7 +35,7 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/").permitAll()
                 .anyRequest().permitAll();
-        
+
     }
 
     public PasswordEncoder passwordEncoder() {
