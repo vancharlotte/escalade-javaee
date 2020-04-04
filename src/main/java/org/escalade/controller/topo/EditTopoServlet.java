@@ -69,7 +69,6 @@ public class EditTopoServlet extends HttpServlet {
         topo.setCity(req.getParameter("city"));
         topo.setDepartement(req.getParameter("departement"));
         topo.setReleaseDate(req.getParameter("releaseDate"));
-        topo.setUser((User) session.getAttribute("user"));
 
         String available = req.getParameter("available");
         logger.info("available?" + available);

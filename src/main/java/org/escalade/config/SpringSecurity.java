@@ -1,11 +1,10 @@
 package org.escalade.config;
 
-
-import org.escalade.model.dao.UserDao;
-import org.escalade.model.dao.UserDetailsServiceImpl;
+import org.escalade.model.dao.UserDetailsService;
+import org.hibernate.service.spi.InjectService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,38 +16,44 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SpringSecurity extends WebSecurityConfigurerAdapter {
 
-    UserDetailsServiceImpl userDetailsService;
-
     static final Logger logger = LoggerFactory.getLogger(SpringSecurity.class);
 
+    private UserDetailsService userDetailsService;
 
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN");
-       // auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
+    public SpringSecurity() {
+        this.userDetailsService = new UserDetailsService();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        logger.info("spring security configure");
-        http.csrf().disable()
-                .authorizeRequests().antMatchers("/").permitAll()
-                .anyRequest().permitAll();
-
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        logger.info("configure web");
+        httpSecurity.csrf().disable()
+                .authorizeRequests().
+                .and().httpBasic();
     }
 
+
+    public void configure(AuthenticationManagerBuilder authentication)
+            throws Exception {
+        logger.info("configure globale web");
+        authentication.inMemoryAuthentication()
+                .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN");
+        authentication.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
+        logger.info("password encoder");
+
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        logger.info("dao auth provider");
+        logger.info("auth provider");
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
-
 }
-

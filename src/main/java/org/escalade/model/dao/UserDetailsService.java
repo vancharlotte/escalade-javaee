@@ -1,30 +1,29 @@
 package org.escalade.model.dao;
 
 import org.escalade.model.entity.User;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+    static final Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
 
-    static final Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
-    PasswordEncoder passwordEncoder;
-    UserDao userDao;
 
+    private UserDao userDao = new UserDaoImpl();
 
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-
+        PasswordEncoder passwordEncoder = passwordEncoder();
         User user = userDao.findByUsername(username);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         logger.info("User : {}", user.getUsername());
@@ -45,4 +44,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         logger.info("authorities : {}", authorities);
         return authorities;
     }
+
+    public PasswordEncoder passwordEncoder() {
+        logger.info("password encoder userDetails");
+        return new BCryptPasswordEncoder();
+    }
 }
+
+

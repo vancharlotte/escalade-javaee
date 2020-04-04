@@ -13,7 +13,7 @@
 
 <h4>${message}</h4>
 
-<c:if test="${user.username eq owner.username}">
+<c:if test="${user.username ne owner.username}">
     <a href="${pageContext.request.contextPath}/myTopo"> Mes topos </a>
     <a href="${pageContext.request.contextPath}/myBooking"> Mes réservations </a>
 </c:if>
