@@ -1,5 +1,6 @@
 package org.escalade.model.dao;
 
+import org.escalade.model.entity.Role;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         logger.info("User : {}", user.getUsername());
 
+
         if (user == null) {
             logger.info("User not found");
             throw new UsernameNotFoundException("Username not found");
@@ -39,7 +41,10 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + user.getRole().getName());
+        RoleDao roleDao = new RoleDaoImpl();
+        Role role = roleDao.findById(user.getRole().getRoleId());
+        logger.info( "role id : " + role.getRoleId());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role.getName());
         authorities.add(authority);
         logger.info("authorities : {}", authorities);
         return authorities;

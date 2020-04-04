@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info(SecurityContextHolder.getContext().toString());
+        logger.info("get login :" + SecurityContextHolder.getContext().toString());
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-        logger.info(SecurityContextHolder.getContext().getAuthentication().toString());
+        logger.info("post login :" + SecurityContextHolder.getContext().getAuthentication().toString());
 
         User user = userDao.findByUsername(req.getParameter("username"));
         String password = req.getParameter("password");

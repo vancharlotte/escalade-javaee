@@ -28,7 +28,12 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         logger.info("configure web");
         httpSecurity.csrf().disable()
-                .authorizeRequests().
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and().formLogin()
+                .loginPage("/login").permitAll()
                 .and().httpBasic();
     }
 
