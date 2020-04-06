@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "MyTopoServlet", urlPatterns = {"/myTopo"})
+@WebServlet(name = "MyTopoServlet", urlPatterns = {"/user/myTopo"})
 public class MyTopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(MyTopoServlet.class);
@@ -36,7 +36,6 @@ public class MyTopoServlet extends HttpServlet {
 
         req.setAttribute("list", list);
         logger.info("topo : "+ list);
-        logger.info(this.getServletContext().toString());
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/myTopo.jsp").forward(req, resp);
     }

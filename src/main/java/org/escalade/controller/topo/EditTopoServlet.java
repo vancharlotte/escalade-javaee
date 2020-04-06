@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "EditTopoServlet", urlPatterns = {"/editTopo", "/editStatusTopo", "/deleteTopo"})
+@WebServlet(name = "EditTopoServlet", urlPatterns = {"/user/editTopo", "/user/editStatusTopo", "/user/deleteTopo"})
 public class EditTopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(AddTopoServlet.class);
@@ -44,12 +44,13 @@ public class EditTopoServlet extends HttpServlet {
                 topo.setAvailable(true);
             }
             topoDao.update(topo);
-            resp.sendRedirect(req.getContextPath() + "/myTopo");
+            resp.sendRedirect(req.getContextPath() + "/user/myTopo");
         }
 
-        else if (req.getRequestURL().toString().contains("delete")) {
+        else if (req.getRequestURL().toString().contains("deleteTopo")) {
             topoDao.delete(topo);
-            resp.sendRedirect(req.getContextPath() + "/myTopo");
+            logger.info("delete topo");
+            resp.sendRedirect(req.getContextPath() + "/user/myTopo");
         }
 
         else {
@@ -80,7 +81,7 @@ public class EditTopoServlet extends HttpServlet {
 
         topoDao.update(topo);
 
-        resp.sendRedirect(req.getContextPath() + "/myTopo");
+        resp.sendRedirect(req.getContextPath() + "/user/myTopo");
 
     }
 }

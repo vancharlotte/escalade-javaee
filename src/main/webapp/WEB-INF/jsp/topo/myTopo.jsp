@@ -16,7 +16,7 @@
 
 </c:if>
 
-<a href="${pageContext.request.contextPath}/addTopo"> Ajouter un topo </a>
+<a href="${pageContext.request.contextPath}/user/addTopo"> Ajouter un topo </a>
 <br>
 
 
@@ -32,9 +32,9 @@
             <c:if test="${topo.available==false}"> réservé </c:if>
 
             <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> Consulter </a>
-            <a href="${pageContext.request.contextPath}/editTopo?<c:out value="${topo.topoId}"/>"> Modifier </a>
-            <a href="${pageContext.request.contextPath}/deleteTopo?<c:out value="${topo.topoId}"/>"> Supprimer </a>
-            <a href="${pageContext.request.contextPath}/editStatusTopo?<c:out value="${topo.topoId}"/>"> Changer Statut </a>
+            <a href="${pageContext.request.contextPath}/user/editTopo?<c:out value="${topo.topoId}"/>"> Modifier </a>
+            <a href="${pageContext.request.contextPath}/user/deleteTopo?<c:out value="${topo.topoId}"/>"> Supprimer </a>
+            <a href="${pageContext.request.contextPath}/user/editStatusTopo?<c:out value="${topo.topoId}"/>"> Changer Statut </a>
 
 
         </li>

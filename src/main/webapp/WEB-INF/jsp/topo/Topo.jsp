@@ -33,14 +33,14 @@
         <tr>
             <td style="color: blueviolet">
                 ${message}
-                    <br/> <br/>
+                <br/> <br/>
             </td>
         </tr>
         <tr>
             <td class=bordure>
 
                 ${topo.description}
-                    <br/> <br/>
+                <br/> <br/>
             </td>
         </tr>
         <tr>
@@ -51,7 +51,20 @@
                 </c:if>
             </td>
         </tr>
+        <tr>
+            <td>
+                <c:if test="${user.username eq owner.username}">
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/user/editTopo?<c:out value="${topo.topoId}"/>">
+                            Modifier </a></li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/user/deleteTopo?<c:out value="${topo.topoId}"/>">
+                                Supprimer </a></li>
+                    </ul>
 
+                </c:if>
+            </td>
+        </tr>
     </table>
 </div>
 

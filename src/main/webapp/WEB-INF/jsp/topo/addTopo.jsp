@@ -9,7 +9,7 @@
 
 <body>
 
-<form method="post" action="addTopo">
+<form method="post" action="user/addTopo">
 
     <table>
         <tr>

@@ -5,13 +5,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "TOPO")
 public class Topo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TOPO_ID")
     private int topoId;
     @NotEmpty(message = "{NotEmpty.topo.name}")
@@ -33,6 +34,9 @@ public class Topo implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
+
+    @OneToMany(mappedBy = "topo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Booking> booking;
 
     public int getTopoId() {
         return topoId;
@@ -96,5 +100,13 @@ public class Topo implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Booking> getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Set<Booking> booking) {
+        this.booking = booking;
     }
 }

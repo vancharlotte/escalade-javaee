@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "myBookingServlet", urlPatterns = "/myBooking")
+@WebServlet(name = "myBookingServlet", urlPatterns = "/user/myBooking")
 public class myBookingServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(myBookingServlet.class);

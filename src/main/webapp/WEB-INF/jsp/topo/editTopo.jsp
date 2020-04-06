@@ -16,7 +16,7 @@
 </c:if>
 
 
-<form method="post" action="editTopo">
+<form method="post" url="" action="editTopo">
 
     <table>
 

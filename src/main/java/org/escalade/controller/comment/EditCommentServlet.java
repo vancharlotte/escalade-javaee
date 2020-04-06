@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteCommentServlet", urlPatterns = {"/admin/deleteComment", "/admin/editCommentaire"})
+@WebServlet(name = "DeleteCommentServlet", urlPatterns = {"/admin/deleteComment", "/admin/editComment"})
 public class EditCommentServlet extends HttpServlet {
 
     CommentDao commentDao;

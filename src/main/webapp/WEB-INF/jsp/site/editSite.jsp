@@ -6,7 +6,7 @@
 <body>
 
 
-<form method="post" action="editSite">
+<form method="post" action="admin/editSite">
 
     <table>
         <tr>

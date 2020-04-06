@@ -12,7 +12,7 @@
 <h2>nouveau commentaire</h2>
 
 
-<form method="post" action="addComment">
+<form method="post" action="user/addComment">
 
     <table>
 
