@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/login")
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login", "/successLogin"})
 public class LoginServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
@@ -30,24 +30,16 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.info("get login :" + SecurityContextHolder.getContext().toString());
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-
-        logger.info("post login :" + SecurityContextHolder.getContext().getAuthentication().toString());
-
         User user = userDao.findByUsername(req.getParameter("username"));
         String password = req.getParameter("password");
 
-
-        logger.info("post login");
-
-
-        if (SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
+        if (SecurityContextHolder.getContext().getAuthentication()!=null) {
+            logger.info("authenticated");
             String message = "Bonjour " + req.getParameter("username");
             req.setAttribute("message", message);
             HttpSession session = req.getSession();
@@ -55,10 +47,8 @@ public class LoginServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
 
         } else {
-            logger.info("erreur : " + user + "et " + password);
             String message = "identifiant ou mot de passe incorrect.";
             req.setAttribute("message", message);
-
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
         }
     }
