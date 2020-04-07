@@ -13,7 +13,7 @@
 
 <form action="search" method="post">
 
-    <input type="search" id="search" name="search_word" value="search">
+    <input type="search" id="search" name="search_word">
     <label for="search">recherche : </label><br>
     <input type="radio" id="site" name="search_object" value="site">
     <label for="site"> site</label><br>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%--
   Created by IntelliJ IDEA.
   User: vanhu
@@ -15,16 +17,33 @@
     .error {
         color: red;
     }
+
+
 </style>
+<sec:authorize access="isAnonymous()">
+
 <div class=header style="text-align:left">
-    <button style="color: royalblue" onclick="window.location.href='${pageContext.request.contextPath}/login'"> Se
-        connecter
+    <button style="color: royalblue" onclick="window.location.href='${pageContext.request.contextPath}/login'">
+        Se connecter
     </button>
     <button style="color: royalblue" onclick="window.location.href='${pageContext.request.contextPath}/register'">
         S'inscrire
     </button>
 </div>
-<div class=header style="text-align:right">
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+
+    <div class=header style="text-align:left">
+        <button style="color: royalblue" onclick="window.location.href='${pageContext.request.contextPath}/logout'">
+            Se déconnecter
+        </button>
+        <button style="color: royalblue" onclick="window.location.href='${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>'">
+            Mon profil
+        </button>
+
+    </div>
+</sec:authorize>
+    <div class=header style="text-align:right">
     <form action="search" method="post">
         <input type="radio" id="site" name="search_object" value="site" checked>
         <label for="site"> site</label>

@@ -39,10 +39,15 @@ public class RegisterServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("user",user);
-
+/*
         String message = "Bonjour " + req.getParameter("username");
         req.setAttribute("message", message);
+        req.setAttribute("user",user);
+        req.setAttribute("owner", user);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);*/
+
+        resp.sendRedirect(req.getContextPath() + "/user/page?" + user.getUserId());
+
     }
 }

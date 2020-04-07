@@ -3,26 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> inscription</title>
+    <title> page de profil</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 </head>
 
 <body>
 
-<h2> Page de profil</h2>
+<h2> ${owner.username}</h2>
 
-<h4>${message}</h4>
 
-<c:if test="${user.username ne owner.username}">
+<c:if test="${user.username eq owner.username}">
+
     <a href="${pageContext.request.contextPath}/user/myTopo"> Mes topos </a>
+    </br>
     <a href="${pageContext.request.contextPath}/user/myBooking"> Mes réservations </a>
 </c:if>
 
+
 <c:if test="${user.username ne owner.username}">
 
-<td><label>Les topos de ${owner.username} :  </label></td>
+<h3><label>Les topos de ${owner.username} :  </label></h3>
+
+
     <c:forEach var="topo" items="${topoList}">
-        ${topo.name} ${topo.status}
+
+        <li><c:out value="${topo.name}"/>
+            <c:if test="${(topo.available=true)}"> disponible </c:if>
+
+            <c:if test="${(topo.available=false)}"> indisponible </c:if>
+
+
+
+            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter </a>
+
+        </li>
     </c:forEach>
 
 </c:if>

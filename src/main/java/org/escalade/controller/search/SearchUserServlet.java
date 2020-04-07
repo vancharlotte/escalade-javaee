@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SearchUserServlet", urlPatterns = "/searchUser")
+@WebServlet(name = "SearchUserServlet", urlPatterns = { "/searchUser", "/user/searchUser"})
 public class SearchUserServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(SearchUserServlet.class);

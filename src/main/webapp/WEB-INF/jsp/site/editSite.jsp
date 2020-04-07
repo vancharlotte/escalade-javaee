@@ -6,7 +6,7 @@
 <body>
 
 
-<form method="post" action="admin/editSite">
+<form method="post" action="editSite">
 
     <table>
         <tr>
@@ -55,15 +55,16 @@
         </tr>
         <tr>
             <td><label for="description">Description : </label></td>
-            <td><textarea rows="5" cols="50" name="description" id="description" value="${site.description}"></textarea>
+            <td><textarea rows="5" cols="50" name="description" id="description">${site.description}</textarea>
             </td>
         </tr>
+
         <tr>
             <td> Amis de l'escalade :</td>
-            <td><input type="radio" name="ckecked" id="true" value="true"/>
-                <label for="true">Yes</label>
-                <input type="radio" name="checked" id="false" value="false" checked/>
-                <label for="false">No</label>
+            <td><input type="radio" name="checked" id="true" value="true" checked/>
+            <label for="true">Yes</label>
+            <input type="radio" name="checked" id="false" value="false"/>
+            <label for="false">No</label>
             </td>
 
         </tr>

@@ -4,28 +4,29 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "COMMENT")
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COMMENT_ID")
     private int commentId;
     @NotEmpty
     private String title;
     @NotEmpty
     private String description;
-    @NotEmpty
-    private int time;
+
+    private Timestamp time;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user; //author
 
     @ManyToOne
-    @JoinColumn(name="site_id")
+    @JoinColumn(name = "site_id")
     private Site site;
 
     public int getCommentId() {
@@ -52,11 +53,11 @@ public class Comment {
         this.description = description;
     }
 
-    public int getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 

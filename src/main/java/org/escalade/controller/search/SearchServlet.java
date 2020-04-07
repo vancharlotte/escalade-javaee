@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SearchServlet", urlPatterns = "/search")
+@WebServlet(name = "SearchServlet", urlPatterns = {"/search", "/user/search"})
 public class SearchServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(SearchServlet.class);
@@ -31,6 +31,12 @@ public class SearchServlet extends HttpServlet {
         siteDao = new SiteDaoImpl();
         topoDao = new TopoDaoImpl();
         userDao = new UserDaoImpl();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/advancedSearch.jsp").forward(req, resp);
+
     }
 
     @Override

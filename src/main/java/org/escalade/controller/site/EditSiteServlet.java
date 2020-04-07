@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "EditSiteServlet", value = {"/admin/editSite", "/admin/deleteSite", "/admin/editChecked"})
+@WebServlet(name = "EditSiteServlet", value = {"/editSite", "/admin/editSite", "/admin/deleteSite", "/admin/editChecked"})
 public class EditSiteServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(EditSiteServlet.class);
@@ -33,7 +33,7 @@ public class EditSiteServlet extends HttpServlet {
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
 
 
-        if (req.getRequestURL().toString().contains("Status")) {
+        if (req.getRequestURL().toString().contains("editChecked")) {
             if (site.isChecked()) {
                 site.setChecked(false);
             } else {
@@ -42,7 +42,7 @@ public class EditSiteServlet extends HttpServlet {
             siteDao.update(site);
             resp.sendRedirect(req.getContextPath() + "/Site?" + site.getSiteId());
             //a vérifier
-        } else if (req.getRequestURL().toString().contains("delete")) {
+        } else if (req.getRequestURL().toString().contains("deleteSite")) {
             siteDao.delete(site);
             resp.sendRedirect(req.getContextPath() + "/search");
 
@@ -76,8 +76,8 @@ public class EditSiteServlet extends HttpServlet {
         }
 
         siteDao.update(site);
+        logger.info("update site");
 
-        resp.sendRedirect(req.getContextPath() + "/Site?" + site.getSiteId());
-        //a vérifier
+        resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
     }
 }

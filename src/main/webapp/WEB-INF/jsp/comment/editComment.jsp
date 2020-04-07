@@ -12,7 +12,7 @@
 <h2>modifier comment</h2>
 
 
-<form method="post" action="user/addComment">
+<form method="post" action="editComment">
 
     <table>
 
@@ -27,7 +27,7 @@
         <tr>
             <td><label for="description">Description : </label></td>
 
-            <td><textarea rows="5" cols="50" name="description" id="description" value=${"comment.description"}></textarea>
+            <td><textarea rows="5" cols="50" name="description" id="description" >${comment.description}</textarea>
             </td>
         </tr>
 

@@ -30,17 +30,14 @@ public class Site {
     private String nbRoutes;
     @NotEmpty
     private String description;
-    @NotEmpty
     private boolean checked; //Ami de l'escalade
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
-    @OneToMany(mappedBy = "site")
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Comment> comments;
-
-
 
 
     public int getSiteId() {

@@ -12,7 +12,10 @@
 <h2>nouveau commentaire</h2>
 
 
-<form method="post" action="user/addComment">
+<form method="post" action="addComment">
+
+    <input type="hidden" id="site" name="site" value="${site.siteId}">
+   <h4> Vous commentez le site d'escalade :     <c:out value="${site.name}"/></h4>
 
     <table>
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 @WebServlet(name = "DeleteCommentServlet", urlPatterns = {"/admin/deleteComment", "/admin/editComment"})
 public class EditCommentServlet extends HttpServlet {
@@ -26,14 +27,16 @@ public class EditCommentServlet extends HttpServlet {
         int commentId = Integer.parseInt(req.getQueryString());
         Comment comment = commentDao.findById(commentId);
 
-        if (req.getRequestURL().toString().contains("delete")) {
+        req.setAttribute("comment", comment);
+
+        if (req.getRequestURL().toString().contains("deleteComment")) {
             commentDao.delete(comment);
             resp.sendRedirect(req.getContextPath() + "/site?" + comment.getSite().getSiteId());
-            //a vérifier
-        }
-        else{
-            req.setAttribute("comment", comment);
+        } else if (req.getRequestURL().toString().contains("editComment")) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/comment/editComment.jsp").forward(req, resp);
+
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/site?" + comment.getSite().getSiteId());
         }
     }
 
@@ -48,7 +51,6 @@ public class EditCommentServlet extends HttpServlet {
         commentDao.update(comment);
 
         resp.sendRedirect(req.getContextPath() + "/site?" + comment.getSite().getSiteId());
-        //a vérifier
 
     }
 }
