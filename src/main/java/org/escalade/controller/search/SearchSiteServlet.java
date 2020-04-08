@@ -37,7 +37,7 @@ public class SearchSiteServlet extends HttpServlet {
         String city = req.getParameter("searchByCity");
         String departement = req.getParameter("searchByDepartement");
         String quotation = req.getParameter("searchByQuotation");
-
+        
         String checkedString = req.getParameter("searchByChecked");
         boolean checked = true;
         if (checkedString==null) { checked=false; }
