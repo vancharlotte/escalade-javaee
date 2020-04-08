@@ -117,6 +117,7 @@ public class BookingDaoImpl implements BookingDao {
             Join<Object, Object> bookingTopoJoin = bookingRoot.join("topo", JoinType.INNER);
 
             query.where(builder.equal(bookingTopoJoin.get("user"), user));
+            query.orderBy(builder.desc(bookingRoot.get("bookingId")));
 
             Query<Booking> q = session.createQuery(query);
             bookings = q.getResultList();
@@ -146,6 +147,8 @@ public class BookingDaoImpl implements BookingDao {
 
             Predicate predicate = builder.equal(root.get("user"), user);
             query.where(predicate);
+            query.orderBy(builder.desc(root.get("bookingId")));
+
             Query<Booking> q = session.createQuery(query);
             bookings = q.getResultList();
             transaction.commit();

@@ -117,6 +117,7 @@ public class CommentDaoImpl implements CommentDao{
 
             Predicate predicate = builder.equal(root.get("site"), siteId);
             query.select(root).where(predicate);
+            query.orderBy(builder.asc(root.get("time")));
             Query<Comment> q = session.createQuery(query);
 
             comments =   q.getResultList();

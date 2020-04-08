@@ -60,6 +60,7 @@ public class UserDaoImpl implements UserDao {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
             Query<User> q = session.createQuery("from User");
+
             users = q.getResultList();
             transaction.commit();
         } catch (Exception e) {
@@ -144,6 +145,7 @@ public class UserDaoImpl implements UserDao {
             Predicate usernamePredicate = builder.like(root.get("username"), "%" + username + "%");
 
             query.where(usernamePredicate);
+            query.orderBy(builder.asc(root.get("username")));
             Query<User> q = session.createQuery(query);
             users = q.getResultList();
             transaction.commit();

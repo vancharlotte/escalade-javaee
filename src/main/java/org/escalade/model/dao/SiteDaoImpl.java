@@ -126,8 +126,9 @@ public class SiteDaoImpl implements SiteDao {
             CriteriaQuery<Site> query = builder.createQuery(Site.class);
             Root<Site> root = query.from(Site.class);
 
-            Predicate predicate = builder.like(root.get("name"), "%"+name+"%");
+            Predicate predicate = builder.like(root.get("name"), "%" + name + "%");
             query.where(predicate);
+            query.orderBy(builder.asc(root.get("name")));
             Query<Site> q = session.createQuery(query);
             sites = q.getResultList();
             transaction.commit();
@@ -142,7 +143,7 @@ public class SiteDaoImpl implements SiteDao {
 
 
     @Override
-    public List<Site> search(String name, String city, String departement, boolean checked) {
+    public List<Site> search(String name, String city, String departement, boolean checked, String quotation) {
 
         List<Site> sites = null;
         Transaction transaction = null;
@@ -158,22 +159,29 @@ public class SiteDaoImpl implements SiteDao {
             List<Predicate> predicates = new ArrayList<>();
 
             if (!name.equals("")) {
-                predicates.add(builder.like(root.get("name"), "%"+name+"%"));
+                predicates.add(builder.like(root.get("name"), "%" + name + "%"));
             }
 
             if (!city.equals("")) {
-                predicates.add( builder.like(root.get("city"), "%"+city+"%"));
+                predicates.add(builder.like(root.get("city"), "%" + city + "%"));
             }
 
             if (!departement.equals("00")) {
-                predicates.add( builder.equal(root.get("departement"), departement));
+                predicates.add(builder.equal(root.get("departement"), departement));
             }
             if (checked) {
                 predicates.add(builder.equal(root.get("checked"), checked));
             }
+            logger.info("quotation = " + quotation);
+            if (!quotation.equals("")) {
+                predicates.add(builder.greaterThanOrEqualTo(root.get("quotationMax"), quotation));
+
+                predicates.add(builder.lessThanOrEqualTo(root.get("quotationMin"), quotation));
+            }
 
 
             Predicate predicate = builder.and(predicates.toArray(new Predicate[predicates.size()]));
+            query.orderBy(builder.asc(root.get("name")));
             Query<Site> q = session.createQuery(query.where(predicate));
             sites = q.getResultList();
             transaction.commit();

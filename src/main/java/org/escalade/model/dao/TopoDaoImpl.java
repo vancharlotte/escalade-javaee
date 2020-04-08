@@ -124,6 +124,7 @@ public class TopoDaoImpl implements TopoDao {
 
             Predicate predicate = builder.like(root.get("name"), "%"+name+"%");
             query.where(predicate);
+            query.orderBy(builder.asc(root.get("name")));
             Query<Topo> q = session.createQuery(query);
             topos = q.getResultList();
             transaction.commit();
@@ -168,6 +169,7 @@ public class TopoDaoImpl implements TopoDao {
 
             Predicate predicate = builder.and(predicates.toArray(new Predicate[predicates.size()]));
             Query<Topo> q = session.createQuery(query.where(predicate));
+            query.orderBy(builder.asc(root.get("name")));
             topos = q.getResultList();
             transaction.commit();
 
@@ -195,6 +197,7 @@ public class TopoDaoImpl implements TopoDao {
 
             Predicate predicate = builder.equal(root.get("user"), user);
             query.where(predicate);
+            query.orderBy(builder.asc(root.get("name")));
             Query<Topo> q = session.createQuery(query);
             topos = q.getResultList();
             transaction.commit();

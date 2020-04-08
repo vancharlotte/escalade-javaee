@@ -40,7 +40,7 @@ public class EditSiteServlet extends HttpServlet {
                 site.setChecked(true);
             }
             siteDao.update(site);
-            resp.sendRedirect(req.getContextPath() + "/Site?" + site.getSiteId());
+            resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
             //a vérifier
         } else if (req.getRequestURL().toString().contains("deleteSite")) {
             siteDao.delete(site);

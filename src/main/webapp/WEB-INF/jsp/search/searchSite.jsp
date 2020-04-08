@@ -31,27 +31,13 @@
             </td>
         </tr>
         <tr>
-            <td><label>Cotation Minimale : </label></td>
-            <td><select name="quotationMin">
-                <option value="00">sélectionner</option>
-                <c:forEach var="quotation" items="${quotationList}">
-                    <option value="${quotation}">${quotation}</option>
-                </c:forEach>
-            </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Cotation Maximale : </label></td>
-            <td><select name="quotationMax">
-                <option value="00">sélectionner</option>
+            <td><label>Cotation : </label></td>
+            <td><select name="searchByQuotation">
+                <option value="">sélectionner</option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
             </select></td>
-        </tr>
-        <tr>
-            <td><label for="sector"> nombre de secteur :</label><br></td>
-            <td><input type="number" id="sector" name="searchBySector"></td>
         </tr>
         <tr>
             <td><label for="checked"> Amis de l'escalade?</label></td>
