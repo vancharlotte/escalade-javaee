@@ -40,11 +40,11 @@ public class BookingServlet extends HttpServlet {
         if (req.getRequestURL().toString().contains("reject")) {
             booking.setStatus("refusée");
             bookingDao.update(booking);
-            resp.sendRedirect(req.getContextPath() + "/myBooking");
+            resp.sendRedirect(req.getContextPath() + "/user/myBooking");
         } else if (req.getRequestURL().toString().contains("cancel")) {
             booking.setStatus("annulée");
             bookingDao.update(booking);
-            resp.sendRedirect(req.getContextPath() + "/myBooking");
+            resp.sendRedirect(req.getContextPath() + "/user/myBooking");
         } else if (req.getRequestURL().toString().contains("accept")) {
             booking.setStatus("acceptée");
             bookingDao.update(booking);
@@ -52,7 +52,7 @@ public class BookingServlet extends HttpServlet {
             topo.setAvailable(false);
             topoDao.update(topo);
             logger.info("demande acceptée");
-                        resp.sendRedirect(req.getContextPath() + "/myBooking");
+                        resp.sendRedirect(req.getContextPath() + "/user/myBooking");
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
         }

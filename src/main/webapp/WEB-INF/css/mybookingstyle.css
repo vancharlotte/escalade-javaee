@@ -1,0 +1,49 @@
+.elt1 {
+    max-height : 375px;
+    overflow: auto;
+    margin-left: 50px;
+}
+.elt2 {
+    max-height : 375px;
+    overflow: auto;
+    margin-left: 50px;
+}
+
+a{
+    color: darkcyan;
+}
+
+.name {
+    font-size: 1.3em;
+    color: darkcyan;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px 30px 8px 30px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {background-color: white;}
+tr:hover {background-color:#f5f5f5;}

@@ -5,7 +5,7 @@
 <head>
     <title> modifier commentaire</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/fragments/style.css"%></style>
+    <style><%@include file="/WEB-INF/css/style.css"%></style>
 
 </head>
 

@@ -1,78 +1,73 @@
-<%@ page pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
 <head>
-    <title> nouveau site </title>
+    <title> ajouter site </title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/fragments/style.css"%></style>
+    <style>
+        <%@include file="/WEB-INF/css/style.css" %>
+        <%@include file="/WEB-INF/css/loginstyle.css" %>
+
+    </style>
 </head>
 
 <body>
-<h2> nouveau site</h2>
+
+<div class="container">
+    <div class="form">
+
+        <h1>Ajouter un site d'escalade</h1>
 
 
-<form method="post" action="addSite">
+        <form method="post" action="addSite">
 
-    <table>
 
-        <tr>
-            <td><label for="name">Nom : </label></td>
-            <td><input type="text" name="name" id="name"/></td>
-        </tr>
-        <tr>
-            <td><label for="city">Ville : </label></td>
-            <td><input type="text" name="city" id="city"/></td>
-        </tr>
-        <tr>
-            <td><label>Departement : </label></td>
-            <td><select name="departement" >
+            <label for="name">Nom : </label>
+            <input type="text" name="name" id="name" />
+
+            <label for="city">Ville : </label>
+            <input type="text" name="city" id="city"/>
+
+            <label>Departement : </label>
+            <select name="departement">
+                <option value="${site.departement}"></option>
                 <c:forEach var="departement" items="${departementList}">
                     <option value="${departement}">${departement}</option>
                 </c:forEach>
-            </select></td>
-        </tr>
-        <tr>
-            <td><label>Cotation Minimale : </label></td>
-            <td><select name="quotationMin">
+            </select>
+
+            <label>Cotation Minimale : </label>
+            <select name="quotationMin">
+                <option value="${site.quotationMin}"></option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
             </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Cotation Maximale : </label></td>
-            <td><select name="quotationMax">
+
+            <label>Cotation Maximale : </label>
+            <select name="quotationMax">
+                <option value="${site.quotationMax}"></option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
-            </select></td>
-        </tr>
-        <tr>
-            <td><label for="nbRoutes"> Nombre de voies : </label></td>
-            <td><input type="text" name="nbRoutes" id="nbRoutes"/></td>
-        </tr>
-        <tr>
-            <td><label for="description">Description : </label></td>
+            </select>
 
-            <td><textarea rows="5" cols="50" name="description" id="description"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td> Amis de l'escalade :</td>
-            <td><input type="radio" name="ckecked" id="true" value="true"/>
-                <label for="true">Yes</label>
-                <input type="radio" name="checked" id="false" value="false" checked/>
-                <label for="false">No</label>
-            </td>
+            <label for="nbRoutes"> Nombre de voies : </label>
+            <input type="text" name="nbRoutes" id="nbRoutes"/>
 
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit"/></td>
-        </tr>
-    </table>
-</form>
+            <label for="description">Description : </label>
+            <textarea rows="5" cols="50" name="description" id="description"></textarea>
+
+
+            Amis de l'escalade :
+
+            <input type="radio" name="checked" id="true" value="true" checked/>
+            <label for="true">Yes</label>
+            <input type="radio" name="checked" id="false" value="false"/>
+            <label for="false">No</label>
+
+            <input type="submit" value="Submit"/>
+
+        </form>
+    </div>
+</div>
 
 
 </body>
@@ -81,3 +76,6 @@
     <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </footer>
 </html>
+
+
+

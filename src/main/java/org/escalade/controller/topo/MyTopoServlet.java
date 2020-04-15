@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "MyTopoServlet", urlPatterns = {"/user/myTopo"})
+@WebServlet(name = "MyTopoServlet", urlPatterns = {"/user/myTopo", "/myTopo"})
 public class MyTopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(MyTopoServlet.class);

@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <header>
+
     <title> recherche site</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
 
     <style>
-        <%@include file="/WEB-INF/fragments/style.css"%>
-        <%@include file="/WEB-INF/fragments/stylesearch.css"%>
-
+        <%@include file="/WEB-INF/css/style.css"%>
+        <%@include file="/WEB-INF/css/stylesearch.css"%>
 
 
     </style>
@@ -19,6 +19,31 @@
 <body>
 
 <div class="container">
+    <div class="result">
+        <h2> Sites : </h2>
+
+
+        <ul>
+
+            <c:if test="${ empty siteList}">
+                <li>
+                    <h4>pas de résultat</h4>
+                </li>
+
+            </c:if>
+
+            <c:if test="${not empty siteList}">
+                <c:forEach var="site" items="${siteList}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/site?<c:out value="${site.siteId}"/>">
+                            <strong> <c:out value="${site.name}"/></strong> </a>
+                    </li>
+                </c:forEach>
+            </c:if>
+
+        </ul>
+
+    </div>
     <div class="search">
 
 
@@ -28,8 +53,7 @@
 
             <label for="checked"> Amis de l'escalade?</label>
             <input type="checkbox" id="checked" name="searchByChecked">
-            <br><br>
-
+            <br>
             <label for="name"> Nom : </label>
             <input type="text" id="name" name="searchByName">
             <label for="city"> Ville : </label>
@@ -48,35 +72,10 @@
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
             </select>
-
-
-            <input type="Submit" value="Ok"/>
+            <br>
+            <input type="Submit" value="recherche"/>
 
         </form>
-    </div>
-    <div class="result">
-        <c:if test="${ empty siteList}">
-
-
-            <h4>pas de résultat</h4>
-
-        </c:if>
-
-        <c:if test="${not empty siteList}">
-
-            <h2> Sites : </h2>
-
-            <c:forEach var="site" items="${siteList}">
-
-
-                <li><c:out value="${site.name}"/>
-
-                    <a href="${pageContext.request.contextPath}/site?<c:out value="${site.siteId}"/>"> consulter </a>
-
-                </li>
-            </c:forEach>
-
-        </c:if>
     </div>
 </div>
 

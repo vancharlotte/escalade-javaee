@@ -6,8 +6,8 @@
     <title> recherche utilisateur</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
-        <%@include file="/WEB-INF/fragments/style.css"%>
-        <%@include file="/WEB-INF/fragments/stylesearch.css"%>
+        <%@include file="/WEB-INF/css/style.css"%>
+        <%@include file="/WEB-INF/css/stylesearch.css"%>
     </style>
 
 </head>
@@ -16,39 +16,41 @@
 
 <div class="container">
 
-<div class = "search">
-<h2>Recherche Utilisateur</h2>
+    <div class="result">
+        <h2> Utilisateurs : </h2>
 
-<form action="searchUser" method="post">
+        <ul>
 
-    <label for="name"> Nom : </label><input type="text" id="name" name="searchByUsername">
-    <input type="Submit" value="Ok"/>
+            <c:if test="${ empty userList}">
+                <li>
+                    <h4>pas de résultat</h4>
+                </li>
 
-</form>
-</div>
-<div class="result">
-<c:if test="${ empty siteList}">
+            </c:if>
 
-    <h4>pas de résultat</h4>
+            <c:if test="${not empty userList}">
+                <c:forEach var="user" items="${userList}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>">
+                            <strong> <c:out value="${user.username}"/></strong> </a>
+                    </li>
+                </c:forEach>
+            </c:if>
 
-</c:if>
+        </ul>
 
-<c:if test="${not empty userList}">
+    </div>
+    <div class="search">
 
-    <h2> utilisateur : </h2>
+        <form action="searchUser" method="post">
+            <h2>Recherche Utilisateur</h2>
 
-    <c:forEach var="user" items="${userList}">
 
+            <label for="name"> Nom : </label><input type="text" id="name" name="searchByUsername">
+            <input type="Submit" value="Ok"/>
 
-        <li><c:out value="${user.username}"/>
-
-            <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>"> consulter </a>
-
-        </li>
-    </c:forEach>
-
-</c:if>
-</div>
+        </form>
+    </div>
 </div>
 </body>
 

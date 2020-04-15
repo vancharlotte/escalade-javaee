@@ -6,8 +6,8 @@
     <title> connexion</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
-        <%@include file="/WEB-INF/fragments/style.css" %>
-        <%@include file="/WEB-INF/fragments/loginstyle.css" %>
+        <%@include file="/WEB-INF/css/style.css" %>
+        <%@include file="/WEB-INF/css/loginstyle.css" %>
 
 
 
@@ -17,7 +17,7 @@
 <body>
 <div class="container">
 
-<div class="login">
+<div class="form">
 
     <form method="post" action="login">
 

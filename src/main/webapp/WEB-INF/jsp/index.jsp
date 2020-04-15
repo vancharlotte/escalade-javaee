@@ -7,9 +7,9 @@
     <title>Accueil</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
-        <%@include file="/WEB-INF/fragments/style.css"%>
+        <%@include file="/WEB-INF/css/style.css"%>
 
-        .blog-description {
+        .container {
             font-size: 1.1em;
         }
 
@@ -22,7 +22,7 @@
 <body>
 
 
-<div class="blog-description">
+<div class="container">
     <h2> Bienvenue</h2>
 
     <hr>

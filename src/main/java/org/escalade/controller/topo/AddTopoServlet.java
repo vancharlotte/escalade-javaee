@@ -60,6 +60,6 @@ public class AddTopoServlet extends HttpServlet {
         topoDao.save(topo);
         logger.info("save");
 
-        resp.sendRedirect(req.getContextPath() + "/myTopo");
+        resp.sendRedirect(req.getContextPath() + "/user/myTopo");
     }
 }

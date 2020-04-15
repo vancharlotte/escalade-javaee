@@ -6,6 +6,7 @@
     color: rgba(10,12,47,0.72);
     background-color: lightseagreen;
     border: 1px solid lightseagreen;
+    padding: 10px 20px 10px 20px;
 }
 
 .element2 {
@@ -14,6 +15,12 @@
 .element3 {
     color: white;
 }
+
+.container{
+    min-height: 500px;
+    font-size: 1.1em;
+}
+
 
 
 .error {
@@ -26,5 +33,6 @@
     justify-content: center;
     text-align: center;
     background-color: #f9f9f9;
+
 
 }

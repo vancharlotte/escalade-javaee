@@ -6,18 +6,43 @@
     <title> recherche topo</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
-        <%@include file="/WEB-INF/fragments/style.css"%>
-        <%@include file="/WEB-INF/fragments/stylesearch.css"%>
+        <%@include file="/WEB-INF/css/style.css"%>
+        <%@include file="/WEB-INF/css/stylesearch.css"%>
     </style>
 
 </head>
 
 <body>
 <div class="container">
+    <div class="result">
+        <h2> topos : </h2>
+
+        <ul>
+
+
+            <c:if test="${ empty topoList}">
+                <li>
+                    <h4>pas de résultat</h4>
+                </li>
+
+            </c:if>
+
+            <c:if test="${not empty topoList}">
+                <c:forEach var="topo" items="${topoList}">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>">
+                            <strong> <c:out value="${topo.name}"/></strong> </a>
+                    </li>
+                </c:forEach>
+            </c:if>
+
+        </ul>
+    </div>
     <div class="search">
-        <h2>Recherche Topo</h2>
 
         <form action="searchTopo" method="post">
+            <h2>Recherche Topo</h2>
+
 
             <label for="name"> Nom : </label>
             <input type="text" id="name" name="searchByName">
@@ -36,30 +61,6 @@
             <input type="Submit" value="Ok"/>
 
         </form>
-    </div>
-    <div class="result">
-        <h2> topos : </h2>
-
-        <c:if test="${ empty topoList}">
-
-            <h4>pas de résultat</h4>
-
-        </c:if>
-
-        <c:if test="${not empty topoList}">
-
-
-            <c:forEach var="topo" items="${topoList}">
-
-
-                <li><c:out value="${topo.name}"/>
-
-                    <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter </a>
-
-                </li>
-            </c:forEach>
-
-        </c:if>
     </div>
 </div>
 </body>

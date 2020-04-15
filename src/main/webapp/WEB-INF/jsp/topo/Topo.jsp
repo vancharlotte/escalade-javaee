@@ -5,7 +5,7 @@
 <head>
     <title>Topo</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/fragments/style.css"%></style></head>
+    <style><%@include file="/WEB-INF/css/style.css"%></style></head>
 
 <style>
         .bordure {
@@ -17,9 +17,10 @@
 </head>
 
 <body>
+<div class = "container">
 <br>
 <h2>${topo.name}</h2>
-<div style="overflow-x:auto;">
+<div style="overflow-x:auto;" >
 
     <table>
         <tr>
@@ -68,6 +69,7 @@
             </td>
         </tr>
     </table>
+</div>
 </div>
 
 </body>

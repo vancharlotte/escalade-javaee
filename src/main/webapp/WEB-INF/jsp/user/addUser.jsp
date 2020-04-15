@@ -6,17 +6,16 @@
     <title> inscription</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
-        <%@include file="/WEB-INF/fragments/style.css" %>
-        <%@include file="/WEB-INF/fragments/loginstyle.css" %>
-
-
+        <%@include file="/WEB-INF/css/style.css" %>
+        <%@include file="/WEB-INF/css/loginstyle.css" %>
     </style>
 </head>
 
 <body>
+
 <div class="container">
 
-    <div class="login">
+    <div class="form">
 
         <h1>Inscription</h1>
 
@@ -35,6 +34,7 @@
         </form>
     </div>
 </div>
+
 
 
 </body>

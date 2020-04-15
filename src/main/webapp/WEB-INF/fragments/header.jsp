@@ -21,12 +21,19 @@
             <button  onclick="window.location.href='${pageContext.request.contextPath}/logout'">
                 Se déconnecter
             </button>
+            <br>
             <button
                     onclick="window.location.href='${pageContext.request.contextPath}/page?<c:out
                             value="${user.userId}"/>'">
                 Mon profil
             </button>
         </sec:authorize>
+        <br>
+        <button
+                onclick="window.location.href='${pageContext.request.contextPath}/welcome<c:out
+                        value="${user.userId}"/>'">
+            Accueil
+        </button>
     </div>
 
     <div class="element2" style="text-align:center">

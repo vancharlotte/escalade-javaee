@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name = "WelcomeServlet", urlPatterns = "/", loadOnStartup = 0)
+@WebServlet(name = "WelcomeServlet", urlPatterns = {"/", "/welcome"} , loadOnStartup = 0)
 public class WelcomeServlet extends HttpServlet {
 
     @Override

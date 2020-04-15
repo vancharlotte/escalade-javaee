@@ -5,43 +5,59 @@
 <head>
     <title> page de profil</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/fragments/style.css"%></style></head>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+        <%@include file="/WEB-INF/css/pagestyle.css"%>
+
+    </style>
 </head>
 
 <body>
+<div class="container">
 
-<h2> ${owner.username}</h2>
+    <div class="elt1">
+        <h1> ${owner.username}</h1>
+        <hr>
 
+    </div>
+    <hr>
 
-<c:if test="${user.username eq owner.username}">
+    <div class="elt2">
 
-    <a href="${pageContext.request.contextPath}/user/myTopo"> Mes topos </a>
-    </br>
-    <a href="${pageContext.request.contextPath}/user/myBooking"> Mes réservations </a>
-</c:if>
-
-
-<c:if test="${user.username ne owner.username}">
-
-<h3><label>Les topos de ${owner.username} :  </label></h3>
-
-
-    <c:forEach var="topo" items="${topoList}">
-
-        <li><c:out value="${topo.name}"/>
-            <c:if test="${(topo.available=true)}"> disponible </c:if>
-
-            <c:if test="${(topo.available=false)}"> indisponible </c:if>
+        <c:if test="${user.username eq owner.username}">
+            <a href="${pageContext.request.contextPath}/user/myTopo"> Mes topos </a>
+            </br>
+            <a href="${pageContext.request.contextPath}/user/myBooking"> Mes réservations </a>
+        </c:if>
 
 
+        <c:if test="${user.username ne owner.username}">
 
-            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter </a>
 
-        </li>
-    </c:forEach>
+            <h2> Les topos de ${owner.username} : </h2>
 
-</c:if>
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Statut</th>
+                </tr>
+                <tr>
 
+                    <c:forEach var="topo" items="${topoList}">
+
+                    <td><a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> <c:out
+                            value="${topo.name}"/> </a></td>
+                    <td><c:if test="${(topo.available=true)}"> disponible </c:if>
+
+                        <c:if test="${(topo.available=false)}"> indisponible </c:if></td>
+                </tr>
+
+                </c:forEach>
+            </table>
+
+        </c:if>
+    </div>
+</div>
 </body>
 
 <footer>

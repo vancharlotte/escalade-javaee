@@ -1,4 +1,4 @@
-.login input[type=text], input[type=password], input[type=email], select{
+.form input[type=text], input[type=password], input[type=email], input[type=date], select, textarea{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -9,7 +9,7 @@
 
 }
 
-.login input[type=submit] {
+.form input[type=submit] {
     width: 100%;
     background-color: powderblue;
     color: white;
