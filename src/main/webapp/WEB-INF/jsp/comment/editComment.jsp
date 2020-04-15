@@ -5,39 +5,39 @@
 <head>
     <title> modifier commentaire</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/css/style.css"%></style>
+    <style>
+        <%@include file="/WEB-INF/css/style.css" %>
+        <%@include file="/WEB-INF/css/loginstyle.css" %>
+
+    </style>
 
 </head>
 
 <body>
 
-<h2>modifier comment</h2>
+<div class="container">
 
+<div class="form">
+
+<h2>modifier le commentaire</h2>
 
 <form method="post" action="editComment">
 
-    <table>
 
-        <tr>
-            <td><label for="commentId"></label></td>
-            <td><input type="hidden" name="commentId" id="commentId" value="${comment.commentId}"/></td>
-        </tr>
-        <tr>
-            <td><label for="title">Titre : </label></td>
-            <td><input type="text" name="title" id="title" value="${comment.title}"/></td>
-        </tr>
-        <tr>
-            <td><label for="description">Description : </label></td>
+    <label for="commentId"></label>
+    <input type="hidden" name="commentId" id="commentId" value="${comment.commentId}"/>
 
-            <td><textarea rows="5" cols="50" name="description" id="description" >${comment.description}</textarea>
-            </td>
-        </tr>
+    <label for="title">Titre : </label>
+    <input type="text" name="title" id="title" value="${comment.title}"/>
 
-        <tr>
-            <td><input type="submit" value="Submit"/></td>
-        </tr>
-    </table>
+    <label for="description">Description : </label>
+    <textarea rows="5" cols="50" name="description" id="description">${comment.description}</textarea>
+
+    <input type="submit" value="Submit"/></td>
+
 </form>
+</div>
+</div>
 
 </body>
 

@@ -5,39 +5,39 @@
 <head>
     <title> nouveau commentaire</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/css/style.css"%></style>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+        <%@include file="/WEB-INF/css/loginstyle.css"%>
+
+    </style>
 
 </head>
 
 <body>
 
+<div class="container">
+    <div class="form">
 <h2>nouveau commentaire</h2>
 
 
 <form method="post" action="addComment">
 
-    <input type="hidden" id="site" name="site" value="${site.siteId}">
-   <h4> Vous commentez le site d'escalade :     <c:out value="${site.name}"/></h4>
+    <input  type="hidden" id="site" name="site" value="${site.siteId}">
+   <h4 style="color: darkcyan"> Vous commentez le site d'escalade :    <c:out value="${site.name}"/></h4>
 
-    <table>
 
-        <tr>
-            <td><label for="title">Titre : </label></td>
-            <td><input type="text" name="title" id="title"/></td>
-        </tr>
-        <tr>
-            <td><label for="description">Description : </label></td>
+    <label for="title">Titre : </label>
+    <input type="text" name="title" id="title"/>
 
-            <td><textarea rows="5" cols="50" name="description" id="description"></textarea>
-            </td>
-        </tr>
+    <label for="description">Description : </label>
+    <textarea rows="5" cols="50" name="description" id="description"></textarea>
 
-        <tr>
-            <td><input type="submit" value="Submit"/></td>
-        </tr>
-    </table>
+
+    <input type="submit" value="Submit"/>
+
 </form>
-
+</div>
+</div>
 </body>
 
 <footer>
