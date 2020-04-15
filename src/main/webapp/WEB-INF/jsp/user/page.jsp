@@ -5,6 +5,7 @@
 <head>
     <title> page de profil</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style><%@include file="/WEB-INF/fragments/style.css"%></style></head>
 </head>
 
 <body>
@@ -42,4 +43,8 @@
 </c:if>
 
 </body>
+
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>

@@ -33,7 +33,6 @@ public class SearchSiteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("searchByName");
-       // String quotation = req.getParameter("searchByQuotation");
         String city = req.getParameter("searchByCity");
         String departement = req.getParameter("searchByDepartement");
         String quotation = req.getParameter("searchByQuotation");

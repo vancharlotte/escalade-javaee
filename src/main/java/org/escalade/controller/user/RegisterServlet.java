@@ -1,6 +1,8 @@
 package org.escalade.controller.user;
 
 import org.escalade.controller.validator.UserFormValidator;
+import org.escalade.model.dao.RoleDao;
+import org.escalade.model.dao.RoleDaoImpl;
 import org.escalade.model.dao.UserDao;
 import org.escalade.model.dao.UserDaoImpl;
 import org.escalade.model.entity.User;
@@ -17,9 +19,11 @@ import java.io.IOException;
 public class RegisterServlet extends HttpServlet {
 
     UserDao userDao;
+    RoleDao roleDao;
 
     public void init() {
         userDao = new UserDaoImpl();
+        roleDao = new RoleDaoImpl();
     }
 
 
@@ -35,6 +39,7 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(req.getParameter("password"));
         user.setConfirmPassword(req.getParameter("confirmPassword"));
         user.setEmail(req.getParameter("email"));
+        user.setRole(roleDao.findByName("USER"));
         userDao.save(user);
 
         HttpSession session = req.getSession();

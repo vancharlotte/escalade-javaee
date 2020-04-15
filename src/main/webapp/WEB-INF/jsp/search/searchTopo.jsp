@@ -5,65 +5,66 @@
 <head>
     <title> recherche topo</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style>
+        <%@include file="/WEB-INF/fragments/style.css"%>
+        <%@include file="/WEB-INF/fragments/stylesearch.css"%>
+    </style>
+
 </head>
 
 <body>
+<div class="container">
+    <div class="search">
+        <h2>Recherche Topo</h2>
 
-<h2>Recherche Topo</h2>
+        <form action="searchTopo" method="post">
 
-<form action="searchTopo" method="post">
-    <table>
-        <tr>
-            <td><label for="name"> Nom : </label></td>
-            <td><input type="text" id="name" name="searchByName"></td>
-        </tr>
-        <tr>
-            <td><label for="city"> Ville : </label></td>
-            <td><input type="text" id="city" name="searchByCity"></td>
-        </tr>
-        <tr>
-            <td><label>Département : </label></td>
-            <td><select name="searchByDepartement">
+            <label for="name"> Nom : </label>
+            <input type="text" id="name" name="searchByName">
+            <label for="city"> Ville : </label>
+            <input type="text" id="city" name="searchByCity">
+            <label>Département : </label>
+            <select name="searchByDepartement">
                 <option value="00">sélectionner</option>
                 <c:forEach var="departement" items="${departementList}">
                     <option value="${departement}">${departement}</option>
                 </c:forEach>
             </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label for="available"> Available : </label></td>
-            <td><input type="checkbox" id="available" name="searchByAvailable"></td>
-        </tr>
-        <tr>
-            <td>  <input type="Submit" value="Ok"/></td>
-        </tr>
 
-    </table>
-</form>
+            <label for="available"> Available : </label>
+            <input type="checkbox" id="available" name="searchByAvailable">
+            <input type="Submit" value="Ok"/>
 
-<h2> Sites : </h2>
+        </form>
+    </div>
+    <div class="result">
+        <h2> topos : </h2>
 
-<c:if test="${ empty topoList}">
+        <c:if test="${ empty topoList}">
 
-    <h4>pas de résultat</h4>
+            <h4>pas de résultat</h4>
 
-</c:if>
+        </c:if>
 
-<c:if test="${not empty topoList}">
+        <c:if test="${not empty topoList}">
 
 
-    <c:forEach var="topo" items="${topoList}">
+            <c:forEach var="topo" items="${topoList}">
 
 
-        <li><c:out value="${topo.name}"/>
+                <li><c:out value="${topo.name}"/>
 
-            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter </a>
+                    <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>"> consulter </a>
 
-        </li>
-    </c:forEach>
+                </li>
+            </c:forEach>
 
-</c:if>
-
+        </c:if>
+    </div>
+</div>
 </body>
+
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>

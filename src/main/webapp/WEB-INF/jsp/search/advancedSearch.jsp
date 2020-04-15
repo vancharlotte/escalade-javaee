@@ -5,9 +5,16 @@
 <head>
     <title> recherche </title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style>
+        <%@include file="/WEB-INF/fragments/style.css"%>
+        <%@include file="/WEB-INF/fragments/stylesearch.css"%>
+    </style>
+
 </head>
 
 <body>
+<div class="search">
+
 
 <h2>Recherche</h2>
 
@@ -25,8 +32,12 @@
     <input type="Submit" value="Ok"/>
 
 </form>
-
+</div>
 </body>
+
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>
 
 

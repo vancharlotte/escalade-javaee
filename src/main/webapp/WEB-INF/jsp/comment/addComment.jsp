@@ -5,6 +5,8 @@
 <head>
     <title> nouveau commentaire</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style><%@include file="/WEB-INF/fragments/style.css"%></style>
+
 </head>
 
 <body>
@@ -36,7 +38,9 @@
     </table>
 </form>
 
-
 </body>
 
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>

@@ -51,7 +51,6 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         logger.info("password encoder");
-
         return new BCryptPasswordEncoder();
     }
 

@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             String message = "identifiant ou mot de passe incorrect.";
             req.setAttribute("message", message);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/login.jsp").forward(req, resp);
         }
     }
 }

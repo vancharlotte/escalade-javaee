@@ -1,0 +1,30 @@
+/* stylelint-disable selector-list-comma-newline-after */
+
+.blog-header {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    display: flex;
+    color: rgba(10,12,47,0.72);
+    background-color: lightseagreen;
+    border: 1px solid lightseagreen;
+}
+
+.element2 {
+    flex: 1;
+}
+.element3 {
+    color: white;
+}
+
+
+.error {
+    color: red;
+}
+
+.blog-footer {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #f9f9f9;
+
+}

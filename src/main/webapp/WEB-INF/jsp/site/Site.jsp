@@ -7,6 +7,7 @@
 <head>
     <title>Site</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style><%@include file="/WEB-INF/fragments/style.css"%></style>
     <style>
         .bordure {
             border: solid 1px blueviolet;
@@ -109,4 +110,8 @@
 </div>
 
 </body>
+
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>

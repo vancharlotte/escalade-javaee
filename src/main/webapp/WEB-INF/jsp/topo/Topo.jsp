@@ -5,7 +5,9 @@
 <head>
     <title>Topo</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style>
+    <style><%@include file="/WEB-INF/fragments/style.css"%></style></head>
+
+<style>
         .bordure {
             border: solid 1px blueviolet;
             padding: 25px;
@@ -69,4 +71,8 @@
 </div>
 
 </body>
+
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>

@@ -5,39 +5,41 @@
 <head>
     <title> inscription</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style>
+        <%@include file="/WEB-INF/fragments/style.css" %>
+        <%@include file="/WEB-INF/fragments/loginstyle.css" %>
+
+
+    </style>
 </head>
 
 <body>
+<div class="container">
 
-<form method="post" action="register">
+    <div class="login">
 
-    <table>
+        <h1>Inscription</h1>
 
-        <tr>
-            <td><label for="username">Identifiant : </label></td>
-            <td> <input type="text" name="username" id="username" /></td>
-        </tr>
-        <tr>
-            <td><label for="password">Mot de passe : </label></td>
-            <td> <input type="password" name="password" id="password" /></td>
-        </tr>
-        <tr>
-            <td><label for="confirmPassword">Confirmer mot de passe : </label></td>
-            <td> <input type="password" name="confirmPassword" id="confirmPassword" /></td>
-        </tr>
-        <tr>
-            <td><label for="email">Email : </label></td>
-            <td> <input type="email" name="email" id="email" /></td>
-        </tr>
+        <form method="post" action="register">
 
-        <tr>
-            <td><input type="submit" value="Submit"/></td>
-        </tr>
-    </table>
-</form>
+            <label for="username">Identifiant : </label>
+            <input type="text" id="username" name="username" placeholder="username..">
+            <label for="password">Mot de passe : </label>
+            <input type="password" name="password" id="password" placeholder="mot de passe.."/>
+            <label for="confirmPassword">Confirmer mot de passe : </label>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirmer mot de passe.."/>
+            <label for="email">Email : </label>
+            <input type="email" name="email" id="email" placeholder="adresse email.."/>
+            <input type="submit" value="Submit">
 
+        </form>
+    </div>
+</div>
 
 
 </body>
 
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>

@@ -1,6 +1,7 @@
 <head>
     <title> modifier site </title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
+    <style><%@include file="/WEB-INF/fragments/style.css"%></style>
 </head>
 
 <body>
@@ -77,6 +78,9 @@
 
 </body>
 
+<footer>
+    <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+</footer>
 </html>
 
 
