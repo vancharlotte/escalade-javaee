@@ -7,108 +7,109 @@
 <head>
     <title>Site</title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
-    <style><%@include file="/WEB-INF/css/style.css"%></style>
     <style>
-        .bordure {
-            border: solid 1px blueviolet;
-            padding: 25px;
-            border-radius: 5px;
-        }
+        <%@include file="/WEB-INF/css/style.css"%>
+        <%@include file="/WEB-INF/css/sitestyle.css"%>
     </style>
 </head>
 
 <body>
-<br>
-<h2>${site.name}</h2>
-<div style="overflow-x:auto;">
+<div class="container">
+    <div class="elt1">
+        <h1> ${site.name}</h1>
+        <hr>
+    </div>
 
-    <table>
-        <tr>
-            <td>
-                Où? ${site.city}, ${site.departement}
-                <br/>
-                nombre de voies : ${site.nbRoutes}
-                <br/>
-                cotation : de ${site.quotationMin} à ${site.quotationMax} <br/>
-            </td>
-        </tr>
-        <tr>
-            <td style="color: blueviolet">
+    <div class="line1">
+
+        <div class="elt2">
+            <c:if test="${site.checked==true}">
+                Certifié Ami de l'escalade !!!!
+            </c:if>
+            <br/>
+            <br/>
+
+            Où? ${site.city}, ${site.departement}
+            <br/>
+            nombre de voies : ${site.nbRoutes}
+            <br/>
+            cotation : de ${site.quotationMin} à ${site.quotationMax}
+            <br/>
+
+            <p style="color: blueviolet">
                 ${message}
+            </p>
+
+            <div class="option">
                 <br/>
-            </td>
-        </tr>
-        <tr>
-            <td class=bordure>
+                <br/>
 
-                ${site.description}
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+
+                    <a href="${pageContext.request.contextPath}/admin/editSite?<c:out value="${site.siteId}"/>">
+                        Modifier </a>
+                    <a href="${pageContext.request.contextPath}/admin/deleteSite?<c:out value="${site.siteId}"/>">
+                        Supprimer </a>
+                    <a href="${pageContext.request.contextPath}/admin/editChecked?<c:out value="${site.siteId}"/>"> Ami
+                        de
+                        l'escalade </a>
+
+                </sec:authorize>
+
+            </div>
+        </div>
+
+        <div class="elt3">
+            ${site.description}
+        </div>
+    </div>
+
+    <div class="line2">
+
+        <div class="elt5">
+            <h3> Commentaires :</h3>
+            <sec:authorize access="isAuthenticated()">
+
+                <a href="${pageContext.request.contextPath}/user/addComment?<c:out value="${site.siteId}"/>"> Ajouter un
+                    commentaire </a>
                 <br/> <br/>
+
+            </sec:authorize>
+        </div>
+        <div class="elt6">
+
+            <c:if test="${empty commentList}">
+                pas de commentaire
+            </c:if>
+
+            <c:if test="${not empty commentList}">
+                <c:forEach var="entry" items="${commentMap}">
+
+                    <c:out value="${entry.key.title}"/>
+                    par <c:out value="${entry.value}"/>
+                    <c:out value="${entry.key.time}"/>
+                    <br/>
+                    <c:out value="${entry.key.description}"/>
+
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+
+                        <a href="${pageContext.request.contextPath}/admin/deleteComment?<c:out value="${entry.key.commentId}"/>">
+                            Supprimer </a>
+                        <a href="${pageContext.request.contextPath}/admin/editComment?<c:out value="${entry.key.commentId}"/>">
+                            Modifier </a>
+
+                    </sec:authorize>
+                    <hr>
+
+                </c:forEach>
+
+            </c:if>
             </td>
-        </tr>
-    </table>
+            </tr>
+            </table>
+        </div>
+    </div>
 </div>
-<div>
-    <h4> Commentaires :</h4>
-    <sec:authorize access="isAuthenticated()">
-
-        <a href="${pageContext.request.contextPath}/user/addComment?<c:out value="${site.siteId}"/>"> Ajouter un
-            commentaire </a>
-        <br/> <br/>
-
-    </sec:authorize>
-    <table>
-        <tr>
-
-            <td class=bordure>
-                <c:if test="${empty commentList}">
-                    pas de commentaire
-                </c:if>
-
-                <c:if test="${not empty commentList}">
-                    <c:forEach var="entry" items="${commentMap}">
-
-                        <li>
-
-                            <c:out value="${entry.key.title}"/>
-                            par <c:out value="${entry.value}"/>
-                            <c:out value="${entry.key.time}"/>
-                            <br/>
-                            <c:out value="${entry.key.description}"/>
-                            <br/>
-
-                            <sec:authorize access="hasRole('ROLE_ADMIN')">
-
-                                <a href="${pageContext.request.contextPath}/admin/deleteComment?<c:out value="${entry.key.commentId}"/>">
-                                    Supprimer </a>
-                                <a href="${pageContext.request.contextPath}/admin/editComment?<c:out value="${entry.key.commentId}"/>">
-                                    Modifier </a>
-                                <br/>
-
-                            </sec:authorize>
-
-                        </li>
-                    </c:forEach>
-
-                </c:if>
-            </td>
-        </tr>
-    </table>
-</div>
-<div>
-    <br/>
-    <br/>
-
-    <sec:authorize access="hasRole('ROLE_ADMIN')">
-
-        <a href="${pageContext.request.contextPath}/admin/editSite?<c:out value="${site.siteId}"/>"> Modifier </a>
-        <a href="${pageContext.request.contextPath}/admin/deleteSite?<c:out value="${site.siteId}"/>"> Supprimer </a>
-        <a href="${pageContext.request.contextPath}/admin/editChecked?<c:out value="${site.siteId}"/>"> Ami de
-            l'escalade </a>
-
-    </sec:authorize>
-
-</div>
-
 </body>
 
 <footer>

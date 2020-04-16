@@ -40,7 +40,6 @@ public class TopoServlet extends HttpServlet {
         int topoId = Integer.parseInt(req.getQueryString());
         Topo topo = topoDao.findById(topoId);
         User owner = userDao.findById(topo.getUser().getUserId());
-        logger.info(user.getUsername());
         req.setAttribute("topo", topo);
         req.setAttribute("owner", owner);
         req.setAttribute("user", user);
