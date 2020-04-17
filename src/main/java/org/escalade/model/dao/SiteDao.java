@@ -13,4 +13,6 @@ public interface SiteDao {
     void delete(Site site);
     List<Site> searchByName(String name);
     List<Site> search(String name, String city, String departement, boolean checked, String quotation);
+    List<Site> listPage(int pageNumber);
+
 }

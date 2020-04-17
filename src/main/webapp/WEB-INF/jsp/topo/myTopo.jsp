@@ -41,12 +41,12 @@
 
             <c:if test="${not empty list}">
 
-                    <c:forEach var="topo" items="${list}">
-                        <tr>
+                <c:forEach var="topo" items="${list}">
+                    <tr>
 
                         <td class="name">
                             <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>">
-                            <c:out value="${topo.name}"/></a></td>
+                                <c:out value="${topo.name}"/></a></td>
                         <td><c:if test="${topo.available==true}"> disponible </c:if>
                             <c:if test="${topo.available==false}"> réservé </c:if>
                         </td>
@@ -59,10 +59,10 @@
                             <a href="${pageContext.request.contextPath}/user/editStatusTopo?<c:out value="${topo.topoId}"/>">
                                 Changer Statut </a>
                         </td>
-            </tr>
-                    </c:forEach>
+                    </tr>
+                </c:forEach>
 
-                </c:if>
+            </c:if>
 
 
         </table>

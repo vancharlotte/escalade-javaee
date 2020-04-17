@@ -30,9 +30,13 @@
         </sec:authorize>
         <br>
         <button
-                onclick="window.location.href='${pageContext.request.contextPath}/welcome<c:out
-                        value="${user.userId}"/>'">
+                onclick="window.location.href='${pageContext.request.contextPath}/welcome'">
             Accueil
+        </button>
+        <br>
+        <button
+                onclick="window.location.href='${pageContext.request.contextPath}/listSite?1'">
+            Liste des sites
         </button>
     </div>
 

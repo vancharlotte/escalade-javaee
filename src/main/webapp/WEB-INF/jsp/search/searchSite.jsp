@@ -10,8 +10,6 @@
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
         <%@include file="/WEB-INF/css/stylesearch.css"%>
-
-
     </style>
 
 </header>

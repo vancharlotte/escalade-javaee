@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -195,5 +196,43 @@ public class SiteDaoImpl implements SiteDao {
         return sites;
     }
 
-}
+    @Override
+    public List<Site> listPage(int pageNumber) {
+        List<Site> sites = null;
+        Transaction transaction = null;
+
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+            int pageSize = 10;
+
+            CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+            countQuery.select(criteriaBuilder.count(countQuery.from(Site.class)));
+
+            CriteriaQuery<Site> criteriaQuery = criteriaBuilder.createQuery(Site.class);
+            Root<Site> from = criteriaQuery.from(Site.class);
+            CriteriaQuery<Site> select = criteriaQuery.select(from);
+
+            TypedQuery<Site> typedQuery = session.createQuery(select);
+                typedQuery.setFirstResult(pageNumber*pageSize -(pageSize));
+                typedQuery.setMaxResults(pageSize);
+                sites = typedQuery.getResultList();
+
+                logger.info("sites size : " + sites.size());
+
+                transaction.commit();
+
+            } catch(Exception e){
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+            return sites;
+        }
+
+    }
 

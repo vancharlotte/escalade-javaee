@@ -45,10 +45,6 @@ public class PageServlet extends HttpServlet {
         List<Topo> list= topoDao.findByUser(owner);
 
         req.setAttribute("topoList", list);
-        logger.info("topo : "+ list);
-
-        logger.info("user : "+user.getUsername());
-        logger.info("owner : "+ owner.getUsername());
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
     }

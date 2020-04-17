@@ -1,0 +1,62 @@
+.container {
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 20px 0;
+    height: 100%;
+
+}
+
+.elt1 a {
+    background-color: darkcyan;
+    color: white;
+    padding: 14px 25px;
+    margin: 8px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+
+table {
+    tab-size: 50px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px 30px 8px 30px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {background-color: white;}
+tr:hover {background-color:#f5f5f5;}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
