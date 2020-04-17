@@ -23,7 +23,7 @@
 
         <h1>Connexion</h1>
 
-        <p class="error">
+        <p style="color: darkcyan ">
         <c:if test="${not empty message}">${message}</c:if>
         </p>
 
