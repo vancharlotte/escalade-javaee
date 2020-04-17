@@ -43,7 +43,7 @@
                 </c:forEach>
             </select>
             <label for="releaseDate">Date de parution : </label>
-            <input type="date" name="releaseDate" id="releaseDate" value=${topo.releaseDate}/>
+            <input type="date" name="releaseDate" id="releaseDate" value="${topo.releaseDate}"/>
             <label for="description">Description : </label>
             <textarea rows="5" cols="50" name="description" id="description">${topo.description}</textarea>
             Disponible :

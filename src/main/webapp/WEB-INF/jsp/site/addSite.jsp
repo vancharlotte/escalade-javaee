@@ -1,3 +1,7 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+
 <head>
     <title> ajouter site </title>
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
@@ -25,9 +29,8 @@
             <label for="city">Ville : </label>
             <input type="text" name="city" id="city"/>
 
-            <label>Departement : </label>
+            <label>Département : </label>
             <select name="departement">
-                <option value="${site.departement}"></option>
                 <c:forEach var="departement" items="${departementList}">
                     <option value="${departement}">${departement}</option>
                 </c:forEach>
@@ -35,7 +38,6 @@
 
             <label>Cotation Minimale : </label>
             <select name="quotationMin">
-                <option value="${site.quotationMin}"></option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
@@ -43,7 +45,6 @@
 
             <label>Cotation Maximale : </label>
             <select name="quotationMax">
-                <option value="${site.quotationMax}"></option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>

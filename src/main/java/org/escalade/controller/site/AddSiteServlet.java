@@ -34,7 +34,6 @@ public class AddSiteServlet extends HttpServlet {
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
 
-
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/addSite.jsp").forward(req, resp);
     }
 
