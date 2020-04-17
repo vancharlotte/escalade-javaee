@@ -12,7 +12,7 @@ public interface SiteDao {
     Site findById(int id);
     void delete(Site site);
     List<Site> searchByName(String name);
-    List<Site> search(String name, String city, String departement, boolean checked, String quotation);
+    List<Site> search(String name, String city, String departement, String nbRoutes, boolean checked, String quotation);
     List<Site> listPage(int pageNumber);
 
 }

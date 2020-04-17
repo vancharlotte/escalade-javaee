@@ -36,14 +36,17 @@ public class SearchSiteServlet extends HttpServlet {
         String city = req.getParameter("searchByCity");
         String departement = req.getParameter("searchByDepartement");
         String quotation = req.getParameter("searchByQuotation");
-        
+        String nbRoutes = req.getParameter("searchByNbRoutes");
+
+        logger.info("nb de voies : " + nbRoutes);
+
         String checkedString = req.getParameter("searchByChecked");
+
         boolean checked = true;
         if (checkedString==null) { checked=false; }
 
 
-        List<Site> siteList = siteDao.search(name, city, departement, checked, quotation);
-        //logger.info(siteList.toString());
+        List<Site> siteList = siteDao.search(name, city, departement,nbRoutes, checked, quotation);
         req.setAttribute("siteList", siteList);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());

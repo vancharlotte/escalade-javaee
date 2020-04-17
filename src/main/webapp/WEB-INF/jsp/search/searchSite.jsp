@@ -63,6 +63,8 @@
                     <option value="${departement}">${departement}</option>
                 </c:forEach>
             </select>
+            <label for="city"> Nombre de Voies : </label>
+            <input type="number" id="nbRoutes" name="searchByNbRoutes">
             <label>Cotation : </label>
             <select name="searchByQuotation">
                 <option value="">sélectionner</option>

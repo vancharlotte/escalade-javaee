@@ -23,7 +23,9 @@
 
         <h1>Connexion</h1>
 
+        <p class="error">
         <c:if test="${not empty message}">${message}</c:if>
+        </p>
 
         <label for="username">Identifiant : </label>
         <input type="text" name="username" id="username" placeholder="username.."/>

@@ -1,4 +1,4 @@
-.search input[type=text], input[type=password], input[type=chexbox], select {
+.search input[type=text], input[type=password], input[type=number], input[type=chexbox], select {
     padding: 12px 20px;
     margin: 8px 0;
     display: flex;
@@ -37,7 +37,7 @@
     background-color: darkturquoise;
     padding: 14px 20px;
     margin: 20px 20px;
-    height: 500px;
+    height: 600px;
     width: 300px;
 }
 
@@ -48,7 +48,7 @@
     padding: 14px 20px;
     margin: 20px 20px;
     width: 400px;
-    height: 500px;
+    height: 600px;
 
 
 }
@@ -74,7 +74,7 @@ h4 {
 
 
 ul {
-    height : 375px;
+    height : 475px;
     border: 2px solid darkturquoise;
     overflow: auto;
     background-color: #f2f2f2;

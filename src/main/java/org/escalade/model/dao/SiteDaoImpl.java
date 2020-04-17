@@ -144,7 +144,7 @@ public class SiteDaoImpl implements SiteDao {
 
 
     @Override
-    public List<Site> search(String name, String city, String departement, boolean checked, String quotation) {
+    public List<Site> search(String name, String city, String departement, String nbRoutes, boolean checked, String quotation) {
 
         List<Site> sites = null;
         Transaction transaction = null;
@@ -170,10 +170,14 @@ public class SiteDaoImpl implements SiteDao {
             if (!departement.equals("00")) {
                 predicates.add(builder.equal(root.get("departement"), departement));
             }
+
+            if (!departement.equals("")) {
+                predicates.add(builder.greaterThanOrEqualTo(root.get("nbRoutes"), nbRoutes));
+            }
             if (checked) {
                 predicates.add(builder.equal(root.get("checked"), checked));
             }
-            logger.info("quotation = " + quotation);
+
             if (!quotation.equals("")) {
                 predicates.add(builder.greaterThanOrEqualTo(root.get("quotationMax"), quotation));
 

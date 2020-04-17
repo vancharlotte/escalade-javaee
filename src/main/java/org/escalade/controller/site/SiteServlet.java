@@ -50,10 +50,8 @@ public class SiteServlet extends HttpServlet {
 
         }
 
-
         req.setAttribute("commentList", commentList);
         req.setAttribute("commentMap", commentMap);
-
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/Site.jsp").forward(req, resp);
     }

@@ -8,6 +8,8 @@ import org.escalade.model.entity.Booking;
 import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "RequestBookingServlet", urlPatterns = "/user/booking")
+@WebServlet(name = "RequestBookingServlet", urlPatterns = {"/booking", "/user/booking"})
 public class RequestBookingServlet extends HttpServlet {
+
+    static final Logger logger = LoggerFactory.getLogger(RequestBookingServlet.class);
 
     BookingDao bookingDao;
     TopoDao topoDao;
@@ -34,20 +38,24 @@ public class RequestBookingServlet extends HttpServlet {
         Topo topo = topoDao.findById(topoId);
 
         User user = (User) req.getSession().getAttribute("user");
+        if (user == null) {
+            req.setAttribute("message", "Vous devez être connecté pour faire une demande de réservation.");
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/login.jsp").forward(req, resp);
 
-        Booking booking = new Booking();
-        booking.setTopo(topo);
-        booking.setStatus("en attente");
-        booking.setUser(user);
-        bookingDao.save(booking);
+        } else {
+            Booking booking = new Booking();
+            booking.setTopo(topo);
+            booking.setStatus("en attente");
+            booking.setUser(user);
+            bookingDao.save(booking);
 
-        req.setAttribute("user", user);
-        req.setAttribute("message",
-                "demande envoyée! Votre adresse email a été transmise au propriétaire du topo. Il prendra contact avec vous rapidement.");
+            req.setAttribute("user", user);
+            req.setAttribute("message",
+                    "demande envoyée! Votre adresse email a été transmise au propriétaire du topo. Il prendra contact avec vous rapidement.");
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
 
-
+        }
     }
 
 }

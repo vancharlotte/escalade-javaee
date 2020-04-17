@@ -46,8 +46,9 @@
             <h2>Recherche Utilisateur</h2>
 
 
-            <label for="name"> Nom : </label><input type="text" id="name" name="searchByUsername">
-            <input type="Submit" value="Ok"/>
+            <label for="name"> Nom : </label>
+            <input type="text" id="name" name="searchByUsername">
+            <input type="Submit" value="recherche"/>
 
         </form>
     </div>

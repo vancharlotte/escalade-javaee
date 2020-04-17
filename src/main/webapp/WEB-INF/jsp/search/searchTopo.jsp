@@ -55,10 +55,12 @@
                     <option value="${departement}">${departement}</option>
                 </c:forEach>
             </select>
+            </br>
 
             <label for="available"> Available : </label>
             <input type="checkbox" id="available" name="searchByAvailable">
-            <input type="Submit" value="Ok"/>
+            </br></br>
+            <input type="Submit" value="recherche"/>
 
         </form>
     </div>
