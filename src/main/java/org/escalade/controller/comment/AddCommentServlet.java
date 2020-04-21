@@ -16,8 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @WebServlet(name = "AddCommentServlet", urlPatterns = "/user/addComment")
 
@@ -55,11 +60,27 @@ public class AddCommentServlet extends HttpServlet {
         comment.setDescription(req.getParameter("description"));
         comment.setSite(site);
         comment.setUser(user);
-        comment.setTime( new Timestamp(System.currentTimeMillis()));
+        comment.setTime(new Timestamp(System.currentTimeMillis()));
 
-        commentDao.save(comment);
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        Set<ConstraintViolation<Comment>> errors = validator.validate(comment);
 
-        resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
+        if (!errors.isEmpty()) {
+            String errorList = "<ul>";
+            for (ConstraintViolation<Comment> constraintViolation : errors) {
+                errorList += "<li> " + constraintViolation.getMessage()
+                        + "</li>";
+            }
+            errorList += "</ul>";
+            req.setAttribute("message", errorList);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/comment/addComment.jsp").forward(req, resp);
 
+        } else {
+
+            commentDao.save(comment);
+
+            resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
+        }
     }
 }

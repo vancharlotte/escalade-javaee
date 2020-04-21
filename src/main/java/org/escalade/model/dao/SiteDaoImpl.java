@@ -154,8 +154,8 @@ public class SiteDaoImpl implements SiteDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Site> query = builder.createQuery(Site.class);
             Root<Site> root = query.from(Site.class);
-            Predicate usernamePredicate = builder.equal(root.get("name"), name);
-            query.where(usernamePredicate);
+            Predicate namePredicate = builder.equal(root.get("name"), name);
+            query.where(namePredicate);
             Query<Site> q = session.createQuery(query);
             site = q.getSingleResult();
             transaction.commit();

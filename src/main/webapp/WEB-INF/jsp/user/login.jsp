@@ -7,7 +7,7 @@
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
         <%@include file="/WEB-INF/css/style.css" %>
-        <%@include file="/WEB-INF/css/loginstyle.css" %>
+        <%@include file="/WEB-INF/css/formstyle.css" %>
 
 
 
@@ -28,11 +28,11 @@
         </p>
 
         <label for="username">Identifiant : </label>
-        <input type="text" name="username" id="username" placeholder="username.."/>
+        <input type="text" name="username" id="username" placeholder="identifiant.." required/>
         <label for="password">Mot de passe : </label>
-        <input type="password" name="password" id="password" placeholder="mot de passe.."/>
+        <input type="password" name="password" id="password" placeholder="mot de passe.." required/>
 
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Se connecter"/>
     </form>
 </div>
 </div>

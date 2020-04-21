@@ -59,11 +59,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
 
-        logger.info(errors.toString());
-
-        logger.info(user.getPassword());
-        logger.info(user.getConfirmPassword());
-
+        logger.info(user.getPassword() + "/" +user.getConfirmPassword());
 
         if (!errors.isEmpty() || !user.getPassword().equals(user.getConfirmPassword()) ) {
             for (ConstraintViolation<User> constraintViolation :errors) {

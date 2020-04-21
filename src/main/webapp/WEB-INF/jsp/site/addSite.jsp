@@ -7,7 +7,7 @@
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
         <%@include file="/WEB-INF/css/style.css" %>
-        <%@include file="/WEB-INF/css/loginstyle.css" %>
+        <%@include file="/WEB-INF/css/formstyle.css" %>
 
     </style>
 </head>
@@ -19,42 +19,45 @@
 
         <h1>Ajouter un site d'escalade</h1>
 
+        <p style="color: darkcyan ">
+            <c:if test="${not empty message}">${message}</c:if>
+        </p>
 
         <form method="post" action="addSite">
 
 
             <label for="name">Nom : </label>
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name"  maxlength="30" required/>
 
             <label for="city">Ville : </label>
-            <input type="text" name="city" id="city"/>
+            <input type="text" name="city" id="city" required/>
 
             <label>Département : </label>
-            <select name="departement">
+            <select name="departement" required>
                 <c:forEach var="departement" items="${departementList}">
                     <option value="${departement}">${departement}</option>
                 </c:forEach>
             </select>
 
             <label>Cotation Minimale : </label>
-            <select name="quotationMin">
+            <select name="quotationMin" required>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
             </select>
 
             <label>Cotation Maximale : </label>
-            <select name="quotationMax">
+            <select name="quotationMax" required>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
                 </c:forEach>
             </select>
 
             <label for="nbRoutes"> Nombre de voies : </label>
-            <input type="text" name="nbRoutes" id="nbRoutes"/>
+            <input type="number"  min="0" name="nbRoutes" id="nbRoutes" required/>
 
             <label for="description">Description : </label>
-            <textarea rows="5" cols="50" name="description" id="description"></textarea>
+            <textarea rows="5" cols="50" name="description" id="description" minlength="10" maxlength="500" required></textarea>
 
 
             Amis de l'escalade :
@@ -64,7 +67,7 @@
             <input type="radio" name="checked" id="false" value="false"/>
             <label for="false">No</label>
 
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Valider"/>
 
         </form>
     </div>

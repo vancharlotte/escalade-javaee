@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
@@ -24,6 +25,7 @@ public class Comment {
     @Length(min = 10, max = 300, message = "{Length.comment.description}")
     private String description;
 
+    @NotNull
     private Timestamp time;
 
     @ManyToOne

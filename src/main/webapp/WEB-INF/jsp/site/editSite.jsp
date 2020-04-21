@@ -7,7 +7,7 @@
     <jsp:include page="/WEB-INF/fragments/header.jsp"/>
     <style>
         <%@include file="/WEB-INF/css/style.css" %>
-        <%@include file="/WEB-INF/css/loginstyle.css" %>
+        <%@include file="/WEB-INF/css/formstyle.css" %>
 
     </style>
 </head>
@@ -19,20 +19,24 @@
 
         <h1>Modifier le site</h1>
 
+        <p style="color: darkcyan ">
+            <c:if test="${not empty message}">${message}</c:if>
+        </p>
 
         <form method="post" action="editSite">
 
+
             <label for="siteId"></label>
-            <input type="hidden" name="siteId" id="siteId" value="${site.siteId}"/>
+            <input type="hidden" name="siteId" id="siteId" value="${site.siteId}" />
 
             <label for="name">Nom : </label>
-            <input type="text" name="name" id="name" value="${site.name}"/>
+            <input type="text" name="name" id="name" value="${site.name}" maxlength="30" required/>
 
             <label for="city">Ville : </label>
-            <input type="text" name="city" id="city" value="${site.city}"/>
+            <input type="text" name="city" id="city" value="${site.city}" required/>
 
             <label>Departement : </label>
-            <select name="departement">
+            <select name="departement" required>
                 <option value="${site.departement}" selected hidden>${site.departement}</option>
                 <c:forEach var="departement" items="${departementList}">
                     <option value="${departement}">${departement}</option>
@@ -40,7 +44,7 @@
             </select>
 
             <label>Cotation Minimale : </label>
-            <select name="quotationMin">
+            <select name="quotationMin" required>
                 <option value="${site.quotationMin}" selected hidden>${site.quotationMin}</option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
@@ -48,7 +52,7 @@
             </select>
 
             <label>Cotation Maximale : </label>
-            <select name="quotationMax">
+            <select name="quotationMax" required>
                 <option value="${site.quotationMax}" selected hidden>${site.quotationMax}</option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>
@@ -56,10 +60,10 @@
             </select>
 
             <label for="nbRoutes"> Nombre de voies : </label>
-            <input type="text" name="nbRoutes" id="nbRoutes" value="${site.nbRoutes}"/>
+            <input type="number"  min="0" name="nbRoutes" id="nbRoutes" value="${site.nbRoutes}" required/>
 
             <label for="description">Description : </label>
-            <textarea rows="5" cols="50" name="description" id="description">${site.description}</textarea>
+            <textarea rows="5" cols="50" name="description" id="description" minlength="10" maxlength="500" required>${site.description}</textarea>
 
 
             Amis de l'escalade :

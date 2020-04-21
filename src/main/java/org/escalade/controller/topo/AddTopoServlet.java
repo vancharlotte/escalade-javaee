@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet(name = "AddTopoServlet", urlPatterns = {"/user/addTopo", "/addTopo"})
 
@@ -56,10 +61,29 @@ public class AddTopoServlet extends HttpServlet {
             topo.setAvailable(false);
         }
 
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        Set<ConstraintViolation<Topo>> errors = validator.validate(topo);
 
-        topoDao.save(topo);
-        logger.info("save");
+        if (!errors.isEmpty()) {
+            String errorList = "<ul>";
+            for (ConstraintViolation<Topo> constraintViolation : errors) {
+                errorList += "<li> " + constraintViolation.getMessage()
+                        + "</li>";
+            }
+            errorList += "</ul>";
+            req.setAttribute("message", errorList);
+            req.setAttribute("departementList", EntityUtil.InitDepartementList());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/addTopo.jsp").forward(req, resp);
 
-        resp.sendRedirect(req.getContextPath() + "/user/myTopo");
+        } else {
+
+            topoDao.save(topo);
+            logger.info("save");
+            resp.sendRedirect(req.getContextPath() + "/user/myTopo");
+
+        }
+
+
     }
 }

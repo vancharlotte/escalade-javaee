@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
         User user = userDao.findByUsername(req.getParameter("username"));
         String password = req.getParameter("password");
 
+
         if (SecurityContextHolder.getContext().getAuthentication()!=null) {
             logger.info("authenticated");
             String message = "Bonjour " + req.getParameter("username");

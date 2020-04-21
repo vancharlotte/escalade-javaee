@@ -4,6 +4,7 @@ import org.escalade.model.dao.SiteDao;
 import org.escalade.model.dao.SiteDaoImpl;
 import org.escalade.model.entity.EntityUtil;
 import org.escalade.model.entity.Site;
+import org.escalade.model.entity.Topo;
 import org.escalade.model.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
+import java.util.Set;
 
-@WebServlet(name = "AddSiteServlet", urlPatterns ="/user/addSite")
+@WebServlet(name = "AddSiteServlet", urlPatterns = "/user/addSite")
 
 public class AddSiteServlet extends HttpServlet {
 
@@ -42,7 +48,7 @@ public class AddSiteServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Site site = new Site();
 
-        site.setName(req.getParameter("site"));
+        site.setName(req.getParameter("name"));
         site.setCity(req.getParameter("city"));
         site.setDepartement(req.getParameter("departement"));
         site.setQuotationMin("quotationMin");
@@ -58,10 +64,30 @@ public class AddSiteServlet extends HttpServlet {
         }
 
 
-        siteDao.save(site);
-        logger.info("save new site");
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        Set<ConstraintViolation<Site>> errors = validator.validate(site);
 
-        resp.sendRedirect(req.getContextPath() + "/Site?" + site.getSiteId());
-        //a vérifier
+        if (!errors.isEmpty()) {
+            String errorList = "<ul>";
+            for (ConstraintViolation<Site> constraintViolation : errors) {
+                errorList += "<li> " + constraintViolation.getMessage()
+                        + "</li>";
+            }
+            errorList += "</ul>";
+            req.setAttribute("message", errorList);
+            req.setAttribute("departementList", EntityUtil.InitDepartementList());
+            req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/addSite.jsp").forward(req, resp);
+
+        } else {
+            siteDao.save(site);
+            logger.info("save new site");
+
+
+            resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
+
+        }
     }
 }

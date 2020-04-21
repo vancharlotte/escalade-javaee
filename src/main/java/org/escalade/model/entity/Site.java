@@ -1,16 +1,18 @@
 package org.escalade.model.entity;
 
+import org.escalade.model.entity.validator.UniqueSite;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "SITE")
-public class Site {
+public class Site implements Serializable {
 
 
     @Id
@@ -19,6 +21,8 @@ public class Site {
     private int siteId;
 
     @NotEmpty
+    @UniqueSite(message = "Ce site existe déjà")
+    @Length(max = 30, message = "le titre ne doit pas dépasser 30 caractères.")
     private String name;
 
     @NotEmpty
@@ -37,9 +41,8 @@ public class Site {
     private String nbRoutes;
 
     @NotEmpty
-    @Length(min = 10, max = 500, message = "{Length.site.description}")
+    @Length(min = 10, max = 500, message = "La description doit être composée de 10 à 500 caractères")
     private String description;
-
 
     private boolean checked; //Ami de l'escalade
 

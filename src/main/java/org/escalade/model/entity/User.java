@@ -1,5 +1,6 @@
 package org.escalade.model.entity;
 
+import org.escalade.model.entity.validator.CompareStrings;
 import org.escalade.model.entity.validator.UniqueEmail;
 import org.escalade.model.entity.validator.UniqueUser;
 import org.hibernate.validator.constraints.Email;
@@ -19,21 +20,21 @@ public class User implements Serializable {
     @Column(name = "USER_ID")
     private int userId;
 
-    @UniqueUser(message = "identifiant déjà utilisé")
-    @NotEmpty(message = "Entrez un identifiant valide")
+    @UniqueUser(message = "Cet identifiant est déjà utilisé")
+    @NotEmpty(message = "Entrez un identifiant")
     @Column(unique = true)
     private String username;
 
-    @NotEmpty(message = "{NotEmpty.user.password}")
-    @Length(min = 8, message = "votre mot de passe doit être composé d'au moins 8 caractères")
+    @NotEmpty(message = "Entrez un mot de passe")
+    @Length(min = 8, message = "Votre mot de passe doit être composé d'au moins 8 caractères")
     private String password;
 
     @Transient
     private String confirmPassword;
 
-    @UniqueEmail(message = "adresse email déjà utilisé")
-    @NotEmpty(message = "{NotEmpty.user.email}")
-    @Email(message = "{Email.user.email}")
+    @UniqueEmail(message = "Cette adresse email est  déjà utilisé")
+    @NotEmpty(message = "Veuillez saisir une adresse email valide")
+    @Email(message = "Veuillez saisir une adresse email valide")
     @Column(unique = true)
     private String email;
 

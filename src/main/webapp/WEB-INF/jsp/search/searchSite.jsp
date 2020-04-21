@@ -51,7 +51,7 @@
 
             <label for="checked"> Amis de l'escalade?</label>
             <input type="checkbox" id="checked" name="searchByChecked">
-            <br>
+            </br>
             <label for="name"> Nom : </label>
             <input type="text" id="name" name="searchByName">
             <label for="city"> Ville : </label>
@@ -64,7 +64,7 @@
                 </c:forEach>
             </select>
             <label for="city"> Nombre de Voies : </label>
-            <input type="number" id="nbRoutes" name="searchByNbRoutes">
+            <input type="number" min="0" id="nbRoutes" name="searchByNbRoutes">
             <label>Cotation : </label>
             <select name="searchByQuotation">
                 <option value="">sélectionner</option>

@@ -12,7 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet(name = "EditSiteServlet", value = {"/editSite", "/admin/editSite", "/admin/deleteSite", "/admin/editChecked"})
 public class EditSiteServlet extends HttpServlet {
@@ -41,7 +46,7 @@ public class EditSiteServlet extends HttpServlet {
             }
             siteDao.update(site);
             resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
-            //a vérifier
+
         } else if (req.getRequestURL().toString().contains("deleteSite")) {
             siteDao.delete(site);
             resp.sendRedirect(req.getContextPath() + "/search");
@@ -75,9 +80,29 @@ public class EditSiteServlet extends HttpServlet {
             site.setChecked(false);
         }
 
-        siteDao.update(site);
-        logger.info("update site");
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        Set<ConstraintViolation<Site>> errors = validator.validate(site);
 
-        resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
+        if (!errors.isEmpty()) {
+            String errorList = "<ul>";
+            for (ConstraintViolation<Site> constraintViolation : errors) {
+                errorList += "<li> " + constraintViolation.getMessage()
+                        + "</li>";
+            }
+            errorList += "</ul>";
+            req.setAttribute("message", errorList);
+            req.setAttribute("site", site);
+            req.setAttribute("departementList", EntityUtil.InitDepartementList());
+            req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/editSite.jsp").forward(req, resp);
+
+        } else {
+            siteDao.update(site);
+            logger.info("update site");
+
+            resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
+        }
     }
 }

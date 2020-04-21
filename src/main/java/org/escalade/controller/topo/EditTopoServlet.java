@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
+import java.util.Set;
 
 @WebServlet(name = "EditTopoServlet", urlPatterns = {"/user/editTopo", "/user/editStatusTopo", "/user/deleteTopo"})
 public class EditTopoServlet extends HttpServlet {
@@ -45,15 +50,11 @@ public class EditTopoServlet extends HttpServlet {
             }
             topoDao.update(topo);
             resp.sendRedirect(req.getContextPath() + "/user/myTopo");
-        }
-
-        else if (req.getRequestURL().toString().contains("deleteTopo")) {
+        } else if (req.getRequestURL().toString().contains("deleteTopo")) {
             topoDao.delete(topo);
             logger.info("delete topo");
             resp.sendRedirect(req.getContextPath() + "/user/myTopo");
-        }
-
-        else {
+        } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
         }
     }
@@ -79,9 +80,26 @@ public class EditTopoServlet extends HttpServlet {
             topo.setAvailable(false);
         }
 
-        topoDao.update(topo);
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        Set<ConstraintViolation<Topo>> errors = validator.validate(topo);
 
-        resp.sendRedirect(req.getContextPath() + "/user/myTopo");
+        if (!errors.isEmpty()) {
+            String errorList = "<ul>";
+            for (ConstraintViolation<Topo> constraintViolation : errors) {
+                errorList += "<li> " + constraintViolation.getMessage()
+                        + "</li>";
+            }
+            errorList += "</ul>";
+            req.setAttribute("message", errorList);
+            req.setAttribute("topo", topo);
+            req.setAttribute("departementList", EntityUtil.InitDepartementList());
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
+
+        } else {
+            topoDao.update(topo);
+            resp.sendRedirect(req.getContextPath() + "/user/myTopo");
+        }
 
     }
 }

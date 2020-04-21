@@ -19,7 +19,6 @@ public class Topo implements Serializable {
 
     @NotEmpty(message = "{NotEmpty.topo.name}")
     @Length(max = 20, message = "{Length.topo.name}")
-    @UniqueSite(message = "Ce site existe déjà")
     private String name;
 
     @NotEmpty(message = "{NotEmpty.topo.description}")
