@@ -30,17 +30,18 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-
                 .antMatchers("/user/**").hasAnyRole("USER","ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().hasAnyRole("USER","ADMIN","ANONYMOUS")
                 .and().formLogin()
                 .loginPage("/login").successForwardUrl("/login").failureForwardUrl("/login").permitAll()
+                //and()
+                //.exceptionHandling().accessDeniedPage("/error403.jsp")
                 .and().httpBasic();
     }
 
 
-    public void configure(AuthenticationManagerBuilder authentication)
+    public void configureGlobal(AuthenticationManagerBuilder authentication)
             throws Exception {
         logger.info("configure globale web");
         authentication.inMemoryAuthentication()

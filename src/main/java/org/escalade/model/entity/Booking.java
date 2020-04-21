@@ -13,6 +13,7 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "BOOKING_ID")
     private int bookingId;
+
     @NotEmpty
     private String status;
 

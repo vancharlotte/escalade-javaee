@@ -20,6 +20,9 @@
         <h1>Inscription</h1>
 
         <form method="post" action="register">
+            <p style="color: darkcyan ">
+                <c:if test="${not empty message}">${message}</c:if>
+            </p>
 
             <label for="username">Identifiant : </label>
             <input type="text" id="username" name="username" placeholder="username..">

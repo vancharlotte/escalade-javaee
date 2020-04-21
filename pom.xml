@@ -30,6 +30,7 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.9</version>
         </dependency>
+
         <!-- javax -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -42,9 +43,14 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- Java bean validation API - Spec -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
 
         <!-- spring security-->
-
         <dependency>
           <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
@@ -68,6 +74,7 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
+        <!-- Hibernate validator - Bean validation API Implementation -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -76,6 +83,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <!-- Verify validation annotations usage at compile time -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
 

@@ -3,6 +3,7 @@ package org.escalade.model.dao;
 import org.escalade.config.HibernateUtil;
 import org.escalade.model.entity.Site;
 
+import org.escalade.model.entity.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -142,6 +143,31 @@ public class SiteDaoImpl implements SiteDao {
         return sites;
     }
 
+    @Override
+    public Site findByName(String name) {
+        Site site = null;
+        Transaction transaction = null;
+
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Site> query = builder.createQuery(Site.class);
+            Root<Site> root = query.from(Site.class);
+            Predicate usernamePredicate = builder.equal(root.get("name"), name);
+            query.where(usernamePredicate);
+            Query<Site> q = session.createQuery(query);
+            site = q.getSingleResult();
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return site;
+    }
 
     @Override
     public List<Site> search(String name, String city, String departement, String nbRoutes, boolean checked, String quotation) {

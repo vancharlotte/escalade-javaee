@@ -1,6 +1,9 @@
 package org.escalade.model.entity;
 
+import org.escalade.model.entity.validator.UniqueEmail;
+import org.escalade.model.entity.validator.UniqueUser;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -9,39 +12,44 @@ import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
-
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private int userId;
-    @NotEmpty(message = "{NotEmpty.user.username}")
+
+    @UniqueUser(message = "identifiant déjà utilisé")
+    @NotEmpty(message = "Entrez un identifiant valide")
+    @Column(unique = true)
     private String username;
-    @NotEmpty(message = "NotEmpty.user.password")
+
+    @NotEmpty(message = "{NotEmpty.user.password}")
+    @Length(min = 8, message = "votre mot de passe doit être composé d'au moins 8 caractères")
     private String password;
+
     @Transient
     private String confirmPassword;
-    @NotEmpty(message = "NotEmpty.user.email")
-    @Email (message = "{Email.user.email}")
+
+    @UniqueEmail(message = "adresse email déjà utilisé")
+    @NotEmpty(message = "{NotEmpty.user.email}")
+    @Email(message = "{Email.user.email}")
+    @Column(unique = true)
     private String email;
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Topo> site;
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Topo> topo;
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Comment> comment;
-
-    //private String role;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="role_id")
-    private Role role ;
-
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 
     public int getUserId() {

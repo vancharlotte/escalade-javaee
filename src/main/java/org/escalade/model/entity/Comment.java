@@ -1,6 +1,7 @@
 package org.escalade.model.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -14,9 +15,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COMMENT_ID")
     private int commentId;
+
     @NotEmpty
+    @Length(min = 2, max = 20, message = "{Length.comment.title}")
     private String title;
+
     @NotEmpty
+    @Length(min = 10, max = 300, message = "{Length.comment.description}")
     private String description;
 
     private Timestamp time;

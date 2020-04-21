@@ -13,6 +13,7 @@ public class Role {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "ROLE_ID")
     private int roleId;
+
     @NotEmpty
     private String name;
 

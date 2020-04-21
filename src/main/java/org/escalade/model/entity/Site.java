@@ -1,5 +1,6 @@
 package org.escalade.model.entity;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -16,20 +17,30 @@ public class Site {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SITE_ID")
     private int siteId;
+
     @NotEmpty
     private String name;
+
     @NotEmpty
     private String departement;
+
     @NotEmpty
     private String city;
+
     @NotEmpty
     private String quotationMin;
+
     @NotEmpty
     private String quotationMax;
+
     @NotEmpty
     private String nbRoutes;
+
     @NotEmpty
+    @Length(min = 10, max = 500, message = "{Length.site.description}")
     private String description;
+
+
     private boolean checked; //Ami de l'escalade
 
     @ManyToOne
