@@ -57,7 +57,7 @@
             <input type="number"  min="0" name="nbRoutes" id="nbRoutes" required/>
 
             <label for="description">Description : </label>
-            <textarea rows="5" cols="50" name="description" id="description" minlength="10" maxlength="500" required></textarea>
+            <textarea rows="5" cols="50" name="description" id="description" minlength="10"  required></textarea>
 
 
             Amis de l'escalade :

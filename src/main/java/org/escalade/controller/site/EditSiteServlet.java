@@ -62,9 +62,12 @@ public class EditSiteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int siteId = Integer.parseInt(req.getParameter("siteId"));
         Site site = siteDao.findById(siteId);
-        logger.info("topo : " + site.getName() + site.getSiteId());
+        logger.info("site : " + site.getName() + site.getSiteId());
+        logger.info(site.getName()+"/"+req.getParameter("name"));
 
-        site.setName(req.getParameter("name"));
+        if (!site.getName().equals(req.getParameter("name"))){
+            logger.info(site.getName()+"/"+req.getParameter("name"));
+        site.setName(req.getParameter("name"));}
         site.setCity(req.getParameter("city"));
         site.setDepartement(req.getParameter("departement"));
         site.setDescription(req.getParameter("description"));

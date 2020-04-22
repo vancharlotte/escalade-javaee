@@ -52,16 +52,10 @@ public class RegisterServlet extends HttpServlet {
         Validator validator = validatorFactory.getValidator();
         Set<ConstraintViolation<User>> errors = validator.validate(user);
 
-        String errorList = "<ul>";
-        if (!user.getPassword().equals(user.getConfirmPassword())){
-            errorList += "<li> " + "les mots de passe saisis sont différents"
-                    + "</li>";
-        }
-
-
         logger.info(user.getPassword() + "/" +user.getConfirmPassword());
 
-        if (!errors.isEmpty() || !user.getPassword().equals(user.getConfirmPassword()) ) {
+        if (!errors.isEmpty()) {
+            String errorList = "<ul>";
             for (ConstraintViolation<User> constraintViolation :errors) {
                 errorList += "<li> " + constraintViolation.getMessage()
                         + "</li>";
@@ -81,8 +75,6 @@ public class RegisterServlet extends HttpServlet {
         }
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/login.jsp").forward(req, resp);
-
-        //   resp.sendRedirect(req.getContextPath() + "/user/page?" + user.getUserId());
-
+        
     }
 }

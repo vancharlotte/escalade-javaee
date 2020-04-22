@@ -164,7 +164,7 @@ public class SiteDaoImpl implements SiteDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
+          //  e.printStackTrace();
         }
         return site;
     }

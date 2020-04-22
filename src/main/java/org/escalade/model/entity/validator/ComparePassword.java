@@ -12,12 +12,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy= CompareStringsValidator.class)
+@Constraint(validatedBy= ComparePasswordValidator.class)
 @Documented
-public @interface CompareStrings {
-    String first();
-    String second();
-    String message() default "mots de passe différents";
+public @interface ComparePassword {
+
+    String message() default "les mots de passe saisis sont différents";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

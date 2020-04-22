@@ -11,18 +11,21 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+
 @Table(name = "SITE")
+@UniqueSite
 public class Site implements Serializable {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SITE_ID")
+    @Column(name = "SITE_ID", unique = true)
     private int siteId;
 
     @NotEmpty
-    @UniqueSite(message = "Ce site existe déjà")
+  //  @UniqueSite( message = "Ce site existe déjà")
     @Length(max = 30, message = "le titre ne doit pas dépasser 30 caractères.")
+    @Column(unique = true)
     private String name;
 
     @NotEmpty
@@ -41,7 +44,7 @@ public class Site implements Serializable {
     private String nbRoutes;
 
     @NotEmpty
-    @Length(min = 10, max = 500, message = "La description doit être composée de 10 à 500 caractères")
+    @Length(min = 10, message = "La description doit être composée de 10 à 500 caractères")
     private String description;
 
     private boolean checked; //Ami de l'escalade

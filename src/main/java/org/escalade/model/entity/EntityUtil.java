@@ -124,6 +124,9 @@ public class EntityUtil {
         quotationList.add("2");
         quotationList.add("3");
         quotationList.add("4");
+        quotationList.add("4a");
+        quotationList.add("4b");
+        quotationList.add("4c");
         quotationList.add("5a");
         quotationList.add("5b");
         quotationList.add("5c");

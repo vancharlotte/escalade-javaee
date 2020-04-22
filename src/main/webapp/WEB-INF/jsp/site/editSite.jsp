@@ -63,7 +63,7 @@
             <input type="number"  min="0" name="nbRoutes" id="nbRoutes" value="${site.nbRoutes}" required/>
 
             <label for="description">Description : </label>
-            <textarea rows="5" cols="50" name="description" id="description" minlength="10" maxlength="500" required>${site.description}</textarea>
+            <textarea rows="5" cols="50" name="description" id="description" minlength="10" required>${site.description}</textarea>
 
 
             Amis de l'escalade :

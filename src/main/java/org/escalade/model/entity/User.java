@@ -1,6 +1,6 @@
 package org.escalade.model.entity;
 
-import org.escalade.model.entity.validator.CompareStrings;
+import org.escalade.model.entity.validator.ComparePassword;
 import org.escalade.model.entity.validator.UniqueEmail;
 import org.escalade.model.entity.validator.UniqueUser;
 import org.hibernate.validator.constraints.Email;
@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
+@ComparePassword
 public class User implements Serializable {
 
     @Id

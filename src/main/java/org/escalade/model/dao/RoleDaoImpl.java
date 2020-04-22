@@ -106,7 +106,7 @@ public class RoleDaoImpl implements RoleDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
+         //   e.printStackTrace();
         }
         return role;    }
 
