@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
+import static java.util.Map.Entry.comparingByKey;
 
 @WebServlet(name = "SiteServlet", urlPatterns = "/site")
 public class SiteServlet extends HttpServlet {
@@ -36,18 +37,14 @@ public class SiteServlet extends HttpServlet {
         int siteId = Integer.parseInt(req.getQueryString());
         Site site = siteDao.findById(siteId);
         req.setAttribute("site", site);
-        logger.info("site id :" + siteId);
-        logger.info("site nom " + site.getName());
 
         List<Comment> commentList = commentDao.findBySite(siteId);
-        HashMap<Comment, String> commentMap = new HashMap<>();
+        LinkedHashMap<Comment, String> commentMap = new LinkedHashMap<>();
 
         for (int i = 0; i < commentList.size(); i++) {
-
             User author = commentList.get(i).getUser();
             commentMap.put(commentList.get(i), author.getUsername());
-            logger.info("comment : " + commentList.get(i).getTitle() + "author : " + author.getUsername());
-
+            logger.info("comment : " + commentList.get(i).getTitle());
         }
 
         req.setAttribute("commentList", commentList);

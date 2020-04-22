@@ -42,6 +42,24 @@
                 ${message}
                 <br/> <br/>
             </p>
+            <div class="elt4">
+
+                <c:if test="${(topo.available=true) && (user.username ne owner.username)}">
+                    Voulez-vous réserver ce topo?
+                    <a href="${pageContext.request.contextPath}/booking?<c:out value="${topo.topoId}"/>"> Réserver </a>
+                </c:if>
+
+                <c:if test="${user.username eq owner.username}">
+
+                    <a href="${pageContext.request.contextPath}/user/editTopo?<c:out value="${topo.topoId}"/>">
+                        Modifier </a></li>
+                    <a href="${pageContext.request.contextPath}/user/deleteTopo?<c:out value="${topo.topoId}"/>">
+                        Supprimer </a></li>
+
+
+                </c:if>
+
+            </div>
         </div>
 
         <div class="elt3">
@@ -52,24 +70,7 @@
 
     </div>
 
-    <div class="elt4">
 
-        <c:if test="${(topo.available=true) && (user.username ne owner.username)}">
-            Voulez-vous réserver ce topo?
-            <a href="${pageContext.request.contextPath}/booking?<c:out value="${topo.topoId}"/>"> Réserver </a>
-        </c:if>
-
-        <c:if test="${user.username eq owner.username}">
-
-            <a href="${pageContext.request.contextPath}/user/editTopo?<c:out value="${topo.topoId}"/>">
-                Modifier </a></li>
-            <a href="${pageContext.request.contextPath}/user/deleteTopo?<c:out value="${topo.topoId}"/>">
-                Supprimer </a></li>
-
-
-        </c:if>
-
-    </div>
 
 </div>
 

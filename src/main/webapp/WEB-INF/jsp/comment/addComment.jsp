@@ -20,7 +20,7 @@
         <h2>nouveau commentaire</h2>
 
 
-        <form method="post" action="addComment">
+        <form method="post" action="addComment" accept-charset="ISO-8859-1">
 
             <input type="hidden" id="site" name="site" value="${site.siteId}">
             <h4 style="color: darkcyan"> Vous commentez le site d'escalade : <c:out value="${site.name}"/></h4>

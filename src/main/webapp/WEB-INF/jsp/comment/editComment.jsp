@@ -21,7 +21,7 @@
 
 <h2>modifier le commentaire</h2>
 
-<form method="post" action="editComment">
+<form method="post" action="editComment" accept-charset="ISO-8859-1">
 
 
     <label for="commentId"></label>

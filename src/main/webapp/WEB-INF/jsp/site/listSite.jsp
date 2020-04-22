@@ -23,12 +23,12 @@
     </div>
 
     <div class="elt2">
-        <table>
+        <table >
             <tr>
-                <th>Nom</th>
-                <th>Ville</th>
-                <th>Département</th>
-                <th>Description</th>
+                <th class="nom">Nom</th>
+                <th class="ville">Ville</th>
+                <th class="departement">Département</th>
+                <th class = "description">Description</th>
             </tr>
 
             <c:if test="${not empty sites}">
@@ -40,7 +40,7 @@
                 </td>
                 <td><c:out value="${site.city}"/></td>
                 <td><c:out value="${site.departement}"/></td>
-                <td><c:out value="${site.description}"/></td>
+                <td class="description"><c:out value="${site.description}"/></td>
 
                 </c:forEach>
 

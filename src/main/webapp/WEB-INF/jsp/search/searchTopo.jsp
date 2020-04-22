@@ -40,7 +40,7 @@
     </div>
     <div class="search">
 
-        <form action="searchTopo" method="post">
+        <form action="searchTopo" method="post" accept-charset="ISO-8859-1">
             <h2>Recherche Topo</h2>
 
 

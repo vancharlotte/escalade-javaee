@@ -15,14 +15,15 @@
 
 <body>
 <div class="container">
-    <div class="elt1">
+    <div class="line1">
         <h1> ${site.name}</h1>
         <hr>
     </div>
 
-    <div class="line1">
+    <div class="line2">
+        <div class="bloc1">
 
-        <div class="elt2">
+        <div class="elt1">
             <c:if test="${site.checked==true}">
                 Certifié Ami de l'escalade !!!!
             </c:if>
@@ -42,8 +43,6 @@
 
             <div class="option">
                 <br/>
-                <br/>
-
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
 
                     <a href="${pageContext.request.contextPath}/admin/editSite?<c:out value="${site.siteId}"/>">
@@ -57,58 +56,63 @@
                 </sec:authorize>
 
             </div>
+            <hr>
+
         </div>
 
-        <div class="elt3">
+        <div class="elt2">
             ${site.description}
         </div>
     </div>
 
-    <div class="line2">
+        <div class="bloc2">
 
-        <div class="elt5">
-            <h3> Commentaires :</h3>
-            <sec:authorize access="isAuthenticated()">
+            <div class="elt3">
+                <h3> Commentaires :</h3>
+                <sec:authorize access="isAuthenticated()">
 
-                <a href="${pageContext.request.contextPath}/user/addComment?<c:out value="${site.siteId}"/>"> Ajouter un
-                    commentaire </a>
-                <br/> <br/>
+                    <a href="${pageContext.request.contextPath}/user/addComment?<c:out value="${site.siteId}"/>">
+                        Ajouter un
+                        commentaire </a>
+                    <br/> <br/>
 
-            </sec:authorize>
-        </div>
-        <div class="elt6">
+                </sec:authorize>
+            </div>
+            <div class="elt4">
 
-            <c:if test="${empty commentList}">
-                pas de commentaire
-            </c:if>
+                <c:if test="${empty commentList}">
+                    pas de commentaire
+                </c:if>
 
-            <c:if test="${not empty commentList}">
-                <c:forEach var="entry" items="${commentMap}">
+                <c:if test="${not empty commentList}">
+                    <c:forEach var="entry" items="${commentMap}">
 
-                    <c:out value="${entry.key.title}"/>
-                    par <c:out value="${entry.value}"/>
-                    <c:out value="${entry.key.time}"/>
-                    <br/>
-                    <c:out value="${entry.key.description}"/>
+                        <c:out value="${entry.key.title}"/>
+                        par <c:out value="${entry.value}"/>
+                        <c:out value="${entry.key.time}"/>
+                        <br/>
+                        <c:out value="${entry.key.description}"/>
 
-                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                       </br>
+                            <a href="${pageContext.request.contextPath}/admin/deleteComment?<c:out value="${entry.key.commentId}"/>">
+                                Supprimer </a>
+                            <a href="${pageContext.request.contextPath}/admin/editComment?<c:out value="${entry.key.commentId}"/>">
+                                Modifier </a>
 
-                        <a href="${pageContext.request.contextPath}/admin/deleteComment?<c:out value="${entry.key.commentId}"/>">
-                            Supprimer </a>
-                        <a href="${pageContext.request.contextPath}/admin/editComment?<c:out value="${entry.key.commentId}"/>">
-                            Modifier </a>
+                        </sec:authorize>
+                        <hr>
 
-                    </sec:authorize>
-                    <hr>
+                    </c:forEach>
 
-                </c:forEach>
-
-            </c:if>
-            </td>
-            </tr>
-            </table>
+                </c:if>
+                </td>
+                </tr>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 </body>
 

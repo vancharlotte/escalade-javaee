@@ -9,90 +9,91 @@
 
 }
 
-.elt1 {
-    color: darkcyan;
-    text-align: center;
-    width: 100%;
-}
-
 .line1 {
-    min-height: 375px;
-    display: flex;
-    flex-wrap: wrap;
-    color: darkcyan;
-    text-align: center;
-}
-
-.elt2 {
-    min-width: 25%;
-    flex: 1;
-}
-
-.elt3 {
-    border-left: solid 1px blueviolet ;
-    padding: 25px;
-    margin: 25px;
-    flex: 2;
-    overflow: auto;
-}
-
-.elt4 {
     color: darkcyan;
     text-align: center;
     width: 100%;
 }
 
-
-.option a{
-    background-color: darkcyan;
-    color: white;
-    padding: 8px 8px;
-    margin: 8px;
-    text-align: center;
-    display: inline-block;
-
-}
 .line2 {
     min-height: 375px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: black;
+    text-align: center;
+}
+
+.bloc1 {
+    min-height: 375px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.bloc2 {
+    max-height: 500px;
+    min-width: 30%;
+    max-width: 30%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.elt2 {
+    flex: 1;
+    padding: 8px 50px 8px 50px;
+    margin: 8px;
+}
+
+.option a {
+    background-color: darkcyan;
+    color: white;
+    padding: 8px 8px;
+    margin: 8px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+.elt3 a {
+    background-color: darkcyan;
+    color: white;
+    padding: 8px 8px;
+    margin: 8px;
+    text-align: center;
+    display: inline-block;
+
+}
+
+.bloc2 {
+    min-height: 375px;
+    display: flex;
     flex-wrap: wrap;
     color: darkcyan;
     text-align: center;
 }
 
-.elt5{
-    min-width: 25%;
-    flex: 1;
-}
 
-.elt6{
-    border: solid 1px blueviolet ;
+.elt4 {
+    border: solid 1px blueviolet;
     padding: 25px;
     margin: 25px;
     flex: 2;
     overflow: auto;
 }
 
-.elt5 a{
+.elt4 a {
     background-color: darkcyan;
     color: white;
-    padding: 8px 8px;
-    margin: 8px;
+    padding: 4px 4px;
+    margin: 4px;
     text-align: center;
     display: inline-block;
 
 }
 
-
-.elt6 a{
-    background-color: darkcyan;
-    color: white;
-    padding: 8px 8px;
-    margin: 8px;
-    text-align: center;
-    display: inline-block;
-
-}
 
 a:link {
     text-decoration: none;
@@ -110,14 +111,18 @@ a:active {
     text-decoration: underline;
 }
 
-@media only screen and (max-width: 750px) {
-    .line1{
+
+
+@media only screen and (max-width: 1000px) {
+    .line1 {
         flex-direction: column;
     }
-    .line2{
+
+    .line2 {
         flex-direction: column;
     }
-    .elt3{
+
+    .elt3 {
         border-left: none;
 
     }

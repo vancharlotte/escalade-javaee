@@ -1,11 +1,14 @@
 package org.escalade.model.dao;
 
+import com.mchange.v2.log.MLogger;
 import org.escalade.config.HibernateUtil;
 import org.escalade.model.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,6 +18,8 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class CommentDaoImpl implements CommentDao{
+    static final Logger logger = LoggerFactory.getLogger(CommentDaoImpl.class);
+
 
     @Override
     public void save(Comment comment) {
@@ -116,11 +121,14 @@ public class CommentDaoImpl implements CommentDao{
             Root<Comment> root = query.from(Comment.class);
 
             Predicate predicate = builder.equal(root.get("site"), siteId);
-            query.select(root).where(predicate);
-            query.orderBy(builder.asc(root.get("time")));
+            query.where(predicate).orderBy(builder.desc(root.get("commentId")));
+
             Query<Comment> q = session.createQuery(query);
 
             comments =   q.getResultList();
+
+
+
 
             transaction.commit();
 

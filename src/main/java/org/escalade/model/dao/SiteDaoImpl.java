@@ -69,7 +69,6 @@ public class SiteDaoImpl implements SiteDao {
             transaction = session.beginTransaction();
             Query<Site> q = session.createQuery("from Site");
             sites = q.getResultList();
-            // commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -235,18 +234,16 @@ public class SiteDaoImpl implements SiteDao {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
 
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
 
             int pageSize = 10;
 
-            CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
-            countQuery.select(criteriaBuilder.count(countQuery.from(Site.class)));
+            CriteriaQuery<Site> query = builder.createQuery(Site.class);
+            Root<Site> root = query.from(Site.class);
+            query.select(root);
+            query.orderBy(builder.desc(root.get("siteId")));
 
-            CriteriaQuery<Site> criteriaQuery = criteriaBuilder.createQuery(Site.class);
-            Root<Site> from = criteriaQuery.from(Site.class);
-            CriteriaQuery<Site> select = criteriaQuery.select(from);
-
-            TypedQuery<Site> typedQuery = session.createQuery(select);
+            TypedQuery<Site> typedQuery = session.createQuery(query);
                 typedQuery.setFirstResult(pageNumber*pageSize -(pageSize));
                 typedQuery.setMaxResults(pageSize);
                 sites = typedQuery.getResultList();

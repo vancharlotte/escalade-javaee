@@ -45,7 +45,7 @@
     </div>
 
     <div class="element3" style="text-align:right">
-        <form action="search" method="post">
+        <form action="search" method="post" accept-charset="ISO-8859-1">
             <input type="radio" id="site" name="search_object" value="site" checked>
             <label for="site"> site</label>
             <input type="radio" id="topo" name="search_object" value="topo">

@@ -18,11 +18,11 @@ public class Topo implements Serializable {
     private int topoId;
 
     @NotEmpty(message = "{NotEmpty.topo.name}")
-    @Length(max = 20, message = "{Length.topo.name}")
+    @Length(max = 50, message = "{Length.topo.name}")
     private String name;
 
     @NotEmpty(message = "{NotEmpty.topo.description}")
-    @Length(min = 10, max = 300, message = "{Length.topo.description}")
+    @Length(min = 10, max = 1000, message = "{Length.topo.description}")
     private String description;
 
     @NotEmpty(message = "{NotEmpty.topo.location}")

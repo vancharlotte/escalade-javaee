@@ -21,7 +21,7 @@
 
         <h1>Nouveau Topo</h1>
 
-        <form method="post" action="addTopo">
+        <form method="post" action="addTopo" accept-charset="ISO-8859-1">
             <p style="color: darkcyan ">
                 <c:if test="${not empty message}">${message}</c:if>
             </p>
@@ -29,7 +29,7 @@
             <label for="topoId"></label>
             <input type="hidden" name="topoId" id="topoId" value="${topo.topoId}"/>
             <label for="name">Nom : </label>
-            <input type="text" name="name" id="name" maxlength="20" required/>
+            <input type="text" name="name" id="name" maxlength="50" required/>
             <label for="city">Ville : </label>
             <input type="text" name="city" id="city" required/>
             <label>Département : </label>
@@ -41,7 +41,7 @@
             <label for="releaseDate">Date de parution : </label>
             <input type="date" name="releaseDate" id="releaseDate" required/>
             <label for="description">Description : </label>
-            <textarea rows="5" cols="50" name="description" id="description" minlength="10" maxlength="300" required></textarea>
+            <textarea rows="5" cols="50" name="description" id="description" minlength="10" maxlength="1000" required></textarea>
             Disponible :
             <input type="radio" name="available" id="true" value="true" checked/>
             <label for="true">Yes</label>

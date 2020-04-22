@@ -20,7 +20,7 @@
 
 <h2>Recherche</h2>
 
-<form action="search" method="post">
+<form action="search" method="post" accept-charset="ISO-8859-1">
 
     <label for="search">recherche : </label>
     <input type="search" id="search" name="search_word"><br><br>

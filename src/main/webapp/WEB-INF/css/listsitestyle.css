@@ -20,17 +20,35 @@
 
 }
 
-
 table {
     tab-size: 50px;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed; /* This enforces the "col" widths. */
+
 }
 
 th, td {
-    padding: 8px 30px 8px 30px;
+
+    padding: 8px 8px 8px 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+.nom, .ville, .departement{
+    width: 15%;
+}
+.departement{
+    width: 20%;
+    word-wrap:break-word;
+
+}
+.description {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
 }
 
 tr:nth-child(even) {background-color: white;}

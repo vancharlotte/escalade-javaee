@@ -75,6 +75,6 @@ public class RegisterServlet extends HttpServlet {
         }
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/login.jsp").forward(req, resp);
-        
+
     }
 }

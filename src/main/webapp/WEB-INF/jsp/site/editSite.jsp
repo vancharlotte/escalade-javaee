@@ -23,14 +23,14 @@
             <c:if test="${not empty message}">${message}</c:if>
         </p>
 
-        <form method="post" action="editSite">
+        <form method="post" action="editSite" accept-charset="ISO-8859-1">
 
 
             <label for="siteId"></label>
             <input type="hidden" name="siteId" id="siteId" value="${site.siteId}" />
 
             <label for="name">Nom : </label>
-            <input type="text" name="name" id="name" value="${site.name}" maxlength="30" required/>
+            <input type="text" name="name" id="name" value="${site.name}" maxlength="50" required/>
 
             <label for="city">Ville : </label>
             <input type="text" name="city" id="city" value="${site.city}" required/>

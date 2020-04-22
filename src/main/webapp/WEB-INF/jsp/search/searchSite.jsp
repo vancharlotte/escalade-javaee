@@ -45,7 +45,7 @@
     <div class="search">
 
 
-        <form action="searchSite" method="POST">
+        <form action="searchSite" method="POST" accept-charset="ISO-8859-1">
 
             <h2>Recherche Site</h2>
 

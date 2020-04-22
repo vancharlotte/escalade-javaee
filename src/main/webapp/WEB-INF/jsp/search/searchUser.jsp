@@ -29,7 +29,7 @@
             </c:if>
 
             <c:if test="${not empty userList}">
-                <c:forEach var="user" items="${userList}">
+                <c:forEach var="user" items="${userList}" >
                     <li>
                         <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>">
                             <strong> <c:out value="${user.username}"/></strong> </a>
@@ -42,7 +42,7 @@
     </div>
     <div class="search">
 
-        <form action="searchUser" method="post">
+        <form action="searchUser" method="post" accept-charset="ISO-8859-1">
             <h2>Recherche Utilisateur</h2>
 
 
