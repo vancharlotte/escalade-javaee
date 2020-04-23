@@ -49,11 +49,7 @@ public class RequestBookingServlet extends HttpServlet {
             booking.setUser(user);
             bookingDao.save(booking);
 
-            req.setAttribute("user", user);
-            req.setAttribute("message",
-                    "demande envoyée! Votre adresse email a été transmise au propriétaire du topo. Il prendra contact avec vous rapidement.");
-
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/user/myBooking");
 
         }
     }

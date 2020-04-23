@@ -52,7 +52,7 @@ public class BookingServlet extends HttpServlet {
             topo.setAvailable(false);
             topoDao.update(topo);
             logger.info("demande acceptée");
-                        resp.sendRedirect(req.getContextPath() + "/user/myBooking");
+            resp.sendRedirect(req.getContextPath() + "/user/myBooking");
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
         }

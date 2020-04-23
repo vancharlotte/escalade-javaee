@@ -27,7 +27,13 @@ public class SearchTopoServlet extends HttpServlet {
         topoDao = new TopoDaoImpl();
     }
 
-
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Topo> topoList = topoDao.list();
+        req.setAttribute("topoList", topoList);
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

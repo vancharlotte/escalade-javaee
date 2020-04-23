@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SearchUserServlet", urlPatterns = { "/searchUser", "/user/searchUser"})
+@WebServlet(name = "SearchUserServlet", urlPatterns = {"/searchUser", "/user/searchUser"})
 public class SearchUserServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(SearchUserServlet.class);
@@ -26,6 +26,11 @@ public class SearchUserServlet extends HttpServlet {
         userDao = new UserDaoImpl();
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,5 +40,6 @@ public class SearchUserServlet extends HttpServlet {
         List<User> userList = userDao.searchByUsername(username);
         req.setAttribute("userList", userList);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);    }
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
+    }
 }

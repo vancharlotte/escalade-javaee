@@ -15,6 +15,11 @@
 
 <body>
 <div class="container">
+
+    <a href="${pageContext.request.contextPath}/searchSite">
+        ◄ Retourner à la liste des sites d'escalade </a>
+
+
     <div class="line1">
         <h1> ${site.name}</h1>
         <hr>
@@ -23,47 +28,51 @@
     <div class="line2">
         <div class="bloc1">
 
-        <div class="elt1">
-            <c:if test="${site.checked==true}">
-                Certifié Ami de l'escalade !!!!
-            </c:if>
-            <br/>
-            <br/>
+            <div class="elt1">
+                <c:if test="${site.checked==true}">
+                    <br/>
 
-            Où? ${site.city}, ${site.departement}
-            <br/>
-            nombre de voies : ${site.nbRoutes}
-            <br/>
-            cotation : de ${site.quotationMin} à ${site.quotationMax}
-            <br/>
+                    Certifié Ami de l'escalade !!!!
 
-            <p style="color: blueviolet">
-                ${message}
-            </p>
-
-            <div class="option">
+                </c:if>
                 <br/>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <br/>
 
-                    <a href="${pageContext.request.contextPath}/admin/editSite?<c:out value="${site.siteId}"/>">
-                        Modifier </a>
-                    <a href="${pageContext.request.contextPath}/admin/deleteSite?<c:out value="${site.siteId}"/>">
-                        Supprimer </a>
-                    <a href="${pageContext.request.contextPath}/admin/editChecked?<c:out value="${site.siteId}"/>"> Ami
-                        de
-                        l'escalade </a>
+                Où? ${site.city}, ${site.departement}
+                <br/>
+                nombre de voies : ${site.nbRoutes}
+                <br/>
+                cotation : de ${site.quotationMin} à ${site.quotationMax}
+                <br/>
 
-                </sec:authorize>
+                <p style="color: blueviolet">
+                    ${message}
+                </p>
+
+                <div class="option">
+                    <br/>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+
+                        <a href="${pageContext.request.contextPath}/admin/editSite?<c:out value="${site.siteId}"/>">
+                            Modifier </a>
+                        <a href="${pageContext.request.contextPath}/admin/deleteSite?<c:out value="${site.siteId}"/>">
+                            Supprimer </a>
+                        <a href="${pageContext.request.contextPath}/admin/editChecked?<c:out value="${site.siteId}"/>">
+                            Ami
+                            de
+                            l'escalade </a>
+
+                    </sec:authorize>
+
+                </div>
+                <hr>
 
             </div>
-            <hr>
 
+            <div class="elt2">
+                ${site.description}
+            </div>
         </div>
-
-        <div class="elt2">
-            ${site.description}
-        </div>
-    </div>
 
         <div class="bloc2">
 
@@ -94,7 +103,7 @@
                         <c:out value="${entry.key.description}"/>
 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                       </br>
+                            </br>
                             <a href="${pageContext.request.contextPath}/admin/deleteComment?<c:out value="${entry.key.commentId}"/>">
                                 Supprimer </a>
                             <a href="${pageContext.request.contextPath}/admin/editComment?<c:out value="${entry.key.commentId}"/>">

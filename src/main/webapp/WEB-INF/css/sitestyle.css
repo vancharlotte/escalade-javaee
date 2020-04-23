@@ -94,6 +94,10 @@
 
 }
 
+a {
+    font-size: 1.1em;
+    color: darkcyan;
+}
 
 a:link {
     text-decoration: none;

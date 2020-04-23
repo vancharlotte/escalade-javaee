@@ -29,6 +29,16 @@ public class SearchSiteServlet extends HttpServlet {
         siteDao = new SiteDaoImpl();
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Site> siteList = siteDao.list();
+        req.setAttribute("siteList", siteList);
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+        req.setAttribute("quotationList", EntityUtil.InitQuotationList());
+
+
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

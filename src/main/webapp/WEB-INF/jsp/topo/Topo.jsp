@@ -20,6 +20,10 @@
 <body>
 <div class="container">
 
+    <a href="${pageContext.request.contextPath}/searchTopo">
+       ◄ Retourner à la liste des topos </a>
+
+
     <div class="elt1">
         <h1> ${topo.name}</h1>
         <hr>

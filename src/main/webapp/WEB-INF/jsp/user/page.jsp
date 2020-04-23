@@ -15,6 +15,13 @@
 <body>
 <div class="container">
 
+<c:if test="${user.username ne owner.username}">
+
+    <a href="${pageContext.request.contextPath}/searchUser">
+    ◄ Retourner à la liste des utilisateurs </a>
+     </c:if>
+
+
     <div class="elt1">
         <h1> ${owner.username}</h1>
         <hr>
@@ -32,7 +39,6 @@
 
 
         <c:if test="${user.username ne owner.username}">
-
 
             <h2> Les topos de ${owner.username} : </h2>
 
