@@ -52,7 +52,6 @@ public class RegisterServlet extends HttpServlet {
         Validator validator = validatorFactory.getValidator();
         Set<ConstraintViolation<User>> errors = validator.validate(user);
 
-        logger.info(user.getPassword() + "/" +user.getConfirmPassword());
 
         if (!errors.isEmpty()) {
             String errorList = "<ul>";

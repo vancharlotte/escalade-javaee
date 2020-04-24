@@ -7,14 +7,18 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Documented
-@Target({ElementType.METHOD, ElementType.FIELD})
-@Constraint(validatedBy = UniqueUserValidator.class)
+@Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-public @interface UniqueUser {
-    String message();
-    Class<?>[] groups() default { };
-    Class<? extends Payload>[] payload() default { };
+@Constraint(validatedBy = UniqueUserValidator.class)
+@Documented
+public @interface UniqueUser
+{
+    String message() default "identifiant déjà utilisé";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+
 }

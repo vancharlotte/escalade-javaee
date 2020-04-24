@@ -122,7 +122,7 @@ public class TopoDaoImpl implements TopoDao {
             CriteriaQuery<Topo> query = builder.createQuery(Topo.class);
             Root<Topo> root = query.from(Topo.class);
 
-            Predicate predicate = builder.like(root.get("name"), "%"+name+"%");
+            Predicate predicate = builder.like(builder.lower(root.get("name")), "%"+name.toLowerCase()+"%");
             query.where(predicate);
             query.orderBy(builder.asc(root.get("name")));
             Query<Topo> q = session.createQuery(query);
@@ -153,7 +153,7 @@ public class TopoDaoImpl implements TopoDao {
             List<Predicate> predicates = new ArrayList<>();
 
             if (!name.equals("")) {
-                predicates.add(builder.like(root.get("name"), "%"+name+"%"));
+                predicates.add(builder.like(builder.lower(root.get("name")), "%"+name.toLowerCase()+"%"));
             }
 
             if (!city.equals("")) {

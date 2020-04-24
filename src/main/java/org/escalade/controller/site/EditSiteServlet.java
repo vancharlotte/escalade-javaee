@@ -32,7 +32,7 @@ public class EditSiteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int siteId = Integer.parseInt(req.getQueryString());
+        int siteId = Integer.parseInt(req.getParameter("siteId"));
         Site site = siteDao.findById(siteId);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
@@ -105,7 +105,7 @@ public class EditSiteServlet extends HttpServlet {
             siteDao.update(site);
             logger.info("update site");
 
-            resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
+            resp.sendRedirect(req.getContextPath() + "/site?siteId=" + site.getSiteId());
         }
     }
 }

@@ -38,9 +38,9 @@
                 <td>
                     <c:if test="${entryR.key.status=='en attente'}">
 
-                        <a href="${pageContext.request.contextPath}/acceptBooking?<c:out value="${entryR.key.bookingId}"/>">
+                        <a href="${pageContext.request.contextPath}/acceptBooking?bookingId=<c:out value="${entryR.key.bookingId}"/>">
                             accepter </a>
-                        <a href="${pageContext.request.contextPath}/rejectBooking?<c:out value="${entryR.key.bookingId}"/>">
+                        <a href="${pageContext.request.contextPath}/rejectBooking?bookingId=<c:out value="${entryR.key.bookingId}"/>">
                             refuser </a>
 
                     </c:if>
@@ -69,7 +69,7 @@
                 <td><c:out value="${entryB.value.value.username}"/></td>
                 <td>
                     <c:if test="${entryB.key.status=='en attente'}">
-                        <a href="${pageContext.request.contextPath}/cancelBooking?<c:out value="${entryB.key.bookingId}"/>">
+                        <a href="${pageContext.request.contextPath}/cancelBooking?bookingId=<c:out value="${entryB.key.bookingId}"/>">
                             annuler </a>
                     </c:if>
                 </td>

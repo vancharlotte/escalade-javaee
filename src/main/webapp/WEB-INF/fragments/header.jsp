@@ -23,7 +23,7 @@
             </button>
             <br>
             <button
-                    onclick="window.location.href='${pageContext.request.contextPath}/page?<c:out
+                    onclick="window.location.href='${pageContext.request.contextPath}/page?userId=<c:out
                             value="${user.userId}"/>'">
                 Mon profil
             </button>
@@ -35,7 +35,7 @@
         </button>
         <br>
         <button
-                onclick="window.location.href='${pageContext.request.contextPath}/listSite?1'">
+                onclick="window.location.href='${pageContext.request.contextPath}/listSite?page=1'">
             Liste des sites
         </button>
     </div>

@@ -45,18 +45,18 @@
                     <tr>
 
                         <td class="name">
-                            <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>">
+                            <a href="${pageContext.request.contextPath}/topo?topoId=<c:out value="${topo.topoId}"/>">
                                 <c:out value="${topo.name}"/></a></td>
                         <td><c:if test="${topo.available==true}"> disponible </c:if>
                             <c:if test="${topo.available==false}"> réservé </c:if>
                         </td>
                         <td>
 
-                            <a href="${pageContext.request.contextPath}/user/editTopo?<c:out value="${topo.topoId}"/>">
+                            <a href="${pageContext.request.contextPath}/user/editTopo?topoId=<c:out value="${topo.topoId}"/>">
                                 Modifier </a>
-                            <a href="${pageContext.request.contextPath}/user/deleteTopo?<c:out value="${topo.topoId}"/>">
+                            <a href="${pageContext.request.contextPath}/user/deleteTopo?topoId=<c:out value="${topo.topoId}"/>">
                                 Supprimer </a>
-                            <a href="${pageContext.request.contextPath}/user/editStatusTopo?<c:out value="${topo.topoId}"/>">
+                            <a href="${pageContext.request.contextPath}/user/editStatusTopo?topoId=<c:out value="${topo.topoId}"/>">
                                 Changer Statut </a>
                         </td>
                     </tr>

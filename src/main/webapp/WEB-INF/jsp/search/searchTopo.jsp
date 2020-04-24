@@ -30,7 +30,7 @@
             <c:if test="${not empty topoList}">
                 <c:forEach var="topo" items="${topoList}">
                     <li>
-                        <a href="${pageContext.request.contextPath}/topo?<c:out value="${topo.topoId}"/>">
+                        <a href="${pageContext.request.contextPath}/topo?topoId=<c:out value="${topo.topoId}"/>">
                             <strong> <c:out value="${topo.name}"/></strong> </a>
                     </li>
                 </c:forEach>

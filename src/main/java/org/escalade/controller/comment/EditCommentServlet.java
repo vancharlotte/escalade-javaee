@@ -29,7 +29,7 @@ public class EditCommentServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int commentId = Integer.parseInt(req.getQueryString());
+        int commentId = Integer.parseInt(req.getParameter("commentId"));
         Comment comment = commentDao.findById(commentId);
 
         req.setAttribute("comment", comment);

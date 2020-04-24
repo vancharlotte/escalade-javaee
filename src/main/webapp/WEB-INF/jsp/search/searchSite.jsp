@@ -33,7 +33,7 @@
             <c:if test="${not empty siteList}">
                 <c:forEach var="site" items="${siteList}">
                     <li>
-                        <a href="${pageContext.request.contextPath}/site?<c:out value="${site.siteId}"/>">
+                        <a href="${pageContext.request.contextPath}/site?siteId=<c:out value="${site.siteId}"/>">
                             <strong> <c:out value="${site.name}"/></strong> </a>
                     </li>
                 </c:forEach>

@@ -30,7 +30,7 @@
 
             <div class="elt1">
                 <c:if test="${site.checked==true}">
-                    <br/>
+
 
                     Certifié Ami de l'escalade !!!!
 
@@ -53,11 +53,11 @@
                     <br/>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
 
-                        <a href="${pageContext.request.contextPath}/admin/editSite?<c:out value="${site.siteId}"/>">
+                        <a href="${pageContext.request.contextPath}/admin/editSite?siteId=<c:out value="${site.siteId}"/>">
                             Modifier </a>
-                        <a href="${pageContext.request.contextPath}/admin/deleteSite?<c:out value="${site.siteId}"/>">
+                        <a href="${pageContext.request.contextPath}/admin/deleteSite?siteId=<c:out value="${site.siteId}"/>">
                             Supprimer </a>
-                        <a href="${pageContext.request.contextPath}/admin/editChecked?<c:out value="${site.siteId}"/>">
+                        <a href="${pageContext.request.contextPath}/admin/editChecked?siteId=<c:out value="${site.siteId}"/>">
                             Ami
                             de
                             l'escalade </a>
@@ -80,7 +80,7 @@
                 <h3> Commentaires :</h3>
                 <sec:authorize access="isAuthenticated()">
 
-                    <a href="${pageContext.request.contextPath}/user/addComment?<c:out value="${site.siteId}"/>">
+                    <a href="${pageContext.request.contextPath}/user/addComment?siteId=<c:out value="${site.siteId}"/>">
                         Ajouter un
                         commentaire </a>
                     <br/> <br/>
@@ -104,9 +104,9 @@
 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                             </br>
-                            <a href="${pageContext.request.contextPath}/admin/deleteComment?<c:out value="${entry.key.commentId}"/>">
+                            <a href="${pageContext.request.contextPath}/admin/deleteComment?commentId=<c:out value="${entry.key.commentId}"/>">
                                 Supprimer </a>
-                            <a href="${pageContext.request.contextPath}/admin/editComment?<c:out value="${entry.key.commentId}"/>">
+                            <a href="${pageContext.request.contextPath}/admin/editComment?commentId=<c:out value="${entry.key.commentId}"/>">
                                 Modifier </a>
 
                         </sec:authorize>

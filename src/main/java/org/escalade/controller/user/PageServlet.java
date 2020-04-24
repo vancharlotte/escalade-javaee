@@ -36,15 +36,21 @@ public class PageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-        int userId = Integer.parseInt(req.getQueryString());
-        User owner  = userDao.findById(userId);
+        int userId = Integer.parseInt(req.getParameter("userId"));
+        logger.info("doGet page userId : " + req.getParameter("userId"));
+
+        User owner = userDao.findById(userId);
+
+        logger.info("user : " + user.getUsername());
+        logger.info("owner : " + owner.getUsername());
 
         req.setAttribute("user", user);
         req.setAttribute("owner", owner);
 
-        List<Topo> list= topoDao.findByUser(owner);
+        List<Topo> list = topoDao.findByUser(owner);
 
         req.setAttribute("topoList", list);
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
     }

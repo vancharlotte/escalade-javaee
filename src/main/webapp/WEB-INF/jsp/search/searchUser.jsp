@@ -31,7 +31,7 @@
             <c:if test="${not empty userList}">
                 <c:forEach var="user" items="${userList}" >
                     <li>
-                        <a href="${pageContext.request.contextPath}/page?<c:out value="${user.userId}"/>">
+                        <a href="${pageContext.request.contextPath}/page?userId=<c:out value="${user.userId}"/>">
                             <strong> <c:out value="${user.username}"/></strong> </a>
                     </li>
                 </c:forEach>

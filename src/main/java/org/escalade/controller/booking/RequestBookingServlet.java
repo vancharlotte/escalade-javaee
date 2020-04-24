@@ -34,7 +34,7 @@ public class RequestBookingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int topoId = Integer.parseInt(req.getQueryString());
+        int topoId = Integer.parseInt(req.getParameter("topoId"));
         Topo topo = topoDao.findById(topoId);
 
         User user = (User) req.getSession().getAttribute("user");

@@ -34,7 +34,7 @@ public class SiteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int siteId = Integer.parseInt(req.getQueryString());
+        int siteId = Integer.parseInt(req.getParameter("siteId"));
         Site site = siteDao.findById(siteId);
         req.setAttribute("site", site);
 

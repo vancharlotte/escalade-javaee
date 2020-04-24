@@ -125,7 +125,7 @@ public class UserDaoImpl implements UserDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<User> query = builder.createQuery(User.class);
             Root<User> root = query.from(User.class);
-            Predicate usernamePredicate = builder.equal(root.get("email"), email);
+            Predicate usernamePredicate = builder.equal(builder.lower(root.get("email")), email.toLowerCase());
             query.where(usernamePredicate);
             Query<User> q = session.createQuery(query);
             user = q.getSingleResult();
@@ -167,7 +167,7 @@ public class UserDaoImpl implements UserDao {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<User> query = builder.createQuery(User.class);
             Root<User> root = query.from(User.class);
-            Predicate usernamePredicate = builder.like(root.get("username"), "%" + username + "%");
+            Predicate usernamePredicate = builder.like(builder.lower(root.get("username")), "%" + username.toLowerCase() + "%");
 
             query.where(usernamePredicate);
             query.orderBy(builder.asc(root.get("username")));

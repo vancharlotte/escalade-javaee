@@ -36,7 +36,7 @@ public class EditTopoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int topoId = Integer.parseInt(req.getQueryString());
+        int topoId = Integer.parseInt(req.getParameter("topoId"));
 
         Topo topo = topoDao.findById(topoId);
         req.setAttribute("topo", topo);

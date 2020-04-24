@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", user);
             req.setAttribute("user",user);
             req.setAttribute("owner", user);
-            resp.sendRedirect(req.getContextPath() + "/user/page?" + user.getUserId());
+            resp.sendRedirect(req.getContextPath() + "/user/page?userId=" + user.getUserId());
 
         } else {
             String message = "identifiant ou mot de passe incorrect.";

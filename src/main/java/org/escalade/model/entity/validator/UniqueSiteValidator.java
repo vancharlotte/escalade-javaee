@@ -32,14 +32,12 @@ public class UniqueSiteValidator implements ConstraintValidator<UniqueSite, Site
         if (siteFound == null) {
             logger.info("pas d'autre site du même nom");
             return true;
+        } else if (site.getSiteId() == siteFound.getSiteId()) {
+            logger.info("pas d'autre site du même nom à part même id");
+            return true;
         } else {
-            if (site.getSiteId() == siteFound.getSiteId()) {
-                logger.info("pas d'autre site du même nom à part même id");
-                return true;
-            } else {
-                logger.info("site du même nom");
-                return false;
-            }
+            logger.info("site du même nom");
+            return false;
         }
     }
 }

@@ -31,7 +31,7 @@ public class BookingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int bookingId = Integer.parseInt(req.getQueryString());
+        int bookingId = Integer.parseInt(req.getParameter("bookingId"));
 
         Booking booking = bookingDao.findById(bookingId);
         req.setAttribute("booking", booking);

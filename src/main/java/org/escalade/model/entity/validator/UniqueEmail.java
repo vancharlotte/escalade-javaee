@@ -7,14 +7,17 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Documented
-@Target({ElementType.METHOD, ElementType.FIELD})
-@Constraint(validatedBy = UniqueEmailValidator.class)
+@Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
+@Constraint(validatedBy = UniqueEmailValidator.class)
+@Documented
 public @interface UniqueEmail {
-    String message();
+
+    String message() default "adresse email déjà utilisée";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

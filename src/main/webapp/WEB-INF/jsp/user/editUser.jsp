@@ -18,30 +18,22 @@
 
 <div class="container">
 
-    <c:if test="${not empty message}">
-
-        <td>${message}</td>
-
-    </c:if>
     <div class="form">
 
-        <h1>Modifier mon profil</h1>
+        <h1>Modifier mes informations</h1>
 
         <form method="post" action="editUser" accept-charset="ISO-8859-1">
             <p style="color: darkcyan ">
-                <c:if test="${not empty message}">${message}</c:if>
+                <c:if test="${valid eq 'true'}">Vos informations ont été mises à jour.</c:if>
             </p>
 
+            <label for="userId"></label>
+            <input type="hidden" name="userId" id="userId" value="${user.userId}" required/>
             <label for="username">Identifiant : </label>
-            <input type="text" id="username" name="username" value="{user.username}" required>
-            <label for="password">Mot de passe : </label>
-            <input type="password" name="password" id="password"
-                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                   title="il doit contenir au moins un chiffre, une minuscule, une majuscule et au moins 8 caractères" required/>
-            <label for="confirmPassword">Confirmer mot de passe : </label>
-            <input type="password" name="confirmPassword" id="confirmPassword" required/>
+            <input type="text" id="username" name="username" value="${user.username}" required>
             <label for="email">Email : </label>
-            <input type="email" name="email" id="email" value="{user.email}" required/>
+            <input type="email" name="email" id="email" value="${user.email}" required/>
+
             <input type="submit" value="Valider"/>
 
         </form>

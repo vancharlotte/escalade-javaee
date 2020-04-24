@@ -35,7 +35,7 @@
             <c:forEach var="site" items="${sites}">
             <tr>
 
-                <td><a href="${pageContext.request.contextPath}/site?<c:out value="${site.siteId}"/>">
+                <td><a href="${pageContext.request.contextPath}/site?siteId=<c:out value="${site.siteId}"/>">
                     <strong> <c:out value="${site.name}"/></strong> </a>
                 </td>
                 <td><c:out value="${site.city}"/></td>
@@ -56,23 +56,23 @@
 
 
         <c:if test="${pageNumber  != 1}">
-            <a href="${pageContext.request.contextPath}/listSite?<c:out value="${pageNumber - 1}"/>">
+            <a href="${pageContext.request.contextPath}/listSite?page=<c:out value="${pageNumber - 1}"/>">
                 &laquo;</a>
         </c:if>
 
         <c:forEach begin="1" end="${noOfPages}" var="i">
             <c:if test="${ pageNumber  == i}">
-                <a class="active" href="${pageContext.request.contextPath}/listSite?<c:out value="${i}"/>">
+                <a class="active" href="${pageContext.request.contextPath}/listSite?page=<c:out value="${i}"/>">
                 <c:out value="${i}"/></a>
             </c:if>
             <c:if test="${ pageNumber  != i}">
-        <a href="${pageContext.request.contextPath}/listSite?<c:out value="${i}"/>">
+        <a href="${pageContext.request.contextPath}/listSite?page=<c:out value="${i}"/>">
             <c:out value="${i}"/></a>
             </c:if>
         </c:forEach>
 
         <c:if test="${pageNumber != noOfPages}">
-            <a href="${pageContext.request.contextPath}/listSite?<c:out value="${pageNumber + 1}"/>">
+            <a href="${pageContext.request.contextPath}/listSite?page=<c:out value="${pageNumber + 1}"/>">
                 &raquo;</a>
         </c:if>
 

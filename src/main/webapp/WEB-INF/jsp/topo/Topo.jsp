@@ -50,14 +50,14 @@
 
                 <c:if test="${(topo.available=true) && (user.username ne owner.username)}">
                     Voulez-vous réserver ce topo?
-                    <a href="${pageContext.request.contextPath}/booking?<c:out value="${topo.topoId}"/>"> Réserver </a>
+                    <a href="${pageContext.request.contextPath}/booking?topoId=<c:out value="${topo.topoId}"/>"> Réserver </a>
                 </c:if>
 
                 <c:if test="${user.username eq owner.username}">
 
-                    <a href="${pageContext.request.contextPath}/user/editTopo?<c:out value="${topo.topoId}"/>">
+                    <a href="${pageContext.request.contextPath}/user/editTopo?topoId=<c:out value="${topo.topoId}"/>">
                         Modifier </a></li>
-                    <a href="${pageContext.request.contextPath}/user/deleteTopo?<c:out value="${topo.topoId}"/>">
+                    <a href="${pageContext.request.contextPath}/user/deleteTopo?topoId=<c:out value="${topo.topoId}"/>">
                         Supprimer </a></li>
 
 

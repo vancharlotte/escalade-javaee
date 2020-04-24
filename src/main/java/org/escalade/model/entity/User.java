@@ -14,6 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "USERS")
 @ComparePassword
+@UniqueUser
+@UniqueEmail
 public class User implements Serializable {
 
     @Id
@@ -21,7 +23,6 @@ public class User implements Serializable {
     @Column(name = "USER_ID")
     private int userId;
 
-    @UniqueUser(message = "Cet identifiant est déjà utilisé")
     @NotEmpty(message = "Entrez un identifiant")
     @Column(unique = true)
     private String username;
@@ -33,7 +34,6 @@ public class User implements Serializable {
     @Transient
     private String confirmPassword;
 
-    @UniqueEmail(message = "Cette adresse email est  déjà utilisé")
     @NotEmpty(message = "Veuillez saisir une adresse email valide")
     @Email(message = "Veuillez saisir une adresse email valide")
     @Column(unique = true)

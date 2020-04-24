@@ -32,9 +32,6 @@ public class TestUserDaoImpl {
 
         userDao.save(user);
 
-
-
-
     }
 
 
