@@ -3,25 +3,54 @@
 .blog-header {
     font-family: "Comic Sans MS", cursive, sans-serif;
     display: flex;
-    color: rgba(10,12,47,0.72);
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgba(10, 12, 47, 0.72);
     background-color: lightseagreen;
     border: 1px solid lightseagreen;
     padding: 10px 20px 10px 20px;
 }
 
-.element2 {
+.firstpart{
     flex: 1;
-}
-.element3 {
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.container{
+.element2{
+    display: flex;
+    flex-direction: row;
+}
+
+.element3{
+    background-color: darkcyan;
+    padding: 18px;
+}
+
+.secondpart {
+    float: right;
+}
+
+
+.blog-header a {
+    color: rgba(10, 12, 47, 0.72);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+
+.container {
     min-height: 500px;
     font-size: 1.1em;
 }
-
-
 
 .error {
     color: red;
@@ -34,5 +63,18 @@
     text-align: center;
     background-color: #f9f9f9;
 
+}
 
+.blog-header a:hover {
+    color: powderblue;
+}
+
+@media only screen and (max-width: 760px) {
+    .blog-header {
+        flex-direction: column-reverse;
+    }
+
+    .secondpart {
+        justify-content: center;
+    }
 }

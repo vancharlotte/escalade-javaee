@@ -29,7 +29,8 @@ public class ListSiteServlet extends HttpServlet {
         int pageNumber = 1;
 
         if(req.getParameter("page")!=null){
-            pageNumber = Integer.parseInt(req.getParameter("page"));
+          pageNumber = Integer.parseInt(req.getParameter("page"));
+
         }
 
         logger.info("page " + pageNumber);
