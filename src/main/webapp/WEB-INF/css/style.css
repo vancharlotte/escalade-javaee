@@ -12,27 +12,19 @@
     padding: 10px 20px 10px 20px;
 }
 
-.firstpart{
+.element1 {
+    white-space:nowrap;
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-.element2{
-    display: flex;
-    flex-direction: row;
-}
 
-.element3{
+.element3 {
     background-color: darkcyan;
     padding: 18px;
+    margin-left: 30px;
+    margin-bottom: 30px;
 }
 
-.secondpart {
-    float: right;
-}
 
 
 .blog-header a {
@@ -69,12 +61,22 @@
     color: powderblue;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 1150px) {
     .blog-header {
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 
-    .secondpart {
-        justify-content: center;
+    .element1 {
+        order: 1;
     }
+
+    .element2 {
+        order: 3;
+    }
+
+    .element3 {
+        order: 2;
+    }
+
+
 }
