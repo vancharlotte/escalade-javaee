@@ -35,6 +35,9 @@
         <input type="submit" value="Se connecter"/>
 
     </form>
+    <br>
+
+    <a href="addUser.jsp">S'inscrire</a>
 
 
 
