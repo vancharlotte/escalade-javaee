@@ -38,6 +38,8 @@ public class PageServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         int userId = Integer.parseInt(req.getParameter("userId"));
         logger.info("doGet page userId : " + req.getParameter("userId"));
+        String message = req.getParameter("message");
+
 
         User owner = userDao.findById(userId);
 
@@ -47,7 +49,7 @@ public class PageServlet extends HttpServlet {
         List<Topo> list = topoDao.findByUser(owner);
 
         req.setAttribute("topoList", list);
-
+        req.setAttribute("message", message);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/page.jsp").forward(req, resp);
     }

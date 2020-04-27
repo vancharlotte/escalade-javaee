@@ -56,9 +56,16 @@ public class TestBookingDaoImpl {
 
 
     @Test
-    public void testfindByOwner() {
+    public void testFindByOwner() {
         List<Booking> test = bookingDao.findByOwner(user);
         Assert.assertEquals(test.size(),1);
+    }
+
+
+    @Test
+    public void testCheckAvailability() {
+        Booking test = bookingDao.checkAvailability(topo, user2);
+        Assert.assertNotNull(test);
     }
 
 
@@ -69,4 +76,5 @@ public class TestBookingDaoImpl {
         userDao.delete(user);
         userDao.delete(user2);
     }
+
     }

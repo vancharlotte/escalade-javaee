@@ -70,9 +70,7 @@ public class EditPasswordServlet extends HttpServlet {
 
             } else {
                 userDao.update(user);
-                String message = "Votre mot de passe a été mis à jour.";
-                req.setAttribute("message", message);
-                resp.sendRedirect(req.getContextPath() + "/user/page?userId=" + user.getUserId());
+                resp.sendRedirect(req.getContextPath() + "/user/page?userId=" + user.getUserId()+"&message="+ "success");
             }
         }
     }

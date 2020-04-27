@@ -8,11 +8,7 @@
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
         <%@include file="/WEB-INF/css/topostyle.css"%>
-        .bordure {
-            border: solid 1px blueviolet;
-            padding: 25px;
-            border-radius: 5px;
-        }
+
     </style>
 </head>
 
@@ -43,14 +39,19 @@
             </p>
 
             <p style="color: blueviolet">
-                ${message}
-                <br/> <br/>
+                <c:if test="${ empty error}">${message}<br><br></c:if>
+                <c:if test="${not empty error}">Vous avez déjà fait une demande de réservation pour ce topo. Celle-ci est toujours en attente.<br><br></c:if>
+
             </p>
             <div class="elt4">
 
+
                 <c:if test="${(topo.available=true) && (user.username ne owner.username)}">
+
+
                     Voulez-vous réserver ce topo?
-                    <a href="${pageContext.request.contextPath}/booking?topoId=<c:out value="${topo.topoId}"/>"> Réserver </a>
+                    <a href="${pageContext.request.contextPath}/booking?topoId=<c:out value="${topo.topoId}"/>">
+                        Réserver </a>
                 </c:if>
 
                 <c:if test="${user.username eq owner.username}">
@@ -73,7 +74,6 @@
         </div>
 
     </div>
-
 
 
 </div>

@@ -35,6 +35,7 @@ public class TopoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
+        String error = req.getParameter("error");
 
 
         int topoId = Integer.parseInt(req.getParameter("topoId"));
@@ -50,7 +51,9 @@ public class TopoServlet extends HttpServlet {
         } else {
             message = "Ce topo n'est pas disponible.";
         }
+
         req.setAttribute("message", message);
+        req.setAttribute("error", error);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/Topo.jsp").forward(req, resp);
 

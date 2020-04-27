@@ -54,7 +54,6 @@ public class EditUserServlet extends HttpServlet {
 
         user.setUsername(req.getParameter("username"));
         user.setEmail(req.getParameter("email"));
-    //    user.setPassword(user.getPassword());
         user.setConfirmPassword(user.getPassword());
 
 
@@ -75,12 +74,11 @@ public class EditUserServlet extends HttpServlet {
 
         } else {
             userDao.update(user);
-            String message = "Vos informations ont été mises à jour.";
             HttpSession session = req.getSession();
-            req.setAttribute("message", message);
+           // req.setAttribute("message", "Vos informations ont été mises à jour.");
             session.setAttribute("user", user);
             req.setAttribute("user",user);
-            resp.sendRedirect(req.getContextPath() + "/user/page?userId=" + user.getUserId());
+            resp.sendRedirect(req.getContextPath() + "/user/page?userId=" + user.getUserId()+"&message="+ "success");
 
 
         }

@@ -15,11 +15,11 @@
 <body>
 <div class="container">
 
-<c:if test="${user.username ne owner.username}">
 
-    <button onclick="history.back()"> ◄ Retourner à la liste d'utilisateurs
-    </button>
-     </c:if>
+        <c:if test="${user.username ne owner.username}">
+            <button onclick="history.back()"> ◄ Retourner à la liste d'utilisateurs
+            </button>
+        </c:if>
 
 
     <div class="elt1">
@@ -31,14 +31,20 @@
 
     <div class="elt2">
 
+        <h3 style="text-align: center; color: blueviolet "><c:if test="${not empty message}"> Votre profil a été mis à jour.<br><br></c:if></h3>
+
+
         <c:if test="${user.username eq owner.username}">
             <a href="${pageContext.request.contextPath}/user/myTopo"> Mes topos </a>
             </br>
             <a href="${pageContext.request.contextPath}/user/myBooking"> Mes réservations </a>
             </br>
-            <a href="${pageContext.request.contextPath}/user/editUser?userId=${owner.userId}"> Modifier les informations de mon profil </a>
+            <a href="${pageContext.request.contextPath}/user/editUser?userId=${owner.userId}"> Modifier les informations
+                de
+                mon profil </a>
             </br>
-            <a href="${pageContext.request.contextPath}/user/editPassword?userId=${owner.userId}"> Modifier mon mot de passe </a>
+            <a href="${pageContext.request.contextPath}/user/editPassword?userId=${owner.userId}"> Modifier mon mot de
+                passe </a>
 
         </c:if>
 

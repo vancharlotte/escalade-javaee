@@ -18,7 +18,7 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public void save(Booking booking) {
-         transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -34,7 +34,7 @@ public class BookingDaoImpl implements BookingDao {
 
     @Override
     public void update(Booking booking) {
-         transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -51,7 +51,7 @@ public class BookingDaoImpl implements BookingDao {
     @Override
     public List<Booking> list() {
         List<Booking> bookings = null;
-         transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -70,7 +70,7 @@ public class BookingDaoImpl implements BookingDao {
     @Override
     public Booking findById(int bookingId) {
         Booking booking = null;
-         transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -136,7 +136,7 @@ public class BookingDaoImpl implements BookingDao {
     public List<Booking> findByUser(User user) {
 
         List<Booking> bookings = null;
-         transaction = null;
+        transaction = null;
         try {
             Session session = HibernateUtil.sessionFactory.getCurrentSession();
             transaction = session.beginTransaction();
@@ -160,4 +160,38 @@ public class BookingDaoImpl implements BookingDao {
         }
         return bookings;
     }
+
+    @Override
+    public Booking checkAvailability(Topo topo, User user) {
+        Booking booking = null;
+        transaction = null;
+
+        try {
+            Session session = HibernateUtil.sessionFactory.getCurrentSession();
+            transaction = session.beginTransaction();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Booking> query = builder.createQuery(Booking.class);
+
+            Root<Booking> root = query.from(Booking.class);
+            Predicate topoPredicate = builder.equal(root.get("topo"), topo);
+            Predicate userPredicate = builder.equal(root.get("user"), user);
+            Predicate statusPredicate = builder.equal(root.get("status"), "en attente");
+
+
+            query.where(topoPredicate, userPredicate, statusPredicate);
+            Query<Booking> q = session.createQuery(query);
+            booking = q.getSingleResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return booking;
+    }
+
+
 }

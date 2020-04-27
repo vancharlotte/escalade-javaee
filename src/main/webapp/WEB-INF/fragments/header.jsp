@@ -13,7 +13,7 @@
 
             <sec:authorize access="isAuthenticated()">
                 <a href="${pageContext.request.contextPath}/logout"> Se déconnecter</a>
-                <a href="${pageContext.request.contextPath}//page?userId=<c:out value="${user.userId}"/>'"> Mon
+                <a href="${pageContext.request.contextPath}/page?userId=<c:out value="${user.userId}"/>"> Mon
                     profil</a>
             </sec:authorize>
         </div>

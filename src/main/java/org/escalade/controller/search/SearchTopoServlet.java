@@ -56,6 +56,5 @@ public class SearchTopoServlet extends HttpServlet {
 
         resp.sendRedirect(req.getContextPath() + "/searchTopo?name="+ name +"&city="+ city +"&departement=" + departement+"&available="+ available);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
     }
 }
