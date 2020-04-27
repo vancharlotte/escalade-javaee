@@ -1,31 +1,26 @@
 /* stylelint-disable selector-list-comma-newline-after */
 
-.blog-header {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+.title {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     color: rgba(10, 12, 47, 0.72);
     background-color: lightseagreen;
-    border: 1px solid lightseagreen;
-    padding: 10px 20px 10px 20px;
-}
-
-.element1 {
+    padding: 10px 20px 0px 20px;
     white-space:nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+
+}
+
+.element3{
+    display: flex;
     flex: 1;
-}
-
-
-.element3 {
     background-color: darkcyan;
-    padding: 18px;
-    margin-left: 30px;
-    margin-bottom: 30px;
+    padding: 10px 20px 10px 20px;
+
 }
-
-
 
 .blog-header a {
     color: rgba(10, 12, 47, 0.72);
@@ -36,6 +31,7 @@
     line-height: 25px;
     border-radius: 4px;
     justify-content: center;
+
 }
 
 
@@ -61,22 +57,26 @@
     color: powderblue;
 }
 
-@media only screen and (max-width: 1150px) {
-    .blog-header {
-        flex-direction: column;
+
+@media only screen and (max-width: 850px) {
+    .title {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 20px 20px 20px;
+
     }
 
-    .element1 {
-        order: 1;
-    }
+    .element2a{
+        order: 2;
 
-    .element2 {
+    }
+    .element2b{
         order: 3;
     }
-
-    .element3 {
-        order: 2;
+    .element1{
+        width: 100%;
+        order: 1;
     }
-
 
 }

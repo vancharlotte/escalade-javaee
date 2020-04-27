@@ -29,25 +29,32 @@ public class SearchTopoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Topo> topoList = topoDao.list();
-        req.setAttribute("topoList", topoList);
-        req.setAttribute("departementList", EntityUtil.InitDepartementList());
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("searchByName");
-        String city = req.getParameter("searchByCity");
-        String departement = req.getParameter("searchByDepartement");
-        String availableString = req.getParameter("searchByAvailable");
-        boolean available = true;
-        if (availableString==null) { available=false; }
+        String name = req.getParameter("name")==null? "" : req.getParameter("name");
+        String city = req.getParameter("city")==null? "" : req.getParameter("city");
+        String departement = req.getParameter("departement")==null? "" : req.getParameter("departement");
+        String availableString = req.getParameter("available")==null? "false" : req.getParameter("available");
+        boolean available = availableString.equals("true");
 
         List<Topo> topoList = topoDao.search(name, city, departement, available);
         req.setAttribute("topoList", topoList);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
 
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String name = req.getParameter("searchByName")==null? "" : req.getParameter("searchByName");
+        String city = req.getParameter("searchByCity")==null? "" : req.getParameter("searchByCity");
+        String departement = req.getParameter("searchByDepartement")==null? "" : req.getParameter("searchByDepartement");
+        String availableString = req.getParameter("searchByAvailable")==null? "false" : req.getParameter("searchByAvailable");
+        boolean available = availableString.equals("true");
+
+        List<Topo> topoList = topoDao.search(name, city, departement, available);
+        req.setAttribute("topoList", topoList);
+        req.setAttribute("departementList", EntityUtil.InitDepartementList());
+
+        resp.sendRedirect(req.getContextPath() + "/searchTopo?name="+ name +"&city="+ city +"&departement=" + departement+"&available="+ available);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
     }

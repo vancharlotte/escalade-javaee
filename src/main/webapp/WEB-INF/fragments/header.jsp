@@ -4,26 +4,30 @@
 
 <div class="blog-header">
 
-
-    <div class="element2">
-        <div>
+    <div class="title">
+        <div class="element2a">
             <sec:authorize access="isAnonymous()">
                 <a href="${pageContext.request.contextPath}/login"> Se connecter</a>
                 <a href="${pageContext.request.contextPath}/register"> S'inscrire</a>
             </sec:authorize>
+
             <sec:authorize access="isAuthenticated()">
                 <a href="${pageContext.request.contextPath}/logout"> Se déconnecter</a>
                 <a href="${pageContext.request.contextPath}//page?userId=<c:out value="${user.userId}"/>'"> Mon
                     profil</a>
             </sec:authorize>
+        </div>
+
+        <div class="element1">
+            <a href="${pageContext.request.contextPath}/welcome"><h1>Le blog des grimpeurs</h1></a>
+        </div>
+
+        <div class="element2b">
 
             <a href="${pageContext.request.contextPath}/listSite?page=1">Sites d'escalade</a>
 
         </div>
-    </div>
 
-    <div class="element1">
-        <a href="${pageContext.request.contextPath}/welcome"><h1>Le blog des grimpeurs</h1></a>
     </div>
 
     <div class="element3">
@@ -34,13 +38,10 @@
             <label for="topo"> topo</label>
             <input type="radio" id="user" name="search_object" value="user">
             <label for="user"> user</label>
-            <br>
             <input type="search" id="search" name="search_word">
             <label for="search"> </label>
             <input type="Submit" value="Ok"/>
         </form>
     </div>
 
-
 </div>
-

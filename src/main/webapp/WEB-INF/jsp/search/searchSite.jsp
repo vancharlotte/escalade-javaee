@@ -58,7 +58,7 @@
             <input type="text" id="city" name="searchByCity">
             <label>Département : </label>
             <select name="searchByDepartement">
-                <option value="00">sélectionner</option>
+                <option value="">sélectionner</option>
                 <c:forEach var="departement" items="${departementList}">
                     <option value="${departement}">${departement}</option>
                 </c:forEach>

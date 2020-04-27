@@ -17,8 +17,8 @@
 
 <c:if test="${user.username ne owner.username}">
 
-    <a href="${pageContext.request.contextPath}/searchUser">
-    ◄ Retourner à la liste des utilisateurs </a>
+    <button onclick="history.back()"> ◄ Retourner à la liste d'utilisateurs
+    </button>
      </c:if>
 
 

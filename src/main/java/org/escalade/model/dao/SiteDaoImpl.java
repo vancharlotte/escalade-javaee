@@ -194,7 +194,7 @@ public class SiteDaoImpl implements SiteDao {
                 predicates.add(builder.like(root.get("city"), "%" + city + "%"));
             }
 
-            if (!departement.equals("00")) {
+            if (!departement.equals("")) {
                 predicates.add(builder.equal(root.get("departement"), departement));
             }
 

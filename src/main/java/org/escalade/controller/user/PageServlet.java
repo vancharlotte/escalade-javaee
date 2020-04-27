@@ -41,9 +41,6 @@ public class PageServlet extends HttpServlet {
 
         User owner = userDao.findById(userId);
 
-        logger.info("user : " + user.getUsername());
-        logger.info("owner : " + owner.getUsername());
-
         req.setAttribute("user", user);
         req.setAttribute("owner", owner);
 

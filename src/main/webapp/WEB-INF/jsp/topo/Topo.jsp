@@ -20,8 +20,8 @@
 <body>
 <div class="container">
 
-    <a href="${pageContext.request.contextPath}/searchTopo">
-       ◄ Retourner à la liste des topos </a>
+    <button onclick="history.back()"> ◄ Retourner à la liste des topos
+    </button>
 
 
     <div class="elt1">

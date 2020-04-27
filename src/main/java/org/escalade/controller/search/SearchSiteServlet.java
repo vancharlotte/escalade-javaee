@@ -31,7 +31,18 @@ public class SearchSiteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Site> siteList = siteDao.list();
+        String name = req.getParameter("name")==null? "" : req.getParameter("name");
+        String city = req.getParameter("city")==null? "" : req.getParameter("city");
+        String departement = req.getParameter("departement")==null? "" : req.getParameter("departement");
+        String nbRoutes = req.getParameter("nbRoutes")==null? "" : req.getParameter("nbRoutes");
+        String quotation = req.getParameter("quotation")==null? "" : req.getParameter("quotation");
+        String checkedString = req.getParameter("checked")==null? "false" : req.getParameter("checked");
+        boolean checked = checkedString.equals("true");
+
+        logger.info("get search site " + name + city + departement + nbRoutes + quotation + checkedString );
+
+        List<Site> siteList = siteDao.search(name, city, departement,nbRoutes, checked, quotation);
+
         req.setAttribute("siteList", siteList);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
@@ -42,18 +53,14 @@ public class SearchSiteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("searchByName");
-        String city = req.getParameter("searchByCity");
-        String departement = req.getParameter("searchByDepartement");
-        String quotation = req.getParameter("searchByQuotation");
-        String nbRoutes = req.getParameter("searchByNbRoutes");
-
-        logger.info("nb de voies : " + nbRoutes);
-
-        String checkedString = req.getParameter("searchByChecked");
-
-        boolean checked = true;
-        if (checkedString==null) { checked=false; }
+        String name = req.getParameter("searchByName")==null? "" : req.getParameter("searchByName");
+        String city = req.getParameter("searchByCity")==null? "" : req.getParameter("searchByCity");
+        String departement = req.getParameter("searchByDepartement")==null? "" : req.getParameter("searchByDepartement");
+        String nbRoutes = req.getParameter("searchByNbRoutes")==null? "" : req.getParameter("searchByNbRoutes");
+        String quotation = req.getParameter("searchByQuotation")==null? "" : req.getParameter("searchByQuotation");
+        logger.info("checked " + req.getParameter("searchByChecked"));
+        String checkedString = req.getParameter("searchByChecked")==null? "false" :"true";
+        boolean checked = checkedString.equals("true");
 
 
         List<Site> siteList = siteDao.search(name, city, departement,nbRoutes, checked, quotation);
@@ -62,7 +69,10 @@ public class SearchSiteServlet extends HttpServlet {
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
 
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
+        logger.info("post search site " + name +city+departement+nbRoutes+quotation+checkedString);
+
+        resp.sendRedirect(req.getContextPath() + "/searchSite?name="+ name +"&city=" + city+"&departement=" + departement +
+                "&nbRoutes=" + nbRoutes + "&quotation="+ quotation +"&checked="+ checked);
 
     }
 }

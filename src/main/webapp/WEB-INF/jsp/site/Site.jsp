@@ -10,14 +10,16 @@
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
         <%@include file="/WEB-INF/css/sitestyle.css"%>
+
     </style>
 </head>
 
 <body>
 <div class="container">
 
-    <a href="${pageContext.request.contextPath}/searchSite">
-        ◄ Retourner à la liste des sites d'escalade </a>
+    <button onclick="history.back()"> ◄ Retourner à la liste des sites d'escalade
+    </button>
+
 
 
     <div class="line1">

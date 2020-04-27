@@ -53,15 +53,15 @@ public class SearchServlet extends HttpServlet {
         if (object.equals("site")) {
             List<Site> siteList = siteDao.searchByName(word);
             req.setAttribute("siteList", siteList);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/searchSite?name="+ word +"&city=&departement=&nbRoutes=&quotation=&checked=");
         } else if (object.equals("topo")) {
             List<Topo> topoList = topoDao.searchByName(word);
             req.setAttribute("topoList", topoList);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchTopo.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/searchTopo?name="+ word +"&city=&departement=&available=");
         } else if (object.equals("user")) {
             List<User> userList = userDao.searchByUsername(word);
             req.setAttribute("userList", userList);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/searchUser?username="+ word);
 
         } else {
             resp.sendRedirect(req.getContextPath() + "/error");

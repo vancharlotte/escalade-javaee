@@ -28,18 +28,23 @@ public class SearchUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username")==null? "" : req.getParameter("username");
+
+        List<User> userList = userDao.searchByUsername(username);
+        req.setAttribute("userList", userList);
+
+
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("searchByUsername");
-        logger.info(username);
+        String username = req.getParameter("searchByUsername")==null? "" : req.getParameter("searchByUsername");
 
         List<User> userList = userDao.searchByUsername(username);
         req.setAttribute("userList", userList);
 
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/searchUser?username="+ username);
     }
 }

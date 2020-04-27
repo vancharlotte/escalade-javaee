@@ -9,6 +9,17 @@
 
 }
 
+button {
+    color:darkcyan;
+    transition-duration: 0.4s;
+    width: 250px;
+}
+
+button:hover {
+    background-color: lightseagreen;
+    color: white;
+}
+
 .line1 {
     color: darkcyan;
     text-align: center;
