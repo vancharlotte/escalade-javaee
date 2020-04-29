@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,6 @@
     <button onclick="history.back()"> ◄ Retourner à la liste des sites d'escalade
     </button>
 
-
-
     <div class="line1">
         <h1> ${site.name}</h1>
         <hr>
@@ -31,21 +30,22 @@
         <div class="bloc1">
 
             <div class="elt1">
-                <c:if test="${site.checked==true}">
+                <aside>
+                    <c:if test="${site.checked==true}">
+                        <span title="site d'escalade certifié par les amis de l'escalade" style="font-size:48px">
+                            &#129495;
+                        </span>
+                        <br> <br>
+                        <strong> Ami de l'escalade </strong>
+                    </c:if>
+                </aside>
+                <br/>
+                <strong>Où?</strong> ${site.city}, ${site.departement}
+                <br/>
+                <strong>nombre de voies :</strong> ${site.nbRoutes}
+                <br/>
+                <strong>cotation :</strong> de ${site.quotationMin} à ${site.quotationMax}
 
-
-                    Certifié Ami de l'escalade !!!!
-
-                </c:if>
-                <br/>
-                <br/>
-
-                Où? ${site.city}, ${site.departement}
-                <br/>
-                nombre de voies : ${site.nbRoutes}
-                <br/>
-                cotation : de ${site.quotationMin} à ${site.quotationMax}
-                <br/>
 
                 <p style="color: blueviolet">
                     ${message}
@@ -60,13 +60,12 @@
                         <a href="${pageContext.request.contextPath}/admin/deleteSite?siteId=<c:out value="${site.siteId}"/>">
                             Supprimer </a>
                         <a href="${pageContext.request.contextPath}/admin/editChecked?siteId=<c:out value="${site.siteId}"/>">
-                            Ami
-                            de
-                            l'escalade </a>
+                            Ami de l'escalade </a>
 
                     </sec:authorize>
 
                 </div>
+                <br/>
                 <hr>
 
             </div>

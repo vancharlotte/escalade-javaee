@@ -10,7 +10,7 @@
 }
 
 button {
-    color:darkcyan;
+    color: darkcyan;
     transition-duration: 0.4s;
     width: 250px;
 }
@@ -33,6 +33,19 @@ button:hover {
     flex-wrap: wrap;
     color: black;
     text-align: center;
+}
+
+aside{
+    float: right ;
+    margin-top: 10px;
+    margin-right: 100px;
+
+}
+
+.elt1{
+    margin-bottom: 25px;
+    text-align: center;
+
 }
 
 .bloc1 {
@@ -81,7 +94,7 @@ button:hover {
 .bloc2 {
     min-height: 375px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     color: darkcyan;
     text-align: center;
 }
@@ -127,7 +140,6 @@ a:active {
 }
 
 
-
 @media only screen and (max-width: 1000px) {
     .line1 {
         flex-direction: column;
@@ -135,11 +147,22 @@ a:active {
 
     .line2 {
         flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+    }
+
+
+    .bloc2 {
+        border-top : solid 1px grey;
+        max-height: 500px;
+        min-width: 100%;
+        max-width: 100%;
     }
 
     .elt3 {
         border-left: none;
 
     }
+
 
 }

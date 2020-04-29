@@ -66,7 +66,7 @@
             <label for="city"> Nombre de Voies : </label>
             <input type="number" min="0" id="nbRoutes" name="searchByNbRoutes">
             <label>Cotation : </label>
-            <select name="searchByQuotation">
+            <select name="searchByQuotation" >
                 <option value="">sélectionner</option>
                 <c:forEach var="quotation" items="${quotationList}">
                     <option value="${quotation}">${quotation}</option>

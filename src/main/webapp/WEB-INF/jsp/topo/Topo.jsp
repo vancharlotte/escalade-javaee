@@ -21,7 +21,8 @@
 
 
     <div class="elt1">
-        <h1> ${topo.name}</h1>
+        <h1> ${topo.name}    </h1>
+
         <hr>
     </div>
 
@@ -29,16 +30,18 @@
 
         <div class="elt2">
 
-            <p>
-                par : ${owner.username}
-                <br/> <br/>
-                Où? ${topo.city}, ${topo.departement}
+            <p class="info">
                 <br/>
-                date de parution : ${topo.releaseDate}
+                <strong>Où?</strong> ${topo.city}, ${topo.departement}
+                <br/><br/>
+                <strong>date de parution :</strong> ${topo.releaseDate}
                 <br/> <br/>
+            <hr>
+
             </p>
 
             <p style="color: blueviolet">
+                <br/>
                 <c:if test="${ empty error}">${message}<br><br></c:if>
                 <c:if test="${not empty error}">Vous avez déjà fait une demande de réservation pour ce topo. Celle-ci est toujours en attente.<br><br></c:if>
 
@@ -68,9 +71,9 @@
         </div>
 
         <div class="elt3">
-
-            ${topo.description}
+            <h4>   propriétaire : ${owner.username} </h4>
             <br/> <br/>
+            ${topo.description}
         </div>
 
     </div>

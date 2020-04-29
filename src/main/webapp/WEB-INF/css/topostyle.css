@@ -36,16 +36,19 @@ button:hover {
 .elt2 {
     min-width: 25%;
     flex: 1;
-
-
 }
+
 
 .elt3 {
     border-left: solid 1px blueviolet ;
-    padding: 25px;
-    margin: 25px;
+    padding: 0px 25px 25px 25px;
     flex: 2;
+    text-align: left;
     overflow: auto;
+}
+
+.elt3 h4{
+    color: darkcyan;
 }
 
 .elt4 {
