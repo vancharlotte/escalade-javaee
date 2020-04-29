@@ -1,2 +1,33 @@
-# escalade-javaee
-Projet 6 
+Projet 6 - Créez un site communautaire autour de l’escalade
+
+Un site web où l'on peut consulter la description de des sites d'escalade et une liste de topos disponibles à la réservation.
+
+
+Java jdk 8
+Apache Maven
+Apache Tomcat
+PostgreSQL11
+
+Déploiement: 
+
+Créer une base de donnée Postgresql appelée : db_escalade 
+datasource URL: jdbc:postgresql://localhost:5432/db_escalade
+owner ID: admin - password: admin123
+
+Restaurer la BDD a l'aide du fichier : escalade/resources/db_escalade/backup_db.backup  
+N'oubliez pas de cocher les options Pre-data, Data and Post-data 
+
+Se rendre dans le répertoire: escalade/....
+
+Lancer le jar Escalade.jar
+
+Dans le navigateur, ouvrez: http://localhost:8080/escalade
+
+Plusieurs comptes sont déjà créés dans la base de donnée : 
+- compte Admin 
+id : user1 pwd: 1ABCDefgh
+- compte User
+id : user2 pwd: 1ABCDefgh
+id : user3 pwd: 1ABCDefgh
+
+
