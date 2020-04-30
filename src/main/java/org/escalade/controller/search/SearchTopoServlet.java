@@ -35,6 +35,8 @@ public class SearchTopoServlet extends HttpServlet {
         String availableString = req.getParameter("available")==null? "false" : req.getParameter("available");
         boolean available = availableString.equals("true");
 
+        logger.info("Topo, selected criteria for research : name " +  name);
+
         List<Topo> topoList = topoDao.search(name, city, departement, available);
         req.setAttribute("topoList", topoList);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
@@ -49,6 +51,8 @@ public class SearchTopoServlet extends HttpServlet {
         String departement = req.getParameter("searchByDepartement")==null? "" : req.getParameter("searchByDepartement");
         String availableString = req.getParameter("searchByAvailable")==null? "false" : req.getParameter("searchByAvailable");
         boolean available = availableString.equals("true");
+
+        logger.info("Topo, selected criteria for research : name " +  name + " ,city " +  city + " ,departement " + departement +  " ,available" + availableString );
 
         List<Topo> topoList = topoDao.search(name, city, departement, available);
         req.setAttribute("topoList", topoList);

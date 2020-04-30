@@ -20,9 +20,7 @@ public class SearchSiteServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(SearchSiteServlet.class);
 
-
-    SiteDao siteDao;
-
+    private SiteDao siteDao;
 
     @Override
     public void init() throws ServletException {
@@ -39,14 +37,13 @@ public class SearchSiteServlet extends HttpServlet {
         String checkedString = req.getParameter("checked")==null? "false" : req.getParameter("checked");
         boolean checked = checkedString.equals("true");
 
-        logger.info("get search site " + name + city + departement + nbRoutes + quotation + checkedString );
+        logger.info("Site, selected criteria for research : name " +  name);
 
         List<Site> siteList = siteDao.search(name, city, departement,nbRoutes, checked, quotation);
 
         req.setAttribute("siteList", siteList);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
-
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchSite.jsp").forward(req, resp);
     }
@@ -58,18 +55,15 @@ public class SearchSiteServlet extends HttpServlet {
         String departement = req.getParameter("searchByDepartement")==null? "" : req.getParameter("searchByDepartement");
         String nbRoutes = req.getParameter("searchByNbRoutes")==null? "" : req.getParameter("searchByNbRoutes");
         String quotation = req.getParameter("searchByQuotation")==null? "" : req.getParameter("searchByQuotation");
-        logger.info("checked " + req.getParameter("searchByChecked"));
         String checkedString = req.getParameter("searchByChecked")==null? "false" :"true";
         boolean checked = checkedString.equals("true");
-
 
         List<Site> siteList = siteDao.search(name, city, departement,nbRoutes, checked, quotation);
         req.setAttribute("siteList", siteList);
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());
 
-
-        logger.info("post search site " + name +city+departement+nbRoutes+quotation+checkedString);
+        logger.info("Site, selected criteria for research : name " +  name + " ,city " +  city + " ,departement " + departement + " ,nbRoutes " + nbRoutes + " ,quotation " + quotation + " ,checked" + checkedString );
 
         resp.sendRedirect(req.getContextPath() + "/searchSite?name="+ name +"&city=" + city+"&departement=" + departement +
                 "&nbRoutes=" + nbRoutes + "&quotation="+ quotation +"&checked="+ checked);

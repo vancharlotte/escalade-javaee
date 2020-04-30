@@ -21,15 +21,12 @@ import static java.util.Map.Entry.comparingByKey;
 public class SiteServlet extends HttpServlet {
     static final Logger logger = LoggerFactory.getLogger(SiteServlet.class);
 
-    SiteDao siteDao;
-    CommentDao commentDao;
-    UserDao userDao;
+    private SiteDao siteDao;
+    private CommentDao commentDao;
 
     public void init() {
         siteDao = new SiteDaoImpl();
         commentDao = new CommentDaoImpl();
-        userDao = new UserDaoImpl();
-
     }
 
     @Override
@@ -44,7 +41,6 @@ public class SiteServlet extends HttpServlet {
         for (int i = 0; i < commentList.size(); i++) {
             User author = commentList.get(i).getUser();
             commentMap.put(commentList.get(i), author.getUsername());
-            logger.info("comment : " + commentList.get(i).getTitle());
         }
 
         req.setAttribute("commentList", commentList);

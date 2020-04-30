@@ -18,7 +18,7 @@ public class ListSiteServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(ListSiteServlet.class);
 
-    SiteDao siteDao;
+    private SiteDao siteDao;
 
     public void init() {
         siteDao = new SiteDaoImpl();
@@ -33,11 +33,10 @@ public class ListSiteServlet extends HttpServlet {
 
         }
 
-        logger.info("page " + pageNumber);
+        logger.info("page selected for display : page " + pageNumber);
 
         List<Site> sites = siteDao.listPage(pageNumber);
         List<Site> siteList = siteDao.list();
-
 
         int rows = siteList.size();
         int recordsPerPage = 10;
@@ -50,7 +49,6 @@ public class ListSiteServlet extends HttpServlet {
         req.setAttribute("sites", sites);
         req.setAttribute("noOfPages", nOfPages);
         req.setAttribute("pageNumber", pageNumber);
-
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/listSite.jsp").forward(req, resp);
     }

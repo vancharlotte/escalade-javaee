@@ -25,9 +25,9 @@ public class myBookingServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(myBookingServlet.class);
 
-    BookingDao bookingDao;
-    TopoDao topoDao;
-    UserDao userDao;
+    private BookingDao bookingDao;
+    private TopoDao topoDao;
+    private UserDao userDao;
 
     public void init() {
         bookingDao = new BookingDaoImpl();
@@ -39,7 +39,6 @@ public class myBookingServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User owner = (User) session.getAttribute("user");
-        logger.info(owner.getUsername());
 
         // liste des demandes faites pour les topos de l'utilisateur
         List<Booking> requests = bookingDao.findByOwner(owner);
@@ -51,6 +50,7 @@ public class myBookingServlet extends HttpServlet {
             User user = userDao.findById(booking.getUser().getUserId());
             requestList.put(booking, new AbstractMap.SimpleEntry(topo, user));
         }
+
 
         // listes des demandes faite par l'utilisateur pour d'autres topos
         List<Booking> bookings = bookingDao.findByUser(owner);

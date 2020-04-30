@@ -8,23 +8,24 @@ Apache Tomcat
 PostgreSQL
 
 Déploiement: 
+
 Créer une base de donnée Postgresql appelée : db_escalade 
 datasource URL: jdbc:postgresql://localhost:5432/db_escalade
 owner ID: admin - password: admin123
+Se rendre dans le répertoire: escalade-javaee/src/resources/db-escalade
+Utilisez le fichier createdb.sql pour créer les tables de votre BDD
+et le fichier inserdb.sql pour insérer un jeu de données de démo.
 
-Restaurer la BDD a l'aide du fichier : escalade/resources/db_escalade/backup_db.backup  
-N'oubliez pas de cocher les options Pre-data, Data and Post-data 
-
-Se rendre dans le répertoire: escalade/war
+Se rendre dans le répertoire: escalade-javaee/war
 Copiez le fichier "Escalade.war" et collez le dans le dossier "webapps" de votre installation Tomcat
 En invite de commande rendez vous dans votre dossier Tomcat/bin et exécutez startup.bat
 Dans votre navigateur, allez sur : "http://localhost:8080/Escalade"
 
-Plusieurs comptes sont déjà créés dans la base de donnée : 
+Plusieurs comptes utilisateur sont déjà créés dans la base de données : 
 - compte Admin 
-id : user1 pwd: 1ABCDefgh
+id : user1 / pwd: 1ABCDefgh
 - compte User
-id : user2 pwd: 1ABCDefgh
-id : user3 pwd: 1ABCDefgh
+id : user2 / pwd: 1ABCDefgh
+id : user3 / pwd: 1ABCDefgh
 
 

@@ -23,8 +23,8 @@ public class TopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(MyTopoServlet.class);
 
-    TopoDao topoDao;
-    UserDao userDao;
+    private TopoDao topoDao;
+    private UserDao userDao;
 
     public void init() {
         topoDao = new TopoDaoImpl();
@@ -36,7 +36,6 @@ public class TopoServlet extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         String error = req.getParameter("error");
-
 
         int topoId = Integer.parseInt(req.getParameter("topoId"));
         Topo topo = topoDao.findById(topoId);

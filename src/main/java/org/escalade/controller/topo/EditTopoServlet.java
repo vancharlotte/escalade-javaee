@@ -26,8 +26,7 @@ public class EditTopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(AddTopoServlet.class);
 
-    TopoDao topoDao;
-    HttpSession session;
+    private TopoDao topoDao;
 
     public void init() {
         topoDao = new TopoDaoImpl();
@@ -49,11 +48,14 @@ public class EditTopoServlet extends HttpServlet {
                 topo.setAvailable(true);
             }
             topoDao.update(topo);
+            logger.info("success update topo");
             resp.sendRedirect(req.getContextPath() + "/user/myTopo");
+
         } else if (req.getRequestURL().toString().contains("deleteTopo")) {
             topoDao.delete(topo);
-            logger.info("delete topo");
+            logger.info("success delete topo");
             resp.sendRedirect(req.getContextPath() + "/user/myTopo");
+
         } else {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
         }
@@ -64,7 +66,7 @@ public class EditTopoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int topoId = Integer.parseInt(req.getParameter("topoId"));
         Topo topo = topoDao.findById(topoId);
-        logger.info("topo : " + topo.getName() + topo.getTopoId());
+        logger.info("selected topo : name " + topo.getName() + ",id : " +topo.getTopoId());
 
         topo.setName(req.getParameter("name"));
         topo.setDescription(req.getParameter("description"));
@@ -73,7 +75,6 @@ public class EditTopoServlet extends HttpServlet {
         topo.setReleaseDate(req.getParameter("releaseDate"));
 
         String available = req.getParameter("available");
-        logger.info("available?" + available);
         if (available.equals("true")) {
             topo.setAvailable(true);
         } else {
@@ -94,10 +95,16 @@ public class EditTopoServlet extends HttpServlet {
             req.setAttribute("message", errorList);
             req.setAttribute("topo", topo);
             req.setAttribute("departementList", EntityUtil.InitDepartementList());
+
+            logger.info("error update topo");
+
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/editTopo.jsp").forward(req, resp);
 
         } else {
             topoDao.update(topo);
+
+            logger.info("success update topo");
+
             resp.sendRedirect(req.getContextPath() + "/user/myTopo");
         }
 

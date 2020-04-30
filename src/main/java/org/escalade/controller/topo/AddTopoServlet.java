@@ -27,7 +27,7 @@ public class AddTopoServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(AddTopoServlet.class);
 
-    TopoDao topoDao;
+    private TopoDao topoDao;
 
     public void init() {
         topoDao = new TopoDaoImpl();
@@ -37,7 +37,6 @@ public class AddTopoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("message", req.getParameter("message"));
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
-
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/addTopo.jsp").forward(req, resp);
     }
@@ -74,12 +73,13 @@ public class AddTopoServlet extends HttpServlet {
             errorList += "</ul>";
             req.setAttribute("message", errorList);
             req.setAttribute("departementList", EntityUtil.InitDepartementList());
+            logger.info("error save topo");
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/addTopo.jsp").forward(req, resp);
 
         } else {
 
             topoDao.save(topo);
-            logger.info("save");
+            logger.info("success save topo");
             resp.sendRedirect(req.getContextPath() + "/user/myTopo");
 
         }

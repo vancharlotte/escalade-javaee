@@ -33,9 +33,7 @@ public class MyTopoServlet extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
         List<Topo> list= topoDao.findByUser(user);
-
         req.setAttribute("list", list);
-        logger.info("topo : "+ list);
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/topo/myTopo.jsp").forward(req, resp);
     }

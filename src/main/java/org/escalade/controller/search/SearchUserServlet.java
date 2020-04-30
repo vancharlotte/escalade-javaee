@@ -19,7 +19,7 @@ public class SearchUserServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(SearchUserServlet.class);
 
-    UserDao userDao;
+    private UserDao userDao;
 
     @Override
     public void init() throws ServletException {
@@ -33,6 +33,8 @@ public class SearchUserServlet extends HttpServlet {
         List<User> userList = userDao.searchByUsername(username);
         req.setAttribute("userList", userList);
 
+        logger.info("User, selected criteria for research : username " +  username);
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/search/searchUser.jsp").forward(req, resp);
     }
@@ -44,6 +46,8 @@ public class SearchUserServlet extends HttpServlet {
 
         List<User> userList = userDao.searchByUsername(username);
         req.setAttribute("userList", userList);
+
+        logger.info("User, selected criteria for research : username " +  username);
 
         resp.sendRedirect(req.getContextPath() + "/searchUser?username="+ username);
     }

@@ -24,7 +24,7 @@ public class EditSiteServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(EditSiteServlet.class);
 
-    SiteDao siteDao;
+    private SiteDao siteDao;
 
     @Override
     public void init() throws ServletException {
@@ -45,10 +45,13 @@ public class EditSiteServlet extends HttpServlet {
                 site.setChecked(true);
             }
             siteDao.update(site);
+            logger.info("success update site");
+
             resp.sendRedirect(req.getContextPath() + "/site?siteId=" + site.getSiteId());
 
         } else if (req.getRequestURL().toString().contains("deleteSite")) {
             siteDao.delete(site);
+            logger.info("success delete site");
             resp.sendRedirect(req.getContextPath() + "/search");
 
         } else {
@@ -62,12 +65,9 @@ public class EditSiteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int siteId = Integer.parseInt(req.getParameter("siteId"));
         Site site = siteDao.findById(siteId);
-        logger.info("site : " + site.getName() + site.getSiteId());
-        logger.info(site.getName()+"/"+req.getParameter("name"));
+        logger.info("selected site : name " + site.getName() + " siteId : " +site.getSiteId());
 
-        if (!site.getName().equals(req.getParameter("name"))){
-            logger.info(site.getName()+"/"+req.getParameter("name"));
-        site.setName(req.getParameter("name"));}
+        site.setName(req.getParameter("name"));
         site.setCity(req.getParameter("city"));
         site.setDepartement(req.getParameter("departement"));
         site.setDescription(req.getParameter("description"));
@@ -76,7 +76,6 @@ public class EditSiteServlet extends HttpServlet {
         site.setNbRoutes(req.getParameter("nbRoutes"));
 
         String available = req.getParameter("checked");
-        logger.info("checked?" + available);
         if (available.equals("true")) {
             site.setChecked(true);
         } else {
@@ -99,11 +98,13 @@ public class EditSiteServlet extends HttpServlet {
             req.setAttribute("departementList", EntityUtil.InitDepartementList());
             req.setAttribute("quotationList", EntityUtil.InitQuotationList());
 
+            logger.info("error update site");
+
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/editSite.jsp").forward(req, resp);
 
         } else {
             siteDao.update(site);
-            logger.info("update site");
+            logger.info("success update site");
 
             resp.sendRedirect(req.getContextPath() + "/site?siteId=" + site.getSiteId());
         }

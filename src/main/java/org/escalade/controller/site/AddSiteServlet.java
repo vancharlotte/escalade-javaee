@@ -28,7 +28,7 @@ public class AddSiteServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(AddSiteServlet.class);
 
-    SiteDao siteDao;
+    private SiteDao siteDao;
 
     public void init() {
         siteDao = new SiteDaoImpl();
@@ -79,12 +79,13 @@ public class AddSiteServlet extends HttpServlet {
             req.setAttribute("departementList", EntityUtil.InitDepartementList());
             req.setAttribute("quotationList", EntityUtil.InitQuotationList());
 
+            logger.info("error save site");
+
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/site/addSite.jsp").forward(req, resp);
 
         } else {
             siteDao.save(site);
-            logger.info("save new site");
-
+            logger.info("success save site");
 
             resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
 

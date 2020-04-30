@@ -42,10 +42,10 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String object = req.getParameter("search_object");
-        logger.info("object : " + object);
+        logger.info("object selected for research: " + object);
 
         String word = req.getParameter("search_word");
-        logger.info("word : " + word);
+        logger.info("input word for research: " + word);
 
         req.setAttribute("departementList", EntityUtil.InitDepartementList());
         req.setAttribute("quotationList", EntityUtil.InitQuotationList());

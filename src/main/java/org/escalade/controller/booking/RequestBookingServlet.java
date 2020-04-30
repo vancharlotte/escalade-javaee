@@ -24,8 +24,8 @@ public class RequestBookingServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(RequestBookingServlet.class);
 
-    BookingDao bookingDao;
-    TopoDao topoDao;
+    private BookingDao bookingDao;
+    private TopoDao topoDao;
 
     public void init() {
         bookingDao = new BookingDaoImpl();
@@ -42,12 +42,10 @@ public class RequestBookingServlet extends HttpServlet {
             req.setAttribute("message", "Vous devez être connecté pour faire une demande de réservation.");
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/login.jsp").forward(req, resp);
 
-        }
-        else if(bookingDao.checkAvailability(topo, user)!=null){
-            resp.sendRedirect(req.getContextPath() + "/topo?topoId="+ topo.getTopoId()+"&error=error");
+        } else if (bookingDao.checkAvailability(topo, user) != null) {
+            resp.sendRedirect(req.getContextPath() + "/topo?topoId=" + topo.getTopoId() + "&error=error");
 
-        }
-        else {
+        } else {
             Booking booking = new Booking();
             booking.setTopo(topo);
             booking.setStatus("en attente");

@@ -30,8 +30,8 @@ public class AddCommentServlet extends HttpServlet {
 
     static final Logger logger = LoggerFactory.getLogger(AddCommentServlet.class);
 
-    CommentDao commentDao;
-    SiteDao siteDao;
+    private CommentDao commentDao;
+    private SiteDao siteDao;
 
     public void init() {
         commentDao = new CommentDaoImpl();
@@ -77,9 +77,7 @@ public class AddCommentServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/comment/addComment.jsp").forward(req, resp);
 
         } else {
-
             commentDao.save(comment);
-
             resp.sendRedirect(req.getContextPath() + "/site?" + site.getSiteId());
         }
     }

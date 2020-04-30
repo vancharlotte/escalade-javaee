@@ -4,6 +4,8 @@ import org.escalade.model.dao.CommentDao;
 import org.escalade.model.dao.CommentDaoImpl;
 import org.escalade.model.entity.Comment;
 import org.escalade.model.entity.Topo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +23,9 @@ import java.util.Set;
 @WebServlet(name = "DeleteCommentServlet", urlPatterns = {"/admin/deleteComment", "/admin/editComment"})
 public class EditCommentServlet extends HttpServlet {
 
-    CommentDao commentDao;
+    static final Logger logger = LoggerFactory.getLogger(EditCommentServlet.class);
+
+    private CommentDao commentDao;
 
     @Override
     public void init() throws ServletException {
@@ -36,7 +40,10 @@ public class EditCommentServlet extends HttpServlet {
 
         if (req.getRequestURL().toString().contains("deleteComment")) {
             commentDao.delete(comment);
+            logger.info("success delete comment");
+
             resp.sendRedirect(req.getContextPath() + "/site?" + comment.getSite().getSiteId());
+
         } else if (req.getRequestURL().toString().contains("editComment")) {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/comment/editComment.jsp").forward(req, resp);
 
@@ -65,10 +72,13 @@ public class EditCommentServlet extends HttpServlet {
             }
             errorList += "</ul>";
             req.setAttribute("message", errorList);
+            logger.info("error update comment");
+
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/comment/editComment.jsp").forward(req, resp);
 
         } else {
             commentDao.update(comment);
+            logger.info("success update comment");
 
             resp.sendRedirect(req.getContextPath() + "/site?" + comment.getSite().getSiteId());
         }
