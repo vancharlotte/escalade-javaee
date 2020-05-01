@@ -32,6 +32,8 @@ public class EditPasswordServlet extends HttpServlet {
         User user = userDao.findById(userId);
 
         req.setAttribute("user", user);
+        req.setAttribute("message", req.getParameter("message"));
+
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/editPassword.jsp").forward(req, resp);
     }
@@ -46,7 +48,7 @@ public class EditPasswordServlet extends HttpServlet {
         if (!oldPassword.equals(user.getPassword())) {
             req.setAttribute("message", "Votre ancien mot de passe est incorrect!");
             req.setAttribute("user", user);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/editUser.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/editPassword.jsp").forward(req, resp);
 
         } else {
 
@@ -66,7 +68,7 @@ public class EditPasswordServlet extends HttpServlet {
                 errorList += "</ul>";
                 req.setAttribute("message", errorList);
                 req.setAttribute("user", user);
-                this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/editUser.jsp").forward(req, resp);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/editPassword.jsp").forward(req, resp);
 
             } else {
                 userDao.update(user);

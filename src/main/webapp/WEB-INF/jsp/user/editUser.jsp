@@ -25,6 +25,8 @@
         <form method="post" action="editUser" accept-charset="ISO-8859-1">
             <p style="color: darkcyan ">
                 <c:if test="${valid eq 'true'}">Vos informations ont été mises à jour.</c:if>
+                <c:if test="${not empty message}">${message}</c:if>
+
             </p>
 
             <label for="userId"></label>

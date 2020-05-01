@@ -35,13 +35,13 @@ public class EditUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         int userId = Integer.parseInt(req.getParameter("userId"));
         logger.info("userId :" + userId);
         User user = userDao.findById(userId);
         logger.info("user :" + user.getUsername());
 
         req.setAttribute("user", user);
+        req.setAttribute("message", req.getParameter("message"));
 
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/user/editUser.jsp").forward(req, resp);
 
