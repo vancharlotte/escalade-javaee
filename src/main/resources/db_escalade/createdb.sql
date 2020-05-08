@@ -55,7 +55,7 @@ ALTER SEQUENCE public.comment_comment_id_seq OWNED BY public.comment.comment_id;
 
 CREATE TABLE public.role (
     role_id integer NOT NULL,
-    name character varying(255) NOT NULL
+    name character varying(10) NOT NULL
 );
 
 
@@ -134,9 +134,9 @@ ALTER SEQUENCE public.topo_topo_id_seq OWNED BY public.topo.topo_id;
 
 CREATE TABLE public.users (
     user_id integer NOT NULL,
-    email character varying(255) NOT NULL,
-    password character varying(255) NOT NULL,
-    username character varying(255) NOT NULL,
+    email character varying(20) NOT NULL,
+    password character varying(50) NOT NULL,
+    username character varying(100) NOT NULL,
     role_id integer
 );
 
