@@ -1,6 +1,5 @@
 package org.escalade.model.entity;
 
-import org.escalade.model.entity.validator.UniqueSite;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,21 +16,21 @@ public class Topo implements Serializable {
     @Column(name = "TOPO_ID")
     private int topoId;
 
-    @NotEmpty(message = "{NotEmpty.topo.name}")
-    @Length(max = 50, message = "{Length.topo.name}")
+    @NotEmpty
+    @Length(max = 50)
     private String name;
 
-    @NotEmpty(message = "{NotEmpty.topo.description}")
-    @Length(min = 10, max = 1000, message = "{Length.topo.description}")
+    @NotEmpty
+    @Length(min = 10, max = 1000)
     private String description;
 
-    @NotEmpty(message = "{NotEmpty.topo.location}")
+    @NotEmpty
     private String city;
 
-    @NotEmpty(message = "{NotEmpty.topo.location}")
+    @NotEmpty
     private String departement;
 
-    @NotEmpty(message = "{NotEmpty.topo.releaseDate}")
+    @NotEmpty
     @Column(name = "release_date")
     private String releaseDate;
 
